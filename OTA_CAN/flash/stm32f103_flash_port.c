@@ -5,7 +5,7 @@
 #include "uds_wear_leveling.h"
 
 
-#define STM32F103_PAGE_SIZE 1024U /* 1 KB per page for Medium-Density STM32F103 */
+#define STM32F103_PAGE_SIZE 0x800 /* 2KB per page for High-Density STM32F103 */
 
 static uint32_t stm32f103_sector_size(uint32_t addr) {
     (void)addr;
