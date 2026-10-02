@@ -48,6 +48,8 @@
 "stm32f103\svc_upload.o"
 "stm32f103\svc_write_address.o"
 "stm32f103\svc_write_did.o"
+"stm32f103\uds_wear_leveling.o"
+"stm32f103\stm32f103_flash_port.o"
 --library_type=microlib --strict --scatter "STM32F103\STM32F103.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

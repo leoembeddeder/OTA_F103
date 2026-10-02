@@ -25,6 +25,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "can_hw.h"
+#include "stm32f103_flash_port.h"
 
 /* USER CODE END Includes */
 
@@ -99,7 +100,7 @@ int main(void)
 
   printf("stm32 can test\r\n");
 
- 
+  stm32f103_flash_example();
   UDS_APP();
 
   /* USER CODE END 2 */

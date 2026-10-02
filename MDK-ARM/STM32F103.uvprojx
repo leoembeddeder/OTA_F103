@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\OTA_CAN\hal\include;..\OTA_CAN\isotp\include;..\OTA_CAN\store\include;..\OTA_CAN\uds\include;..\OTA_CAN\uds\src\services</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\OTA_CAN\hal\include;..\OTA_CAN\isotp\include;..\OTA_CAN\store\include;..\OTA_CAN\uds\include;..\OTA_CAN\uds\src\services;..\OTA_CAN\flash</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -664,6 +664,21 @@
               <FileName>svc_write_did.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\OTA_CAN\uds\src\services\svc_write_did.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>flash</GroupName>
+          <Files>
+            <File>
+              <FileName>uds_wear_leveling.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\OTA_CAN\flash\uds_wear_leveling.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f103_flash_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\OTA_CAN\flash\stm32f103_flash_port.c</FilePath>
             </File>
           </Files>
         </Group>
