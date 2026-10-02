@@ -39,14 +39,6 @@ typedef bool (*uds_did_write_fn)(uint16_t did,
 typedef void (*uds_did_post_write_fn)(uint16_t did,
                                       const uint8_t *data, uint8_t len);
 
-/* ── ECU reset hook ───────────────────────────────────────────────── */
-
-/**
- * Called from svc_ecu_reset after session reset.
- * sub_function: 0x01=hardReset, 0x02=keyOff/On, 0x03=softReset.
- * App can trigger watchdog reboot, etc.
- */
-typedef void (*uds_ecu_reset_fn)(uint8_t sub_function);
 
 /* ── Transfer hooks (for app-managed downloads like FW OTA) ───────── */
 
@@ -117,9 +109,6 @@ typedef struct {
     /* Security — NULL = use built-in XOR with secret bytes */
     const uint8_t           *security_secret;
     uint8_t                  security_secret_len;
-
-    /* ECU reset — called from svc_ecu_reset */
-    uds_ecu_reset_fn         ecu_reset_hook;
 
     /* Transfer — for app-managed downloads (FW OTA) */
     uds_transfer_request_fn  transfer_request;

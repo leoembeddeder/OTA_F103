@@ -621,6 +621,11 @@
               <FilePath>..\OTA_CAN\uds\src\services\svc_periodic_did.c</FilePath>
             </File>
             <File>
+              <FileName>svc_read_address.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\OTA_CAN\uds\src\services\svc_read_address.c</FilePath>
+            </File>
+            <File>
               <FileName>svc_read_did.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\OTA_CAN\uds\src\services\svc_read_did.c</FilePath>
@@ -649,6 +654,11 @@
               <FileName>svc_upload.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\OTA_CAN\uds\src\services\svc_upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>svc_write_address.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\OTA_CAN\uds\src\services\svc_write_address.c</FilePath>
             </File>
             <File>
               <FileName>svc_write_did.c</FileName>

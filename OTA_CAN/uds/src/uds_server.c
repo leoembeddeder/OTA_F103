@@ -1,3 +1,4 @@
+#include <string.h>
 #include "uds_server.h"
 #include "uds_session.h"
 #include "uds_config.h"
@@ -20,8 +21,9 @@
 #include "svc_routine_control.h"
 #include "svc_comm_control.h"
 #include "svc_control_dtc.h"
+#include "svc_read_address.h"
+#include "svc_write_address.h"
 
-#include <string.h>
 
 /* ── App config storage ───────────────────────────────────────────── */
 
@@ -75,26 +77,28 @@ void uds_server_init(const uds_app_config_t *config) {
     s_service_count = 0;
 
     /* Install base library services */
-    /*       SID   handler                    session_mask                   security */
-    register_service(0x10, svc_diag_session_control,   SESSION_MASK_ALL,     false);
-    register_service(0x11, svc_ecu_reset,              SESSION_MASK_ALL,     false);
-    register_service(0x14, svc_clear_dtc,              SESSION_MASK_NON_DEFAULT, false);
-    register_service(0x19, svc_read_dtc_info,          SESSION_MASK_ALL,     false);
-    register_service(0x22, svc_read_data_by_id,        SESSION_MASK_ALL,     false);
-    register_service(0x27, svc_security_access,        SESSION_MASK_NON_DEFAULT, false);
-	register_service(0x28, svc_comm_control,           SESSION_MASK_ALL,     false);
-    register_service(0x2A, svc_read_periodic_id,       SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING, false);
-    register_service(0x2C, svc_dyn_define_did,         SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING, false);
-    register_service(0x2E, svc_write_data_by_id,       SESSION_MASK_NON_DEFAULT, true);
-    register_service(0x2F, svc_io_control,             SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING, false);
-    register_service(0x31, svc_routine_control,        SESSION_MASK_ALL,     false);
-    register_service(0x34, svc_request_download,       SESSION_MASK_PROGRAMMING, true);
-    register_service(0x35, svc_request_upload,         SESSION_MASK_PROGRAMMING | SESSION_MASK_EXTENDED, true);
-    register_service(0x36, svc_transfer_data,          SESSION_MASK_PROGRAMMING | SESSION_MASK_EXTENDED, true);
-    register_service(0x37, svc_transfer_exit,          SESSION_MASK_PROGRAMMING | SESSION_MASK_EXTENDED, true);
-    register_service(0x3E, svc_tester_present,         SESSION_MASK_ALL,     false);
-	register_service(0x85, svc_control_dtc,            SESSION_MASK_ALL,     false);
-    register_service(0x87, svc_link_control,           SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING, false);
+    /*       SID                handler                  session_mask                                   security */
+    register_service(0x10, svc_diag_session_control,    SESSION_MASK_ALL,                                 false);
+    register_service(0x11, svc_ecu_reset,               SESSION_MASK_ALL,                                 false);
+    register_service(0x14, svc_clear_dtc,               SESSION_MASK_NON_DEFAULT,                         false);
+    register_service(0x19, svc_read_dtc_info,           SESSION_MASK_ALL,                                 false);
+    register_service(0x22, svc_read_data_by_id,         SESSION_MASK_ALL,                                 false);
+	register_service(0x23, svc_read_memory_by_address,  SESSION_MASK_ALL,                                 false);
+    register_service(0x27, svc_security_access,         SESSION_MASK_NON_DEFAULT,                         false);
+	register_service(0x28, svc_comm_control,            SESSION_MASK_ALL,                                 false);
+    register_service(0x2A, svc_read_periodic_id,        SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING, false);
+    register_service(0x2C, svc_dyn_define_did,          SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING, false);
+    register_service(0x2E, svc_write_data_by_id,        SESSION_MASK_NON_DEFAULT,                         true);
+    register_service(0x2F, svc_io_control,              SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING, false);
+    register_service(0x31, svc_routine_control,         SESSION_MASK_ALL,                                 false);
+    register_service(0x34, svc_request_download,        SESSION_MASK_PROGRAMMING,                         true);
+    register_service(0x35, svc_request_upload,          SESSION_MASK_PROGRAMMING | SESSION_MASK_EXTENDED, true);
+    register_service(0x36, svc_transfer_data,           SESSION_MASK_PROGRAMMING | SESSION_MASK_EXTENDED, true);
+    register_service(0x37, svc_transfer_exit,           SESSION_MASK_PROGRAMMING | SESSION_MASK_EXTENDED, true);
+    register_service(0x3E, svc_tester_present,          SESSION_MASK_ALL,                                 false);
+	register_service(0x3D, svc_write_memory_by_address, SESSION_MASK_ALL,                                 false);
+	register_service(0x85, svc_control_dtc,             SESSION_MASK_ALL,                                 false);
+    register_service(0x87, svc_link_control,            SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING, false);
 
     uds_state_init();
 }
@@ -159,4 +163,5 @@ bool uds_server_process(const uint8_t *data, uint16_t len,
 void uds_server_poll(void) {
     uds_session_check_timeout();
     uds_security_poll();
+	uds_reset_poll();
 }

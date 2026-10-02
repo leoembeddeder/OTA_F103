@@ -1,12 +1,17 @@
 #include "can.h"
 #include "can_hw.h"
 
+
 static isotp_channel_t s_phys;
 
-static bool isotp_tx_cb(const can_frame_t *f, void *user) {
-    (void)user;
-    return can_hw_send(f);
-}
+static bool isotp_tx_cb(const can_frame_t *f, void *user);
+static void seed_did_store(void);
+
+
+
+
+
+/* ── function definition ────────────────── */
 
 
 bool can_hw_send(const can_frame_t *frame) 
@@ -18,18 +23,16 @@ bool can_hw_send(const can_frame_t *frame)
 	return true; 
 }
 
-/* ── ECUReset hook ───────────────────────────────────────────────── */
 
-static void ecu_reset_fun(uint8_t sub_function) {
-    (void)sub_function;
-    
+static bool isotp_tx_cb(const can_frame_t *f, void *user) {
+    (void)user;
+    return can_hw_send(f);
 }
 
 
 /* ── App config (registered with uds_server_init) ────────────────── */
 
 static const uds_app_config_t s_app_cfg = {
-    .ecu_reset_hook   = ecu_reset_fun,
     //.did_read_hook    = ota_did_read,
     //.transfer_request = ota_request_cb,
     //.transfer_data    = ota_data_cb,

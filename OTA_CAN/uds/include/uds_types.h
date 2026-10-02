@@ -55,7 +55,7 @@ typedef enum {
     UDS_SESSION_DEFAULT     = 0x01,
     UDS_SESSION_PROGRAMMING = 0x02,
     UDS_SESSION_EXTENDED    = 0x03,
-    UDS_SESSION_ENGINEERING = 0x60,
+    UDS_SESSION_ENGINEERING = 0x04,
 } uds_session_t;
 
 /* Session bit masks for service dispatch table (use bit index mapping) */

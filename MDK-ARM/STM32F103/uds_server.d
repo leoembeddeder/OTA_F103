@@ -19,4 +19,6 @@ stm32f103/uds_server.o: ..\OTA_CAN\uds\src\uds_server.c \
   ..\OTA_CAN\uds\src\services\svc_link_ctrl.h \
   ..\OTA_CAN\uds\src\services\svc_routine_control.h \
   ..\OTA_CAN\uds\src\services\svc_comm_control.h \
-  ..\OTA_CAN\uds\src\services\svc_control_dtc.h
+  ..\OTA_CAN\uds\src\services\svc_control_dtc.h \
+  ..\OTA_CAN\uds\src\services\svc_read_address.h \
+  ..\OTA_CAN\uds\src\services\svc_write_address.h
