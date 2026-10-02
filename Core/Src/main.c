@@ -47,7 +47,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t DATA[8] = {1,2,3,4,5,6,7,8};
+
 
 /* USER CODE END PV */
 
@@ -96,11 +96,10 @@ int main(void)
   /* USER CODE BEGIN 2 */
   CAN_Handler_Init();
   
+  //stm32f103_flash_example();
 
-
-  printf("stm32 can test\r\n");
-
-  stm32f103_flash_example();
+  printf("stm32 power on reset!\r\n");
+  
   UDS_APP();
 
   /* USER CODE END 2 */

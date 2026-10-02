@@ -1,8 +1,7 @@
+#include <string.h>
 #include "isotp.h"
 #include "isotp_config.h"
-#include <uds_platform_time.h>
-
-#include <string.h>
+#include "uds_platform_time.h"
 
 /* ── Helpers ──────────────────────────────────────────────────────── */
 
