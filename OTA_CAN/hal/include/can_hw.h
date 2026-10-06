@@ -11,7 +11,11 @@
 #include "uds_types.h"
 #include "isotp.h"
 #include "did_store.h"
-
+#include "dtc_store.h"
+#include "store_types.h"
+#include "uds_wear_leveling.h"
+#include "dtc_nvm_adapter.h"
+#include "stm32f103_flash_port.h"
 
 #define ISOTP_RX_ID       0x7E0
 #define ISOTP_TX_ID       0x7E8

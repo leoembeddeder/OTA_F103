@@ -5,8 +5,9 @@
 
 
 
-
 void svc_control_dtc(const uds_request_t *req, uds_response_t *resp);
+bool dtc_is_setting_enabled(void);
+
 
 #endif
 

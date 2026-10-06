@@ -555,6 +555,11 @@
               <FileType>1</FileType>
               <FilePath>..\OTA_CAN\store\src\store_persistence.c</FilePath>
             </File>
+            <File>
+              <FileName>dtc_nvm_adapter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\OTA_CAN\store\src\dtc_nvm_adapter.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

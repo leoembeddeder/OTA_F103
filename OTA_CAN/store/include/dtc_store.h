@@ -3,6 +3,17 @@
 
 #include "store_types.h"
 
+#define FDC_THRESHOLD_FAILED 127
+#define FDC_THRESHOLD_PASSED -128
+#define DTC_AGING_CYCLES_MAX 40
+
+typedef struct {
+	uint32_t dtc;
+	uint8_t status;
+	int8_t fault_detection_counter;
+	uint8_t aging_counter;
+} dtc_runtime_item_t;
+
 /*
  * DTC status byte bits (ISO 14229-1):
  *   bit 0: testFailed
@@ -68,5 +79,12 @@ void dtc_store_clear_all(void);
 
 /** Clear DTCs matching a specific 3-byte group (0xFFFFFF = all). */
 void dtc_store_clear_group(uint32_t group);
+
+void dtc_process_sample(dtc_runtime_item_t *item, bool sample_failed, int8_t step_fail, int8_t step_pass);
+
+void dtc_operation_cycle_start(dtc_runtime_item_t *items, uint8_t count);
+
+void dtc_operation_cycle_end(dtc_runtime_item_t *items, uint8_t count);
+
 
 #endif /* DTC_STORE_H */

@@ -28,4 +28,8 @@ stm32f103/can_hw.o: ..\OTA_CAN\hal\src\can_hw.c ..\Core\Inc\can.h \
   ..\OTA_CAN\isotp\include\isotp_types.h \
   ..\OTA_CAN\isotp\include\isotp_config.h \
   ..\OTA_CAN\store\include\did_store.h \
-  ..\OTA_CAN\store\include\store_types.h
+  ..\OTA_CAN\store\include\store_types.h \
+  ..\OTA_CAN\store\include\dtc_store.h \
+  ..\OTA_CAN\flash\uds_wear_leveling.h \
+  ..\OTA_CAN\store\include\dtc_nvm_adapter.h \
+  ..\OTA_CAN\flash\stm32f103_flash_port.h

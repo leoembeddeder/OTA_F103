@@ -27,6 +27,7 @@
 "stm32f103\dtc_store.o"
 "stm32f103\io_store.o"
 "stm32f103\store_persistence.o"
+"stm32f103\dtc_nvm_adapter.o"
 "stm32f103\uds_server.o"
 "stm32f103\uds_session.o"
 "stm32f103\svc_clear_dtc.o"

@@ -101,3 +101,78 @@ void dtc_store_clear_group(uint32_t group) {
         }
     }
 }
+
+
+/* Update status on each sensor / diagnostic check sample */
+void dtc_process_sample(dtc_runtime_item_t *item, bool sample_failed, int8_t step_fail, int8_t step_pass) {
+	if (sample_failed) 
+	{
+		if ((int32_t)item->fault_detection_counter + step_fail >= FDC_THRESHOLD_FAILED) 
+		{
+			item->fault_detection_counter = FDC_THRESHOLD_FAILED;
+	        /* Qualify fault */
+	        item->status |= (DTC_STATUS_TEST_FAILED |
+	                         DTC_STATUS_TEST_FAILED_THIS_CYCLE |
+	                         DTC_STATUS_PENDING |
+	                         DTC_STATUS_CONFIRMED |
+	                         DTC_STATUS_FAILED_SINCE_CLEAR);
+	        item->status &= (uint8_t)~(DTC_STATUS_NOT_COMPLETED_CYCLE |
+	                                   DTC_STATUS_NOT_COMPLETED_CLEAR);
+	        item->aging_counter = 0U; /* Reset aging */
+		} 
+		else 
+		{
+	        item->fault_detection_counter += step_fail;
+	    }
+	} 
+	else 
+	{
+	    if ((int32_t)item->fault_detection_counter - step_pass <= FDC_THRESHOLD_PASSED) 
+		{
+	        item->fault_detection_counter = FDC_THRESHOLD_PASSED;
+
+	        /* Qualify pass */
+	        item->status &= (uint8_t)~DTC_STATUS_TEST_FAILED;
+	        item->status &= (uint8_t)~(DTC_STATUS_NOT_COMPLETED_CYCLE |
+	                                   DTC_STATUS_NOT_COMPLETED_CLEAR);
+	    } 
+		else 
+		{
+	        item->fault_detection_counter -= step_pass;
+	    }
+	}
+
+}
+
+/* Call on driving cycle start (Ignition ON / KL15 active) */
+void dtc_operation_cycle_start(dtc_runtime_item_t *items, uint8_t count) {
+	for (uint8_t i = 0U; i < count; i++) 
+	{
+		items->status &= (uint8_t)~(DTC_STATUS_TEST_FAILED | DTC_STATUS_TEST_FAILED_THIS_CYCLE);
+		items->status |= DTC_STATUS_NOT_COMPLETED_CYCLE;
+		items->fault_detection_counter = 0;
+	}
+}
+
+/* Call on driving cycle end (Ignition OFF / KL15 inactive) */
+void dtc_operation_cycle_end(dtc_runtime_item_t *items, uint8_t count) {
+	for (uint8_t i = 0U; i < count; i++) 
+	{
+		/* Unlearning / Aging: increment aging if confirmed and didn't fail this cycle */
+		if ((items->status & DTC_STATUS_CONFIRMED) != 0U) 
+		{
+			if ((items->status & DTC_STATUS_TEST_FAILED_THIS_CYCLE) == 0U) 
+			{
+				items->aging_counter++;
+				if (items->aging_counter >= DTC_AGING_CYCLES_MAX) 
+				{
+					items->status &= (uint8_t)~DTC_STATUS_CONFIRMED;
+					items->aging_counter = 0U;
+				}
+			}
+		}
+	}
+}
+
+
+

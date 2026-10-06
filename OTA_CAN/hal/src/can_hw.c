@@ -55,6 +55,13 @@ static void seed_did_store(void) {
 
 void UDS_APP(void)
 {
+	dtc_store_init();
+	dtc_nvm_init();
+	/* Add DTC definitions here */
+	dtc_store_add(0x010000, 0x00, NULL, 0, NULL, 0);
+	/* Restore statuses from wear-leveled flash */
+	dtc_store_restore_from_nv();
+
     isotp_init(&s_phys, ISOTP_RX_ID, ISOTP_TX_ID, isotp_tx_cb, NULL);
     seed_did_store();
     uds_server_init(&s_app_cfg);

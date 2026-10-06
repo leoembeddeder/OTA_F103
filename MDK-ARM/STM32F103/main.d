@@ -30,5 +30,7 @@ stm32f103/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\OTA_CAN\isotp\include\isotp_config.h \
   ..\OTA_CAN\store\include\did_store.h \
   ..\OTA_CAN\store\include\store_types.h \
-  ..\OTA_CAN\flash\stm32f103_flash_port.h \
-  ..\OTA_CAN\flash\uds_wear_leveling.h
+  ..\OTA_CAN\store\include\dtc_store.h \
+  ..\OTA_CAN\flash\uds_wear_leveling.h \
+  ..\OTA_CAN\store\include\dtc_nvm_adapter.h \
+  ..\OTA_CAN\flash\stm32f103_flash_port.h

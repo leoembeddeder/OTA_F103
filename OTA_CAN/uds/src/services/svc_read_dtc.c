@@ -10,6 +10,7 @@
  *   0x02 - reportDTCByStatusMask
  *   0x04 - reportDTCSnapshotRecordByDTCNumber
  *   0x06 - reportDTCExtDataRecordByDTCNumber
+ *   0x0A - reportSupportedDTC
  */
 
 void svc_read_dtc_info(const uds_request_t *req, uds_response_t *resp) {
@@ -21,8 +22,15 @@ void svc_read_dtc_info(const uds_request_t *req, uds_response_t *resp) {
         return;
     }
 
-    uint8_t sub = req->data[0];
+	uint8_t raw_sub = req->data[0];
+	uint8_t sub = raw_sub & 0x7FU;
+	bool suppress = (raw_sub & 0x80U) != 0U;
     uint8_t avail_mask = dtc_store_get_status_mask();
+	
+	if (suppress) {
+	    resp->suppress = true;
+	    resp->len = 0U;
+	}
 
     switch (sub) {
     case 0x01: {
@@ -169,6 +177,39 @@ void svc_read_dtc_info(const uds_request_t *req, uds_response_t *resp) {
         resp->len = pos;
         break;
     }
+
+	case 0x0A: {
+		/* reportSupportedDTC (ISO 14229-1 Section 11.3.1.10) */
+		resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid); /* 0x59 */
+		resp->data[1] = sub; /* 0x0A */
+		resp->data[2] = avail_mask;
+		uint16_t pos = 3U;
+	
+		uint8_t total = dtc_store_count();
+		for (uint8_t i = 0U; i < total; i++) {
+			const dtc_entry_t *e = dtc_store_get_by_index(i);
+			if (e == NULL) {
+				continue;
+			}
+	
+			/* Ensure buffer can fit 4 bytes (3-byte DTC + 1-byte status) */
+			if ((pos + 4U) > ISOTP_TX_BUF_SIZE) {
+				resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
+				resp->data[1] = req->sid;
+				resp->data[2] = NRC_RESPONSE_TOO_LONG;
+				resp->len = 3U;
+				return;
+			}
+	
+			resp->data[pos++] = (uint8_t)(e->dtc >> 16U);
+			resp->data[pos++] = (uint8_t)(e->dtc >> 8U);
+			resp->data[pos++] = (uint8_t)(e->dtc & 0xFFU);
+			resp->data[pos++] = e->status;
+		}
+	
+		resp->len = pos;
+		break;
+	}
 
     default:
         resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;

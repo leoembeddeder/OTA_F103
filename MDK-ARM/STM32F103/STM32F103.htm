@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F103\STM32F103.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F103\STM32F103.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Fri Oct  2 16:29:13 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Wed Oct  7 06:33:37 2026
 <BR><P>
 <H3>Maximum Stack Usage =        664 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -331,8 +331,10 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
 <P><STRONG><a name="[a9]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_io_control
+<BR><BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_memory_by_address
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_io_control
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_security_access
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_memory_by_address
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_dtc_info
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_write
@@ -956,10 +958,14 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[4e]"></a>svc_comm_control</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, svc_comm_control.o(.text.svc_comm_control))
+<P><STRONG><a name="[4e]"></a>svc_comm_control</STRONG> (Thumb, 170 bytes, Stack size 8 bytes, svc_comm_control.o(.text.svc_comm_control))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = svc_comm_control
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[5a]"></a>svc_control_dtc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, svc_control_dtc.o(.text.svc_control_dtc))
+<P><STRONG><a name="[5a]"></a>svc_control_dtc</STRONG> (Thumb, 134 bytes, Stack size 8 bytes, svc_control_dtc.o(.text.svc_control_dtc))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = svc_control_dtc
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
 <P><STRONG><a name="[5c]"></a>svc_diag_session_control</STRONG> (Thumb, 206 bytes, Stack size 24 bytes, svc_diag_session.o(.text.svc_diag_session_control))
@@ -982,9 +988,9 @@ Global Symbols
 <P><STRONG><a name="[56]"></a>svc_ecu_reset</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, svc_ecu_reset.o(.text.svc_ecu_reset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = svc_ecu_reset &rArr; uds_session_reset
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_clear_all
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
+<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_reset
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_clear_all
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
@@ -1018,7 +1024,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[4a]"></a>svc_read_dtc_info</STRONG> (Thumb, 464 bytes, Stack size 32 bytes, svc_read_dtc.o(.text.svc_read_dtc_info))
+<P><STRONG><a name="[4a]"></a>svc_read_dtc_info</STRONG> (Thumb, 586 bytes, Stack size 32 bytes, svc_read_dtc.o(.text.svc_read_dtc_info))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = svc_read_dtc_info &rArr; dtc_store_count_by_mask
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_get_status_mask
@@ -1030,14 +1036,18 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[4c]"></a>svc_read_memory_by_address</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, svc_read_address.o(.text.svc_read_memory_by_address))
+<P><STRONG><a name="[4c]"></a>svc_read_memory_by_address</STRONG> (Thumb, 500 bytes, Stack size 24 bytes, svc_read_address.o(.text.svc_read_memory_by_address))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = svc_read_memory_by_address
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
 <P><STRONG><a name="[4f]"></a>svc_read_periodic_id</STRONG> (Thumb, 310 bytes, Stack size 16 bytes, svc_periodic_did.o(.text.svc_read_periodic_id))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = svc_read_periodic_id
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_clear_all
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_get
+<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_get
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_clear_all
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
@@ -1057,8 +1067,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[53]"></a>svc_routine_control</STRONG> (Thumb, 156 bytes, Stack size 8 bytes, svc_routine_control.o(.text.svc_routine_control))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = svc_routine_control
+<P><STRONG><a name="[53]"></a>svc_routine_control</STRONG> (Thumb, 254 bytes, Stack size 16 bytes, svc_routine_control.o(.text.svc_routine_control))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = svc_routine_control
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
@@ -1108,7 +1118,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[59]"></a>svc_write_memory_by_address</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, svc_write_address.o(.text.svc_write_memory_by_address))
+<P><STRONG><a name="[59]"></a>svc_write_memory_by_address</STRONG> (Thumb, 506 bytes, Stack size 32 bytes, svc_write_address.o(.text.svc_write_memory_by_address))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = svc_write_memory_by_address
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_is_unlocked
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
 <P><STRONG><a name="[bc]"></a>uds_get_app_config</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uds_server.o(.text.uds_get_app_config))
@@ -1191,7 +1206,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b8]"></a>uds_security_is_unlocked</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, uds_session.o(.text.uds_security_is_unlocked))
-<BR><BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_io_control
+<BR><BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_memory_by_address
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_io_control
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_data_by_id
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
@@ -1372,9 +1388,9 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[d0]"></a>_printf_core</STRONG> (Thumb, 996 bytes, Stack size 104 bytes, printf8.o(i._printf_core), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
+<BR><BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 </UL>
 <BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$8
 </UL>
