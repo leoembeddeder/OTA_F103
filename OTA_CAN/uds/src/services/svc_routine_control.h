@@ -8,7 +8,6 @@
 #define ROUTINE_ACTIVATE       0x0203U
 #define ROUTINE_ROLLBACK       0x0204U
 
-#define NRC_REQUEST_SEQUENCE_ERROR 0x24U
 
 void svc_routine_control(const uds_request_t *req, uds_response_t *resp);
 
