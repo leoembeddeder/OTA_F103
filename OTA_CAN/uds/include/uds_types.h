@@ -95,6 +95,8 @@ typedef struct {
     uds_service_handler_t   handler;
     uint8_t                 session_mask;     /* Bit mask of allowed sessions */
     bool                    requires_security; /* Needs unlocked security?    */
+	uint32_t			    addressMask; 	   /**< Mask for supported addressing modes. */
+	uint32_t			    securityMask;	   /**< Mask for required security levels. */
 } uds_service_entry_t;
 
 #endif /* UDS_TYPES_H */
