@@ -536,7 +536,7 @@
 
   <Group>
     <GroupName>ISOTP</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -544,11 +544,11 @@
       <GroupNumber>7</GroupNumber>
       <FileNumber>26</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\OTA_CAN\isotp\isotp.c</PathWithFileName>
-      <FilenameWithoutPath>isotp.c</FilenameWithoutPath>
+      <PathWithFileName>..\OTA_CAN\isotp\isotp_fd.c</PathWithFileName>
+      <FilenameWithoutPath>isotp_fd.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -863,6 +863,18 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+      <PathWithFileName>..\OTA_CAN\store\dtc_table_85.c</PathWithFileName>
+      <FilenameWithoutPath>dtc_table_85.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>52</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
       <PathWithFileName>..\OTA_CAN\store\io_store.c</PathWithFileName>
       <FilenameWithoutPath>io_store.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -870,7 +882,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>52</FileNumber>
+      <FileNumber>53</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>

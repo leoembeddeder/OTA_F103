@@ -2,7 +2,7 @@
 #include "can_hw.h"
 
 
-static isotp_channel_t s_phys;
+static isotp_fd_channel_t s_phys;
 
 static bool isotp_tx_cb(const can_frame_t *f, void *user);
 static void seed_did_store(void);
@@ -59,21 +59,20 @@ void UDS_APP(void)
 	dtc_nvm_init();
 	/* Add DTC definitions here */
 	dtc_store_add(0x010000, 0x00, NULL, 0, NULL, 0);
-	/* Restore statuses from wear-leveled flash */
-	dtc_store_restore_from_nv();
+	
 
-    isotp_init(&s_phys, ISOTP_RX_ID, ISOTP_TX_ID, isotp_tx_cb, NULL);
+    isotp_fd_init(&s_phys, ISOTP_RX_ID, ISOTP_TX_ID, false,isotp_tx_cb, NULL);
     seed_did_store();
     uds_server_init(&s_app_cfg);
 
 
 	while(1)
 	{
-		isotp_poll(&s_phys);
+		isotp_fd_poll(&s_phys, HAL_GetTick());
 
-		if (isotp_rx_ready(&s_phys)) {
-			uint16_t req_len;
-			const uint8_t *req = isotp_rx_data(&s_phys, &req_len);
+		if (isotp_fd_rx_ready(&s_phys)) {
+			uint32_t req_len;
+			const uint8_t *req = isotp_fd_rx_data(&s_phys, &req_len);
 		
 			printf("UDS req: %02x", req[0]);
 			for (uint16_t i = 1; i < req_len && i < 4; i++) printf(" %02x", req[i]);
@@ -82,12 +81,12 @@ void UDS_APP(void)
 			
 			uds_response_t resp;
 			bool send = uds_server_process(req, req_len, false, &resp);
-			isotp_rx_done(&s_phys);
+			isotp_fd_rx_done(&s_phys);
 		
 			if (send) {
 				printf("UDS rsp: %02x (%u B)\n", resp.data[0], resp.len);
 				
-				isotp_send(&s_phys, resp.data, resp.len);
+				isotp_fd_send(&s_phys, resp.data, resp.len, HAL_GetTick());
 			}
 		}
 
@@ -110,7 +109,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		rx.dlc = hdr.DLC;
 
 		if (rx.id == ISOTP_RX_ID || rx.id == ISOTP_FUNC_RX_ID) {
-			isotp_on_rx(&s_phys, &rx);
+			isotp_fd_on_rx(&s_phys, &rx, HAL_GetTick());
 		}
     }
 

@@ -21,11 +21,10 @@ stm32f103/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
   ..\Core\Inc\can.h ..\Core\Inc\usart.h ..\Core\Inc\gpio.h \
-  ..\OTA_CAN\hal\can_hw.h ..\OTA_CAN\isotp\can_frame.h \
+  ..\OTA_CAN\hal\can_hw.h ..\OTA_CAN\isotp\can_frame_fd.h \
   ..\OTA_CAN\uds\uds_server.h ..\OTA_CAN\uds\uds_types.h \
   ..\OTA_CAN\uds\uds_config.h ..\OTA_CAN\uds\uds_callbacks.h \
-  ..\OTA_CAN\uds\uds_session.h ..\OTA_CAN\isotp\isotp.h \
-  ..\OTA_CAN\isotp\isotp_types.h ..\OTA_CAN\isotp\isotp_config.h \
+  ..\OTA_CAN\uds\uds_session.h ..\OTA_CAN\isotp\isotp_fd.h \
   ..\OTA_CAN\store\did_store.h ..\OTA_CAN\store\store_types.h \
   ..\OTA_CAN\store\dtc_store.h ..\OTA_CAN\flash\uds_wear_leveling.h \
   ..\OTA_CAN\store\dtc_nvm_adapter.h \

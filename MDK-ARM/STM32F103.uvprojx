@@ -541,9 +541,9 @@
           <GroupName>ISOTP</GroupName>
           <Files>
             <File>
-              <FileName>isotp.c</FileName>
+              <FileName>isotp_fd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\OTA_CAN\isotp\isotp.c</FilePath>
+              <FilePath>..\OTA_CAN\isotp\isotp_fd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -674,6 +674,11 @@
               <FileName>dtc_store.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\OTA_CAN\store\dtc_store.c</FilePath>
+            </File>
+            <File>
+              <FileName>dtc_table_85.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\OTA_CAN\store\dtc_table_85.c</FilePath>
             </File>
             <File>
               <FileName>io_store.c</FileName>
