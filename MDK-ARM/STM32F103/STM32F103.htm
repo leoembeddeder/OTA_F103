@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F103\STM32F103.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F103\STM32F103.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Wed Oct  7 15:40:55 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Sat Oct 10 10:47:55 2026
 <BR><P>
 <H3>Maximum Stack Usage =        728 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -337,20 +337,20 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
 <P><STRONG><a name="[b6]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_memory_by_address
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_io_control
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_security_access
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_memory_by_address
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_dtc_info
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_write
+<BR><BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_io_control
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_read
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_on_rx
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_send
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_poll
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_add
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_add
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stm32f103_read
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_read
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_write
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_memory_by_address
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_security_access
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_dtc_info
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_memory_by_address
 </UL>
 
 <P><STRONG><a name="[e7]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
@@ -377,9 +377,9 @@ Global Symbols
 
 <P><STRONG><a name="[b4]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_dyn_define_did
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_read
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_init
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_nvm_init
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_read
 </UL>
 
 <P><STRONG><a name="[eb]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
@@ -838,7 +838,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
-<P><STRONG><a name="[b3]"></a>ddid_read</STRONG> (Thumb, 262 bytes, Stack size 40 bytes, svc_dyn_did.o(.text.ddid_read))
+<P><STRONG><a name="[b3]"></a>ddid_read</STRONG> (Thumb, 278 bytes, Stack size 40 bytes, svc_dyn_did.o(.text.ddid_read))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = ddid_read &rArr; did_store_read
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_read
@@ -868,16 +868,16 @@ Global Symbols
 <P><STRONG><a name="[b5]"></a>did_store_read</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, did_store.o(.text.did_store_read))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = did_store_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_data_by_id
+<BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_read
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_data_by_id
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_read
 </UL>
 
 <P><STRONG><a name="[b8]"></a>did_store_write</STRONG> (Thumb, 230 bytes, Stack size 32 bytes, did_store.o(.text.did_store_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = did_store_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;store_get_persistence
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;store_get_persistence
 </UL>
 <BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_data_by_id
 </UL>
@@ -888,8 +888,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_param_load
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_param_init
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stm32f103_get_flash_port
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;store_set_persistence
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;store_set_persistence
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UDS_APP
 </UL>
@@ -902,7 +902,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UDS_APP
 </UL>
 
-<P><STRONG><a name="[be]"></a>dtc_store_clear_group</STRONG> (Thumb, 1736 bytes, Stack size 24 bytes, dtc_store.o(.text.dtc_store_clear_group))
+<P><STRONG><a name="[be]"></a>dtc_store_clear_group</STRONG> (Thumb, 1724 bytes, Stack size 24 bytes, dtc_store.o(.text.dtc_store_clear_group))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = dtc_store_clear_group
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;store_get_persistence
@@ -1008,8 +1008,8 @@ Global Symbols
 
 <P><STRONG><a name="[b9]"></a>store_get_persistence</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, store_persistence.o(.text.store_get_persistence))
 <BR><BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_clear_group
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_write
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_restore_from_nv
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_write
 </UL>
 
 <P><STRONG><a name="[bd]"></a>store_set_persistence</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, store_persistence.o(.text.store_set_persistence))
@@ -1019,8 +1019,8 @@ Global Symbols
 <P><STRONG><a name="[58]"></a>svc_clear_dtc</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, svc_clear_dtc.o(.text.svc_clear_dtc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = svc_clear_dtc &rArr; dtc_store_clear_group
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_get
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_clear_group
+<BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_clear_group
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_get
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
@@ -1037,30 +1037,30 @@ Global Symbols
 <P><STRONG><a name="[5c]"></a>svc_diag_session_control</STRONG> (Thumb, 206 bytes, Stack size 24 bytes, svc_diag_session.o(.text.svc_diag_session_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = svc_diag_session_control &rArr; uds_session_set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_get
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_set
+<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_set
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_get
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[50]"></a>svc_dyn_define_did</STRONG> (Thumb, 660 bytes, Stack size 40 bytes, svc_dyn_did.o(.text.svc_dyn_define_did))
+<P><STRONG><a name="[50]"></a>svc_dyn_define_did</STRONG> (Thumb, 668 bytes, Stack size 40 bytes, svc_dyn_did.o(.text.svc_dyn_define_did))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = svc_dyn_define_did
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_alloc
+<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_alloc
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_find
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
 <P><STRONG><a name="[56]"></a>svc_ecu_reset</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, svc_ecu_reset.o(.text.svc_ecu_reset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = svc_ecu_reset &rArr; uds_session_reset
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_reset
+<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_reset
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_clear_all
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[52]"></a>svc_io_control</STRONG> (Thumb, 274 bytes, Stack size 40 bytes, svc_io_control.o(.text.svc_io_control))
+<P><STRONG><a name="[52]"></a>svc_io_control</STRONG> (Thumb, 278 bytes, Stack size 40 bytes, svc_io_control.o(.text.svc_io_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = svc_io_control
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_is_unlocked
@@ -1082,23 +1082,23 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = svc_read_data_by_id &rArr; ddid_read &rArr; did_store_read
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_is_unlocked
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_get
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_get_app_config
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_read
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ddid_read
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_get_app_config
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_get
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[4a]"></a>svc_read_dtc_info</STRONG> (Thumb, 512 bytes, Stack size 16 bytes, svc_read_dtc.o(.text.svc_read_dtc_info))
+<P><STRONG><a name="[4a]"></a>svc_read_dtc_info</STRONG> (Thumb, 518 bytes, Stack size 16 bytes, svc_read_dtc.o(.text.svc_read_dtc_info))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = svc_read_dtc_info
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[4c]"></a>svc_read_memory_by_address</STRONG> (Thumb, 500 bytes, Stack size 24 bytes, svc_read_address.o(.text.svc_read_memory_by_address))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = svc_read_memory_by_address
+<P><STRONG><a name="[4c]"></a>svc_read_memory_by_address</STRONG> (Thumb, 516 bytes, Stack size 32 bytes, svc_read_address.o(.text.svc_read_memory_by_address))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = svc_read_memory_by_address
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
@@ -1107,8 +1107,8 @@ Global Symbols
 <P><STRONG><a name="[4f]"></a>svc_read_periodic_id</STRONG> (Thumb, 310 bytes, Stack size 16 bytes, svc_periodic_did.o(.text.svc_read_periodic_id))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = svc_read_periodic_id
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_get
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_clear_all
+<BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_clear_all
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_periodic_get
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
@@ -1134,11 +1134,11 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
 <P><STRONG><a name="[4d]"></a>svc_security_access</STRONG> (Thumb, 240 bytes, Stack size 24 bytes, svc_security_access.o(.text.svc_security_access))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = svc_security_access &rArr; uds_security_send_key
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = svc_security_access &rArr; uds_security_request_seed
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_send_key
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_request_seed
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_send_key
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_seed_len
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_get_state
 </UL>
@@ -1162,24 +1162,24 @@ Global Symbols
 <P><STRONG><a name="[5d]"></a>svc_transfer_exit</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, svc_download.o(.text.svc_transfer_exit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = svc_transfer_exit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_get_app_config
+<BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_transfer_reset
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_get_app_config
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_transfer_get
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_transfer_reset
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[51]"></a>svc_write_data_by_id</STRONG> (Thumb, 258 bytes, Stack size 48 bytes, svc_write_did.o(.text.svc_write_data_by_id))
+<P><STRONG><a name="[51]"></a>svc_write_data_by_id</STRONG> (Thumb, 242 bytes, Stack size 48 bytes, svc_write_did.o(.text.svc_write_data_by_id))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = svc_write_data_by_id &rArr; did_store_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_is_unlocked
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_get
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_get_app_config
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_write
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_read
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_get_app_config
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_get
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_write
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[59]"></a>svc_write_memory_by_address</STRONG> (Thumb, 516 bytes, Stack size 40 bytes, svc_write_address.o(.text.svc_write_memory_by_address))
+<P><STRONG><a name="[59]"></a>svc_write_memory_by_address</STRONG> (Thumb, 520 bytes, Stack size 40 bytes, svc_write_address.o(.text.svc_write_memory_by_address))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = svc_write_memory_by_address
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
@@ -1189,9 +1189,9 @@ Global Symbols
 <P><STRONG><a name="[cf]"></a>uds_get_app_config</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uds_server.o(.text.uds_get_app_config))
 <BR><BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_transfer_exit
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_transfer_data
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_request_upload
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_request_download
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_data_by_id
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_request_upload
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
 </UL>
 
@@ -1207,13 +1207,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_link_control
 </UL>
 
-<P><STRONG><a name="[bb]"></a>uds_param_init</STRONG> (Thumb, 992 bytes, Stack size 112 bytes, uds_wear_leveling.o(.text.uds_param_init))
+<P><STRONG><a name="[bb]"></a>uds_param_init</STRONG> (Thumb, 996 bytes, Stack size 112 bytes, uds_wear_leveling.o(.text.uds_param_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = uds_param_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_nvm_init
 </UL>
 
-<P><STRONG><a name="[bc]"></a>uds_param_load</STRONG> (Thumb, 536 bytes, Stack size 40 bytes, uds_wear_leveling.o(.text.uds_param_load))
+<P><STRONG><a name="[bc]"></a>uds_param_load</STRONG> (Thumb, 544 bytes, Stack size 40 bytes, uds_wear_leveling.o(.text.uds_param_load))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = uds_param_load
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_nvm_init
@@ -1241,34 +1241,34 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_poll
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_poll
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_poll
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_poll
 </UL>
 
 <P><STRONG><a name="[b7]"></a>uds_platform_time_ms</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, uds_platform_time.o(.text.uds_platform_time_ms))
 <BR><BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_reset_poll
-<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
-<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_refresh
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_state_init
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_reset
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_ecu_reset
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_set
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_on_rx
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_send
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_poll
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;did_store_init
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_send_key
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_state_init
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_refresh
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_request_seed
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_reset
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_set
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_send_key
 </UL>
 
 <P><STRONG><a name="[d8]"></a>uds_reset_poll</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, svc_ecu_reset.o(.text.uds_reset_poll))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uds_reset_poll
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SystemReset
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SystemReset
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_poll
 </UL>
@@ -1279,9 +1279,9 @@ Global Symbols
 
 <P><STRONG><a name="[cb]"></a>uds_security_is_unlocked</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, uds_session.o(.text.uds_security_is_unlocked))
 <BR><BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_io_control
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_data_by_id
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
 </UL>
 
 <P><STRONG><a name="[da]"></a>uds_security_poll</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, uds_session.o(.text.uds_security_poll))
@@ -1292,7 +1292,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_poll
 </UL>
 
-<P><STRONG><a name="[d5]"></a>uds_security_request_seed</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, uds_session.o(.text.uds_security_request_seed))
+<P><STRONG><a name="[d5]"></a>uds_security_request_seed</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, uds_session.o(.text.uds_security_request_seed))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uds_security_request_seed
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
@@ -1330,13 +1330,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UDS_APP
 </UL>
 
-<P><STRONG><a name="[b0]"></a>uds_server_process</STRONG> (Thumb, 372 bytes, Stack size 64 bytes, uds_server.o(.text.uds_server_process))
+<P><STRONG><a name="[b0]"></a>uds_server_process</STRONG> (Thumb, 376 bytes, Stack size 64 bytes, uds_server.o(.text.uds_server_process))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = uds_server_process &rArr; uds_session_refresh
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_is_unlocked
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_get
-<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_refresh
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_refresh
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UDS_APP
 </UL>
@@ -1353,9 +1353,9 @@ Global Symbols
 <P><STRONG><a name="[c4]"></a>uds_session_get</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uds_session.o(.text.uds_session_get))
 <BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_diag_session_control
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_clear_dtc
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_data_by_id
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
 </UL>
 
 <P><STRONG><a name="[d6]"></a>uds_session_refresh</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, uds_session.o(.text.uds_session_refresh))
@@ -1363,8 +1363,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_tester_present
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
+<BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_tester_present
 </UL>
 
 <P><STRONG><a name="[c9]"></a>uds_session_reset</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, uds_session.o(.text.uds_session_reset))
@@ -1394,8 +1394,8 @@ Global Symbols
 <P><STRONG><a name="[d1]"></a>uds_transfer_get</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uds_session.o(.text.uds_transfer_get))
 <BR><BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_transfer_exit
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_transfer_data
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_request_upload
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_request_download
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_request_upload
 </UL>
 
 <P><STRONG><a name="[d7]"></a>uds_transfer_reset</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, uds_session.o(.text.uds_transfer_reset))
@@ -1439,33 +1439,6 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[49]"></a>isotp_tx_cb</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, can_hw.o(.text.isotp_tx_cb))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = isotp_tx_cb &rArr; CAN_TX &rArr; HAL_CAN_AddTxMessage
-</UL>
-<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_TX
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> can_hw.o(.text.UDS_APP)
-</UL>
-<P><STRONG><a name="[60]"></a>dtc_nvm_save_cb</STRONG> (Thumb, 154 bytes, Stack size 8 bytes, dtc_nvm_adapter.o(.text.dtc_nvm_save_cb))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = dtc_nvm_save_cb
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> dtc_nvm_adapter.o(.rodata.s_dtc_persistence)
-</UL>
-<P><STRONG><a name="[61]"></a>dtc_nvm_load_cb</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, dtc_nvm_adapter.o(.text.dtc_nvm_load_cb))
-<BR>[Address Reference Count : 1]<UL><LI> dtc_nvm_adapter.o(.rodata.s_dtc_persistence)
-</UL>
-<P><STRONG><a name="[c6]"></a>ddid_find</STRONG> (Thumb, 132 bytes, Stack size 0 bytes, svc_dyn_did.o(.text.ddid_find))
-<BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_dyn_define_did
-</UL>
-
-<P><STRONG><a name="[c7]"></a>ddid_alloc</STRONG> (Thumb, 106 bytes, Stack size 0 bytes, svc_dyn_did.o(.text.ddid_alloc))
-<BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_dyn_define_did
-</UL>
-
-<P><STRONG><a name="[d9]"></a>__NVIC_SystemReset</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, svc_ecu_reset.o(.text.__NVIC_SystemReset))
-<BR><BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_reset_poll
-</UL>
-
 <P><STRONG><a name="[62]"></a>stm32f103_erase</STRONG> (Thumb, 60 bytes, Stack size 40 bytes, stm32f103_flash_port.o(.text.stm32f103_erase))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = stm32f103_erase &rArr; HAL_FLASHEx_Erase &rArr; FLASH_WaitForLastOperation
 </UL>
@@ -1493,6 +1466,33 @@ Local Symbols
 </UL>
 <P><STRONG><a name="[65]"></a>stm32f103_sector_size</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f103_flash_port.o(.text.stm32f103_sector_size))
 <BR>[Address Reference Count : 1]<UL><LI> stm32f103_flash_port.o(.rodata.s_stm32f103_port)
+</UL>
+<P><STRONG><a name="[49]"></a>isotp_tx_cb</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, can_hw.o(.text.isotp_tx_cb))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = isotp_tx_cb &rArr; CAN_TX &rArr; HAL_CAN_AddTxMessage
+</UL>
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_TX
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> can_hw.o(.text.UDS_APP)
+</UL>
+<P><STRONG><a name="[c6]"></a>ddid_find</STRONG> (Thumb, 150 bytes, Stack size 0 bytes, svc_dyn_did.o(.text.ddid_find))
+<BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_dyn_define_did
+</UL>
+
+<P><STRONG><a name="[c7]"></a>ddid_alloc</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, svc_dyn_did.o(.text.ddid_alloc))
+<BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_dyn_define_did
+</UL>
+
+<P><STRONG><a name="[d9]"></a>__NVIC_SystemReset</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, svc_ecu_reset.o(.text.__NVIC_SystemReset))
+<BR><BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_reset_poll
+</UL>
+
+<P><STRONG><a name="[60]"></a>dtc_nvm_save_cb</STRONG> (Thumb, 154 bytes, Stack size 8 bytes, dtc_nvm_adapter.o(.text.dtc_nvm_save_cb))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = dtc_nvm_save_cb
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> dtc_nvm_adapter.o(.rodata.s_dtc_persistence)
+</UL>
+<P><STRONG><a name="[61]"></a>dtc_nvm_load_cb</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, dtc_nvm_adapter.o(.text.dtc_nvm_load_cb))
+<BR>[Address Reference Count : 1]<UL><LI> dtc_nvm_adapter.o(.rodata.s_dtc_persistence)
 </UL>
 <P><STRONG><a name="[de]"></a>_printf_core</STRONG> (Thumb, 996 bytes, Stack size 104 bytes, printf8.o(i._printf_core), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding

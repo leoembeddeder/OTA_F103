@@ -1,5 +1,5 @@
-stm32f103/uds_platform_time.o: ..\OTA_CAN\hal\src\uds_platform_time.c \
-  ..\OTA_CAN\hal\include\uds_platform_time.h ..\Core\Inc\main.h \
+stm32f103/uds_platform_time.o: ..\OTA_CAN\hal\uds_platform_time.c \
+  ..\OTA_CAN\hal\uds_platform_time.h ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h \
