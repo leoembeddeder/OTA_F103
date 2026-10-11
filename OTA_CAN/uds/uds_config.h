@@ -99,7 +99,7 @@
 
 /* ── ISO-TP buf sizes (needed for response struct) ────────────────── */
 #ifndef ISOTP_TX_BUF_SIZE
-#define ISOTP_TX_BUF_SIZE   512
+#define ISOTP_TX_BUF_SIZE   4095
 #endif
 
 #ifndef ISOTP_RX_BUF_SIZE

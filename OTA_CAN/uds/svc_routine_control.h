@@ -9,7 +9,6 @@
 #define ROUTINE_ROLLBACK       0x0204U
 
 
-
 void svc_routine_control(const uds_request_t *req, uds_response_t *resp);
 
 #endif /* SVC_ROUTINE_CONTROL_H */

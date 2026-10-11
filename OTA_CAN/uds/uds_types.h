@@ -24,11 +24,11 @@
 #define UDS_SID_TESTER_PRESENT          0x3E
 #define UDS_SID_LINK_CONTROL            0x87
 
-/* Positive response = SID + 0x40 */
-#define UDS_POSITIVE_RESPONSE(sid)      ((sid) + 0x40)
-
 /* Negative response SID */
 #define UDS_SID_NEGATIVE_RESPONSE       0x7F
+/* Positive response = SID + 0x40 */
+#define UDS_POSITIVE_RESPONSE(sid)      ((uint8_t)((sid) + 0x40U))
+
 
 /* ── Negative Response Codes (NRC) ────────────────────────────────── */
 #define NRC_GENERAL_REJECT                  0x10
@@ -60,12 +60,14 @@ typedef enum {
 
 /* Session bit masks for service dispatch table (use bit index mapping) */
 #define SESSION_BIT(s)            (1u << ((s) <= 3 ? (s) : 4))
-#define SESSION_MASK_DEFAULT      SESSION_BIT(UDS_SESSION_DEFAULT)
-#define SESSION_MASK_PROGRAMMING  SESSION_BIT(UDS_SESSION_PROGRAMMING)
-#define SESSION_MASK_EXTENDED     SESSION_BIT(UDS_SESSION_EXTENDED)
-#define SESSION_MASK_ENGINEERING  SESSION_BIT(UDS_SESSION_ENGINEERING)
-#define SESSION_MASK_ALL          (SESSION_MASK_DEFAULT | SESSION_MASK_PROGRAMMING | SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING)
-#define SESSION_MASK_NON_DEFAULT  (SESSION_MASK_PROGRAMMING | SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING)
+
+/* Session Bitmasks */
+#define SESSION_MASK_DEFAULT        (1U << 0)
+#define SESSION_MASK_PROGRAMMING    (1U << 1)
+#define SESSION_MASK_EXTENDED       (1U << 2)
+#define SESSION_MASK_ENGINEERING    (1U << 3)
+#define SESSION_MASK_ALL            0xFFU
+#define SESSION_MASK_NON_DEFAULT    (SESSION_MASK_PROGRAMMING | SESSION_MASK_EXTENDED | SESSION_MASK_ENGINEERING)
 
 /* Convert session enum to bit mask for comparison */
 static inline uint8_t uds_session_to_mask(uds_session_t s) {
