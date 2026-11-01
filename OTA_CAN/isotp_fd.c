@@ -163,7 +163,7 @@ static void handle_fc_rx(isotp_fd_channel_t *ch, const can_frame_t *frame, uint3
     switch (fs) {
     case ISOTP_FC_CTS:
         ch->tx.bs       = frame->data[1];
-        ch->tx.stmin    = frame->data[2];
+        ch->tx.stmin    = (frame->data[2] < 0x80U) ? frame->data[2] : 0U;
         ch->tx.bs_count = 0U;
         ch->tx.state    = ISOTP_TX_SEND_CF;
         ch->tx.timer_ms = now_ms;

@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define CAN_FD_MAX_DLEN 64U
+#define CAN_FD_MAX_DLEN 8U//64U
 
 typedef struct {
     uint32_t id;                       /**< 11-bit standard or 29-bit extended CAN identifier */
