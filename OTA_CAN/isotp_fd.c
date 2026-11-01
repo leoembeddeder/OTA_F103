@@ -10,7 +10,7 @@
  *   0x00-0x7F : 0..127 ms
  *   0xF1-0xF9 : 100..900 us -> rounded up to 1 ms (our timer resolution)
  *   reserved  : treat as the maximum, 127 ms */
-static uint32_t DecodeStMin(uint8_t raw)
+static uint32_t decode_stmin(uint8_t raw)
 {
     if (raw <= STMIN_MAX_MS)
     {
@@ -180,7 +180,7 @@ static void handle_fc_rx(isotp_fd_channel_t *ch, const can_frame_t *frame, uint3
     switch (fs) {
     case ISOTP_FC_CTS:
         ch->tx.bs       = frame->data[1];
-        ch->tx.stmin    = DecodeStMin(frame->data[2]);
+        ch->tx.stmin    = decode_stmin(frame->data[2]);
         ch->tx.bs_count = 0U;
         ch->tx.state    = ISOTP_TX_SEND_CF;
         ch->tx.timer_ms = now_ms;

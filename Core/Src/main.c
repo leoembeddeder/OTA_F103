@@ -103,10 +103,7 @@ static bool isotp_tx_cb(const can_frame_t *f, void *user) {
 /* ── App config (registered with uds_server_init) ────────────────── */
 
 static const uds_app_config_t s_app_cfg = {
-    //.did_read_hook    = ota_did_read,
-    //.transfer_request = ota_request_cb,
-    //.transfer_data    = ota_data_cb,
-    //.transfer_exit    = ota_exit_cb,
+
 };
 
 /* USER CODE END 0 */
