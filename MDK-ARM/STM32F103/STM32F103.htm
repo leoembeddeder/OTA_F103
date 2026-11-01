@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F103\STM32F103.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F103\STM32F103.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Sun Nov  1 17:18:28 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Sun Nov  1 17:23:53 2026
 <BR><P>
 <H3>Maximum Stack Usage =       4252 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -331,19 +331,19 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
 <P><STRONG><a name="[99]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_did_table_write
+<BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;handle_ff
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;handle_cf
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;handle_sf
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crypto_aes_cmac_128
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_send
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_poll
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_did_table_write
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_write_memory_by_address
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_dtc_info
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_memory_by_address
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_did_table_register
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_dyn_define_did
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;handle_ff
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;handle_cf
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;handle_sf
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crypto_aes_cmac_128
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_send
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_poll
 </UL>
 
 <P><STRONG><a name="[cf]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
@@ -351,10 +351,10 @@ Global Symbols
 <P><STRONG><a name="[d0]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
 <P><STRONG><a name="[63]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_send
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_send
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_poll
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 
 <P><STRONG><a name="[d1]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
@@ -368,12 +368,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[96]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_did_table_write
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_init
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_ring_buffer_init
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_did_table_write
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_periodic_id
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_did_table_find
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_dyn_define_did
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_init
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_ring_buffer_init
 </UL>
 
 <P><STRONG><a name="[d3]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
@@ -567,13 +567,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[7d]"></a>HAL_GetTick</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f1xx_hal.o(.text.HAL_GetTick))
-<BR><BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
+<BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_Start
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_Init
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 </UL>
 
 <P><STRONG><a name="[94]"></a>HAL_IncTick</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f1xx_hal.o(.text.HAL_IncTick))
@@ -775,18 +775,18 @@ Global Symbols
 <P><STRONG><a name="[97]"></a>crypto_aes_cmac_128</STRONG> (Thumb, 2194 bytes, Stack size 448 bytes, crypto_aes_cmac.o(.text.crypto_aes_cmac_128))
 <BR><BR>[Stack]<UL><LI>Max Depth = 568<LI>Call Chain = crypto_aes_cmac_128 &rArr; aes128_encrypt_block
 </UL>
-<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;aes128_encrypt_block
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;aes128_encrypt_block
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_security_access
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_authentication
+<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_authentication
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_security_access
 </UL>
 
 <P><STRONG><a name="[ad]"></a>crypto_constant_time_equal</STRONG> (Thumb, 210 bytes, Stack size 48 bytes, crypto_aes_cmac.o(.text.crypto_constant_time_equal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = crypto_constant_time_equal
 </UL>
-<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_security_access
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_authentication
+<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_authentication
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_security_access
 </UL>
 
 <P><STRONG><a name="[b0]"></a>dtc_set_setting_enabled</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, dtc_store.o(.text.dtc_set_setting_enabled))
@@ -883,8 +883,7 @@ Global Symbols
 <P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 360 bytes, Stack size 4144 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4252<LI>Call Chain = main &rArr; MX_CAN_Init &rArr; HAL_CAN_Init &rArr; HAL_CAN_MspInit &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_poll
+<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_poll
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_send
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isotp_fd_rx_done
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
@@ -904,6 +903,7 @@ Global Symbols
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -991,12 +991,12 @@ Global Symbols
 <P><STRONG><a name="[4d]"></a>svc_read_dtc_info</STRONG> (Thumb, 816 bytes, Stack size 40 bytes, svc_read_dtc.o(.text.svc_read_dtc_info))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = svc_read_dtc_info &rArr; dtc_store_count_by_mask
 </UL>
-<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_find
+<BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_find
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_count_by_mask
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_get_status_mask
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_get_by_index
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dtc_store_count
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
@@ -1034,9 +1034,9 @@ Global Symbols
 <P><STRONG><a name="[53]"></a>svc_security_access</STRONG> (Thumb, 972 bytes, Stack size 64 bytes, svc_security_access.o(.text.svc_security_access))
 <BR><BR>[Stack]<UL><LI>Max Depth = 632<LI>Call Chain = svc_security_access &rArr; crypto_aes_cmac_128 &rArr; aes128_encrypt_block
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_dispatch_set_security_level
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crypto_constant_time_equal
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crypto_constant_time_equal
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crypto_aes_cmac_128
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_dispatch_set_security_level
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
@@ -1203,8 +1203,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[be]"></a>uds_session_refresh</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, uds_session.o(.text.uds_session_refresh))
-<BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_tester_present
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
+<BR><BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_tester_present
 </UL>
 
 <P><STRONG><a name="[c1]"></a>uds_session_reset</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, uds_session.o(.text.uds_session_reset))
@@ -1249,8 +1249,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ecu_reset
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ecu_reset
 </UL>
 <P>
 <H3>

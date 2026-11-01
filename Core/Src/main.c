@@ -77,6 +77,7 @@ can_frame_t rx_frame;
 can_frame_t decode;
 
 static isotp_fd_channel_t s_phys;
+static const uds_app_config_t s_app_cfg ;
 
 static bool isotp_tx_cb(const can_frame_t *f, void *user);
 
@@ -100,11 +101,6 @@ static bool isotp_tx_cb(const can_frame_t *f, void *user) {
 }
 
 
-/* ── App config (registered with uds_server_init) ────────────────── */
-
-static const uds_app_config_t s_app_cfg = {
-
-};
 
 /* USER CODE END 0 */
 
