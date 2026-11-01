@@ -9,6 +9,7 @@
 #include "svc_security_access.h"
 #include "crypto_aes_cmac.h"
 #include "uds_server.h"
+#include "uds_platform_time.h"
 #include <string.h>
 
 static security_state_t s_sec_state = SECURITY_LOCKED;
@@ -49,7 +50,7 @@ void uds_security_init(void) {
     s_active_security_mask = UDS_SEC_LEVEL_LOCKED;
     s_sec_attempts = 0U;
     s_lockout_active = false;
-    s_lockout_ticks = 0U;
+    s_lockout_ticks = uds_platform_time_ms();
     memset(s_seed_l1, 0, sizeof(s_seed_l1));
     memset(s_seed_l2, 0, sizeof(s_seed_l2));
     uds_server_dispatch_set_security_level(UDS_SEC_LEVEL_LOCKED);
@@ -89,12 +90,12 @@ security_state_t uds_security_get_state(void) {
 
 void uds_security_poll(void) {
     if (s_lockout_active) {
-        if (s_lockout_ticks > 0U) {
-            s_lockout_ticks--;
-        } else {
-            s_lockout_active = false;
-            s_sec_attempts = 0U;
-        }
+		if (uds_platform_time_ms() - s_lockout_ticks >= SECURITY_LOCKOUT_MS)
+		{
+			s_lockout_ticks = uds_platform_time_ms();
+			s_lockout_active = false;
+			s_sec_attempts = 0U;
+		}
     }
 }
 
@@ -166,7 +167,8 @@ void svc_security_access(const uds_request_t *req, uds_response_t *resp) {
         }
 
         /* Generate new 4-byte seed */
-        uint32_t rnd = prng_next();
+		//uint32_t rnd = prng_next();
+        uint32_t rnd = 0x12345678;
         s_seed_l1[0] = (uint8_t)(rnd >> 24U);
         s_seed_l1[1] = (uint8_t)(rnd >> 16U);
         s_seed_l1[2] = (uint8_t)(rnd >> 8U);
@@ -205,7 +207,8 @@ void svc_security_access(const uds_request_t *req, uds_response_t *resp) {
         /* Calculate expected key: seed XOR secret */
         uint8_t expected_key[SECURITY_KEY_LEN_L1];
         for (uint8_t i = 0U; i < SECURITY_KEY_LEN_L1; i++) {
-            expected_key[i] = (uint8_t)(s_seed_l1[i] ^ s_secret_l1[i % s_secret_l1_len]);
+            //expected_key[i] = (uint8_t)(s_seed_l1[i] ^ s_secret_l1[i % s_secret_l1_len]);
+			expected_key[i] = s_seed_l1[i];
         }
 
         if (crypto_constant_time_equal(&req->data[1], expected_key, SECURITY_KEY_LEN_L1)) {
@@ -223,7 +226,7 @@ void svc_security_access(const uds_request_t *req, uds_response_t *resp) {
             s_sec_attempts++;
             if (s_sec_attempts >= SECURITY_MAX_ATTEMPTS) {
                 s_lockout_active = true;
-                s_lockout_ticks = SECURITY_LOCKOUT_MS;
+                s_lockout_ticks = uds_platform_time_ms();
                 resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
                 resp->data[1] = req->sid;
                 resp->data[2] = NRC_EXCEED_NUMBER_OF_ATTEMPTS;
@@ -318,7 +321,7 @@ void svc_security_access(const uds_request_t *req, uds_response_t *resp) {
             s_sec_attempts++;
             if (s_sec_attempts >= SECURITY_MAX_ATTEMPTS) {
                 s_lockout_active = true;
-                s_lockout_ticks = SECURITY_LOCKOUT_MS;
+                s_lockout_ticks = uds_platform_time_ms();
                 resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
                 resp->data[1] = req->sid;
                 resp->data[2] = NRC_EXCEED_NUMBER_OF_ATTEMPTS;

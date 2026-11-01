@@ -61,10 +61,10 @@ void svc_ecu_reset(const uds_request_t *req, uds_response_t *resp) {
 
 void uds_reset_poll(void) {
     if (s_pending_reset_type > 0U) {
-        if (uds_platform_time_ms() - s_reset_countdown > RESET_DELAY_TICKS) {
+        if (uds_platform_time_ms() - s_reset_countdown >= RESET_DELAY_TICKS) {
             uint8_t reset_type = s_pending_reset_type;
 			s_pending_reset_type = 0U;
-			s_reset_countdown = 0U;
+			s_reset_countdown = uds_platform_time_ms();
             uds_session_reset();
             on_ecu_reset(reset_type);
         }

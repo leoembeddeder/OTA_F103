@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F103\STM32F103.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F103\STM32F103.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Sun Nov  1 17:23:53 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Sun Nov  1 20:30:38 2026
 <BR><P>
 <H3>Maximum Stack Usage =       4252 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1031,17 +1031,18 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
-<P><STRONG><a name="[53]"></a>svc_security_access</STRONG> (Thumb, 972 bytes, Stack size 64 bytes, svc_security_access.o(.text.svc_security_access))
-<BR><BR>[Stack]<UL><LI>Max Depth = 632<LI>Call Chain = svc_security_access &rArr; crypto_aes_cmac_128 &rArr; aes128_encrypt_block
+<P><STRONG><a name="[53]"></a>svc_security_access</STRONG> (Thumb, 760 bytes, Stack size 48 bytes, svc_security_access.o(.text.svc_security_access))
+<BR><BR>[Stack]<UL><LI>Max Depth = 616<LI>Call Chain = svc_security_access &rArr; crypto_aes_cmac_128 &rArr; aes128_encrypt_block
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crypto_constant_time_equal
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crypto_aes_cmac_128
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_dispatch_set_security_level
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uds_server.o(.text.uds_server_init)
 </UL>
 <P><STRONG><a name="[57]"></a>svc_tester_present</STRONG> (Thumb, 112 bytes, Stack size 24 bytes, svc_tester_present.o(.text.svc_tester_present))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = svc_tester_present
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = svc_tester_present &rArr; uds_session_refresh
 </UL>
 <BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_refresh
 </UL>
@@ -1102,11 +1103,19 @@ Global Symbols
 <P><STRONG><a name="[b5]"></a>uds_platform_time_ms</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, uds_platform_time.o(.text.uds_platform_time_ms))
 <BR><BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_reset_poll
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_state_init
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_refresh
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_security_access
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_poll
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_init
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_reset
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_reset_poll
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_ecu_reset
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_set
 </UL>
 
-<P><STRONG><a name="[c0]"></a>uds_reset_poll</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, svc_ecu_reset.o(.text.uds_reset_poll))
+<P><STRONG><a name="[c0]"></a>uds_reset_poll</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, svc_ecu_reset.o(.text.uds_reset_poll))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = uds_reset_poll &rArr; on_ecu_reset &rArr; puts &rArr; fputc &rArr; HAL_UART_Transmit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_ecu_reset
@@ -1116,10 +1125,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_poll
 </UL>
 
-<P><STRONG><a name="[c2]"></a>uds_security_init</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, svc_security_access.o(.text.uds_security_init))
-<BR><BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_dispatch_set_security_level
+<P><STRONG><a name="[c2]"></a>uds_security_init</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, svc_security_access.o(.text.uds_security_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = uds_security_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_state_init
+<BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_dispatch_set_security_level
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_state_init
 </UL>
 
 <P><STRONG><a name="[b6]"></a>uds_security_is_unlocked</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, svc_security_access.o(.text.uds_security_is_unlocked))
@@ -1131,12 +1143,16 @@ Global Symbols
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_read_data_by_id
 </UL>
 
-<P><STRONG><a name="[c6]"></a>uds_security_poll</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, svc_security_access.o(.text.uds_security_poll))
-<BR><BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_poll
+<P><STRONG><a name="[c4]"></a>uds_security_poll</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, svc_security_access.o(.text.uds_security_poll))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uds_security_poll
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_poll
 </UL>
 
 <P><STRONG><a name="[c8]"></a>uds_security_reset</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, svc_security_access.o(.text.uds_security_reset))
-<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
+<BR><BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_reset
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_set
 </UL>
@@ -1151,9 +1167,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a3]"></a>uds_server_init</STRONG> (Thumb, 624 bytes, Stack size 16 bytes, uds_server.o(.text.uds_server_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = uds_server_init &rArr; uds_state_init
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = uds_server_init &rArr; uds_state_init &rArr; uds_security_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_state_init
+<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_state_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1161,15 +1177,15 @@ Global Symbols
 <P><STRONG><a name="[aa]"></a>uds_server_poll</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, uds_server.o(.text.uds_server_poll))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = uds_server_poll &rArr; uds_reset_poll &rArr; on_ecu_reset &rArr; puts &rArr; fputc &rArr; HAL_UART_Transmit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_poll
+<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_poll
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_reset_poll
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[a8]"></a>uds_server_process</STRONG> (Thumb, 476 bytes, Stack size 64 bytes, uds_server.o(.text.uds_server_process))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = uds_server_process
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = uds_server_process &rArr; uds_session_refresh
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_refresh
@@ -1182,17 +1198,18 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c7]"></a>uds_server_set_session</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uds_server.o(.text.uds_server_set_session))
-<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_state_init
+<BR><BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_check_timeout
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_state_init
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_reset
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_session_set
 </UL>
 
-<P><STRONG><a name="[c5]"></a>uds_session_check_timeout</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, uds_session.o(.text.uds_session_check_timeout))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uds_session_check_timeout
+<P><STRONG><a name="[c6]"></a>uds_session_check_timeout</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, uds_session.o(.text.uds_session_check_timeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = uds_session_check_timeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_set_session
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_reset
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_poll
 </UL>
@@ -1202,34 +1219,41 @@ Global Symbols
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_diag_session_control
 </UL>
 
-<P><STRONG><a name="[be]"></a>uds_session_refresh</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, uds_session.o(.text.uds_session_refresh))
-<BR><BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
+<P><STRONG><a name="[be]"></a>uds_session_refresh</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, uds_session.o(.text.uds_session_refresh))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uds_session_refresh
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_process
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_tester_present
 </UL>
 
-<P><STRONG><a name="[c1]"></a>uds_session_reset</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, uds_session.o(.text.uds_session_reset))
+<P><STRONG><a name="[c1]"></a>uds_session_reset</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, uds_session.o(.text.uds_session_reset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uds_session_reset
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_set_session
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_reset
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_reset_poll
 </UL>
 
-<P><STRONG><a name="[b2]"></a>uds_session_set</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, uds_session.o(.text.uds_session_set))
+<P><STRONG><a name="[b2]"></a>uds_session_set</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, uds_session.o(.text.uds_session_set))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uds_session_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_set_session
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_reset
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svc_diag_session_control
 </UL>
 
-<P><STRONG><a name="[c4]"></a>uds_state_init</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, uds_session.o(.text.uds_state_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = uds_state_init
+<P><STRONG><a name="[c5]"></a>uds_state_init</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, uds_session.o(.text.uds_state_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = uds_state_init &rArr; uds_security_init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_set_session
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_security_init
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_platform_time_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uds_server_init
 </UL>

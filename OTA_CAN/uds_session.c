@@ -5,17 +5,17 @@
 
 #include "uds_session.h"
 #include "uds_server.h"
+#include "uds_platform_time.h"
 #include "svc_security_access.h"
 
 #define UDS_S3_SERVER_DEFAULT_TIMEOUT_MS  5000U
 
 static uds_session_t s_current_session = UDS_SESSION_DEFAULT;
-static uint32_t s_s3_timeout_ms = UDS_S3_SERVER_DEFAULT_TIMEOUT_MS;
 static uint32_t s_s3_elapsed_ms = 0U;
 
 void uds_state_init(void) {
     s_current_session = UDS_SESSION_DEFAULT;
-    s_s3_elapsed_ms = 0U;
+    s_s3_elapsed_ms = uds_platform_time_ms();
     uds_server_set_session(SESSION_MASK_DEFAULT);
     uds_security_init();
 }
@@ -51,25 +51,26 @@ void uds_session_set(uds_session_t session) {
 
 void uds_session_reset(void) {
     s_current_session = UDS_SESSION_DEFAULT;
-    s_s3_elapsed_ms = 0U;
+    s_s3_elapsed_ms = uds_platform_time_ms();
     uds_server_set_session(SESSION_MASK_DEFAULT);
     uds_security_reset();
 }
 
 void uds_session_refresh(void) {
-    s_s3_elapsed_ms = 0U;
+    s_s3_elapsed_ms = uds_platform_time_ms();
 }
 
 bool uds_session_check_timeout(void) {
     if (s_current_session == UDS_SESSION_DEFAULT) {
-        s_s3_elapsed_ms = 0U;
+        s_s3_elapsed_ms = uds_platform_time_ms();
         return false;
     }
 
-    s_s3_elapsed_ms++;
-    if (s_s3_elapsed_ms >= s_s3_timeout_ms) {
-        uds_session_reset();
-        return true;
-    }
+	if (uds_platform_time_ms() - s_s3_elapsed_ms >= UDS_S3_SERVER_DEFAULT_TIMEOUT_MS)
+	{
+		uds_session_reset();
+		return true;
+	}
+
     return false;
 }
