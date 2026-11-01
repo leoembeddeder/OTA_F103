@@ -1,6 +1,5 @@
-stm32f103/stm32f103_flash_port.o: ..\OTA_CAN\flash\stm32f103_flash_port.c \
-  ..\OTA_CAN\flash\stm32f103_flash_port.h \
-  ..\OTA_CAN\flash\uds_wear_leveling.h \
+stm32f103/stm32f103_flash_port.o: ..\OTA_CAN\stm32f103_flash_port.c \
+  ..\OTA_CAN\stm32f103_flash_port.h ..\OTA_CAN\uds_wear_leveling.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h \

@@ -1,7 +1,7 @@
-stm32f103/svc_ecu_reset.o: ..\OTA_CAN\uds\svc_ecu_reset.c \
-  ..\OTA_CAN\uds\svc_ecu_reset.h ..\OTA_CAN\uds\uds_types.h \
-  ..\OTA_CAN\uds\uds_config.h ..\OTA_CAN\uds\uds_session.h \
-  ..\OTA_CAN\uds\uds_callbacks.h ..\OTA_CAN\hal\uds_platform_time.h \
+stm32f103/svc_ecu_reset.o: ..\OTA_CAN\svc_ecu_reset.c \
+  ..\OTA_CAN\svc_ecu_reset.h ..\OTA_CAN\uds_types.h \
+  ..\OTA_CAN\uds_config.h ..\OTA_CAN\uds_session.h \
+  ..\OTA_CAN\uds_callbacks.h ..\OTA_CAN\uds_platform_time.h \
   ..\Core\Inc\main.h ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h \
