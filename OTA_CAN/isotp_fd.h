@@ -23,6 +23,10 @@
 #define ISOTP_FD_TIMEOUT_MS  1000U
 #define ISOTP_FD_WFT_MAX     16U
 
+#define STMIN_MAX_MS         0x7FU
+#define STMIN_US_FIRST       0xF1U
+#define STMIN_US_LAST        0xF9U
+
 typedef bool (*isotp_fd_tx_fn)(const can_frame_t *frame, void *user);
 
 typedef enum {

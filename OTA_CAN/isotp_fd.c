@@ -6,6 +6,23 @@
 #include "isotp_fd.h"
 #include <string.h>
 
+/* STmin encoding (ISO 15765-2 table 20):
+ *   0x00-0x7F : 0..127 ms
+ *   0xF1-0xF9 : 100..900 us -> rounded up to 1 ms (our timer resolution)
+ *   reserved  : treat as the maximum, 127 ms */
+static uint32_t DecodeStMin(uint8_t raw)
+{
+    if (raw <= STMIN_MAX_MS)
+    {
+        return raw;
+    }
+    if ((raw >= STMIN_US_FIRST) && (raw <= STMIN_US_LAST))
+    {
+        return 1U;
+    }
+    return STMIN_MAX_MS;
+}
+
 static bool send_can_frame(isotp_fd_channel_t *ch, uint32_t id, const uint8_t *data, uint8_t len) {
     can_frame_t f;
     memset(&f, 0, sizeof(f));
@@ -163,7 +180,7 @@ static void handle_fc_rx(isotp_fd_channel_t *ch, const can_frame_t *frame, uint3
     switch (fs) {
     case ISOTP_FC_CTS:
         ch->tx.bs       = frame->data[1];
-        ch->tx.stmin    = (frame->data[2] < 0x80U) ? frame->data[2] : 0U;
+        ch->tx.stmin    = DecodeStMin(frame->data[2]);
         ch->tx.bs_count = 0U;
         ch->tx.state    = ISOTP_TX_SEND_CF;
         ch->tx.timer_ms = now_ms;
