@@ -141,6 +141,8 @@ int main(void)
   can_ring_buffer_init(&queue);
   isotp_fd_init(&s_phys, ISOTP_RX_ID, ISOTP_TX_ID, false,isotp_tx_cb, NULL);
   uds_server_init(&s_app_cfg);
+  dtc_table_85_init();
+  dtc_nvm_init();
 
   printf("stm32 power on reset!\r\n");
 

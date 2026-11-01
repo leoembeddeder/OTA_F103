@@ -34,6 +34,8 @@ Section Cross References
     main.o(.text.main) refers to isotp_fd.o(.text.isotp_fd_init) for isotp_fd_init
     main.o(.text.main) refers to main.o(.rodata.s_app_cfg) for s_app_cfg
     main.o(.text.main) refers to uds_server.o(.text.uds_server_init) for uds_server_init
+    main.o(.text.main) refers to dtc_table_85.o(.text.dtc_table_85_init) for dtc_table_85_init
+    main.o(.text.main) refers to dtc_nvm_adapter.o(.text.dtc_nvm_init) for dtc_nvm_init
     main.o(.text.main) refers to puts.o(i.puts) for puts
     main.o(.text.main) refers to main.o(.bss.decode) for decode
     main.o(.text.main) refers to stm32f1xx_hal.o(.text.HAL_GetTick) for HAL_GetTick
@@ -1407,19 +1409,12 @@ Removing Unused input sections from the image.
     Removing crypto_aes_cmac.o(.ARM.exidx.text.aes128_encrypt_block), (8 bytes).
     Removing crypto_aes_cmac.o(.ARM.exidx.text.crypto_constant_time_equal), (8 bytes).
     Removing dtc_nvm_adapter.o(.text), (0 bytes).
-    Removing dtc_nvm_adapter.o(.text.stm32f103_flash_erase), (122 bytes).
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.stm32f103_flash_erase), (8 bytes).
-    Removing dtc_nvm_adapter.o(.text.stm32f103_flash_read), (136 bytes).
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.stm32f103_flash_read), (8 bytes).
-    Removing dtc_nvm_adapter.o(.text.stm32f103_flash_write), (124 bytes).
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.stm32f103_flash_write), (8 bytes).
-    Removing dtc_nvm_adapter.o(.text.stm32f103_flash_sector_size), (6 bytes).
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.stm32f103_flash_sector_size), (8 bytes).
-    Removing dtc_nvm_adapter.o(.text.dtc_nvm_init_custom), (190 bytes).
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.dtc_nvm_init_custom), (8 bytes).
-    Removing dtc_nvm_adapter.o(.text.dtc_nvm_status_change_callback), (158 bytes).
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.dtc_nvm_status_change_callback), (8 bytes).
-    Removing dtc_nvm_adapter.o(.text.dtc_nvm_init), (22 bytes).
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.dtc_nvm_init), (8 bytes).
     Removing dtc_nvm_adapter.o(.text.dtc_nvm_save), (158 bytes).
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.dtc_nvm_save), (8 bytes).
@@ -1429,26 +1424,17 @@ Removing Unused input sections from the image.
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.dtc_nvm_is_dirty), (8 bytes).
     Removing dtc_nvm_adapter.o(.text.dtc_nvm_erase_all), (30 bytes).
     Removing dtc_nvm_adapter.o(.ARM.exidx.text.dtc_nvm_erase_all), (8 bytes).
-    Removing dtc_nvm_adapter.o(.bss.s_simulated_flash), (2048 bytes).
-    Removing dtc_nvm_adapter.o(.bss.s_dtc_nvm_cache), (805 bytes).
-    Removing dtc_nvm_adapter.o(.rodata.s_default_f103_port), (20 bytes).
-    Removing dtc_nvm_adapter.o(.bss.s_simulated_flash_inited), (1 bytes).
-    Removing dtc_nvm_adapter.o(.bss..L_MergedGlobals), (40 bytes).
     Removing dtc_store.o(.text), (0 bytes).
-    Removing dtc_store.o(.text.dtc_store_init), (44 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_init), (8 bytes).
-    Removing dtc_store.o(.text.dtc_store_set_status_cb), (12 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_set_status_cb), (8 bytes).
     Removing dtc_store.o(.text.dtc_is_setting_enabled), (12 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_is_setting_enabled), (8 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_set_setting_enabled), (8 bytes).
-    Removing dtc_store.o(.text.dtc_store_add), (176 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_add), (8 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_count), (8 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_get_status_mask), (8 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_count_by_mask), (8 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_get_by_index), (8 bytes).
-    Removing dtc_store.o(.text.dtc_store_find_mut), (142 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_find_mut), (8 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_find), (8 bytes).
     Removing dtc_store.o(.ARM.exidx.text.dtc_store_clear), (8 bytes).
@@ -1465,10 +1451,7 @@ Removing Unused input sections from the image.
     Removing dtc_table_85.o(.text), (0 bytes).
     Removing dtc_table_85.o(.text.dtc_store_init_85_dtcs), (50 bytes).
     Removing dtc_table_85.o(.ARM.exidx.text.dtc_store_init_85_dtcs), (8 bytes).
-    Removing dtc_table_85.o(.text.dtc_table_85_init), (50 bytes).
     Removing dtc_table_85.o(.ARM.exidx.text.dtc_table_85_init), (8 bytes).
-    Removing dtc_table_85.o(.rodata.str1.1), (2610 bytes).
-    Removing dtc_table_85.o(.rodata.g_dtc_config_85), (1020 bytes).
     Removing isotp_fd.o(.text), (0 bytes).
     Removing isotp_fd.o(.ARM.exidx.text.isotp_fd_init), (8 bytes).
     Removing isotp_fd.o(.text.isotp_fd_init_ext), (76 bytes).
@@ -1621,9 +1604,7 @@ Removing Unused input sections from the image.
     Removing uds_wear_leveling.o(.ARM.exidx.text.uds_crc16_ccitt_update), (8 bytes).
     Removing uds_wear_leveling.o(.text.uds_crc16_ccitt), (392 bytes).
     Removing uds_wear_leveling.o(.ARM.exidx.text.uds_crc16_ccitt), (8 bytes).
-    Removing uds_wear_leveling.o(.text.uds_param_init), (996 bytes).
     Removing uds_wear_leveling.o(.ARM.exidx.text.uds_param_init), (8 bytes).
-    Removing uds_wear_leveling.o(.text.uds_param_load), (544 bytes).
     Removing uds_wear_leveling.o(.ARM.exidx.text.uds_param_load), (8 bytes).
     Removing uds_wear_leveling.o(.text.uds_param_save), (832 bytes).
     Removing uds_wear_leveling.o(.ARM.exidx.text.uds_param_save), (8 bytes).
@@ -1632,7 +1613,7 @@ Removing Unused input sections from the image.
     Removing uds_wear_leveling.o(.text.uds_param_write_count), (34 bytes).
     Removing uds_wear_leveling.o(.ARM.exidx.text.uds_param_write_count), (8 bytes).
 
-706 unused section(s) (total 41816 bytes) removed from the image.
+685 unused section(s) (total 32550 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1797,95 +1778,113 @@ Image Symbol Table
     [Anonymous Symbol]                       0x08001e6c   Section        0  can_ring_buffer.o(.text.can_ring_buffer_push)
     [Anonymous Symbol]                       0x08001ed0   Section        0  crypto_aes_cmac.o(.text.crypto_aes_cmac_128)
     [Anonymous Symbol]                       0x08002764   Section        0  crypto_aes_cmac.o(.text.crypto_constant_time_equal)
-    [Anonymous Symbol]                       0x08002838   Section        0  dtc_store.o(.text.dtc_set_setting_enabled)
-    [Anonymous Symbol]                       0x08002844   Section        0  dtc_store.o(.text.dtc_store_clear)
-    [Anonymous Symbol]                       0x08002a94   Section        0  dtc_store.o(.text.dtc_store_count)
-    [Anonymous Symbol]                       0x08002aa0   Section        0  dtc_store.o(.text.dtc_store_count_by_mask)
-    [Anonymous Symbol]                       0x08002b50   Section        0  dtc_store.o(.text.dtc_store_find)
-    [Anonymous Symbol]                       0x08002be0   Section        0  dtc_store.o(.text.dtc_store_get_by_index)
-    [Anonymous Symbol]                       0x08002c04   Section        0  dtc_store.o(.text.dtc_store_get_status_mask)
-    [Anonymous Symbol]                       0x08002c08   Section        0  usart.o(.text.fputc)
-    handle_cf                                0x08002c29   Thumb Code   254  isotp_fd.o(.text.handle_cf)
-    [Anonymous Symbol]                       0x08002c28   Section        0  isotp_fd.o(.text.handle_cf)
-    handle_fc_rx                             0x08002d29   Thumb Code   120  isotp_fd.o(.text.handle_fc_rx)
-    [Anonymous Symbol]                       0x08002d28   Section        0  isotp_fd.o(.text.handle_fc_rx)
-    handle_ff                                0x08002da1   Thumb Code   340  isotp_fd.o(.text.handle_ff)
-    [Anonymous Symbol]                       0x08002da0   Section        0  isotp_fd.o(.text.handle_ff)
-    handle_sf                                0x08002ef5   Thumb Code    84  isotp_fd.o(.text.handle_sf)
-    [Anonymous Symbol]                       0x08002ef4   Section        0  isotp_fd.o(.text.handle_sf)
-    [Anonymous Symbol]                       0x08002f48   Section        0  isotp_fd.o(.text.isotp_fd_init)
-    [Anonymous Symbol]                       0x08002f9c   Section        0  isotp_fd.o(.text.isotp_fd_on_rx)
-    [Anonymous Symbol]                       0x08003014   Section        0  isotp_fd.o(.text.isotp_fd_poll)
-    [Anonymous Symbol]                       0x0800314c   Section        0  isotp_fd.o(.text.isotp_fd_rx_data)
-    [Anonymous Symbol]                       0x0800315c   Section        0  isotp_fd.o(.text.isotp_fd_rx_done)
-    [Anonymous Symbol]                       0x0800316c   Section        0  isotp_fd.o(.text.isotp_fd_rx_ready)
-    [Anonymous Symbol]                       0x08003190   Section        0  isotp_fd.o(.text.isotp_fd_send)
-    isotp_tx_cb                              0x08003409   Thumb Code    22  main.o(.text.isotp_tx_cb)
-    [Anonymous Symbol]                       0x08003408   Section        0  main.o(.text.isotp_tx_cb)
-    [Anonymous Symbol]                       0x08003420   Section        0  main.o(.text.main)
-    [Anonymous Symbol]                       0x080035a0   Section        0  svc_ecu_reset.o(.text.on_ecu_reset)
-    [Anonymous Symbol]                       0x08003660   Section        0  svc_authentication.o(.text.svc_authentication)
-    [Anonymous Symbol]                       0x08003898   Section        0  svc_clear_dtc.o(.text.svc_clear_dtc)
-    [Anonymous Symbol]                       0x080038f0   Section        0  svc_comm_control.o(.text.svc_comm_control)
-    [Anonymous Symbol]                       0x0800399c   Section        0  svc_control_dtc.o(.text.svc_control_dtc)
-    [Anonymous Symbol]                       0x08003a18   Section        0  svc_diag_session.o(.text.svc_diag_session_control)
-    [Anonymous Symbol]                       0x08003af8   Section        0  svc_dyn_did.o(.text.svc_dyn_define_did)
-    [Anonymous Symbol]                       0x08003dcc   Section        0  svc_ecu_reset.o(.text.svc_ecu_reset)
-    [Anonymous Symbol]                       0x08003e70   Section        0  svc_io_control.o(.text.svc_io_control)
-    [Anonymous Symbol]                       0x08003f58   Section        0  svc_link_ctrl.o(.text.svc_link_control)
-    [Anonymous Symbol]                       0x08004038   Section        0  svc_read_did.o(.text.svc_read_data_by_id)
-    [Anonymous Symbol]                       0x08004148   Section        0  svc_read_dtc.o(.text.svc_read_dtc_info)
-    [Anonymous Symbol]                       0x08004478   Section        0  svc_read_address.o(.text.svc_read_memory_by_address)
-    [Anonymous Symbol]                       0x08004670   Section        0  svc_periodic_did.o(.text.svc_read_periodic_id)
-    [Anonymous Symbol]                       0x08004c24   Section        0  svc_download.o(.text.svc_request_download)
-    [Anonymous Symbol]                       0x08004df8   Section        0  svc_upload.o(.text.svc_request_upload)
-    [Anonymous Symbol]                       0x08004fc0   Section        0  svc_routine_control.o(.text.svc_routine_control)
-    [Anonymous Symbol]                       0x080050bc   Section        0  svc_security_access.o(.text.svc_security_access)
-    [Anonymous Symbol]                       0x080053b4   Section        0  svc_tester_present.o(.text.svc_tester_present)
-    [Anonymous Symbol]                       0x08005424   Section        0  svc_download.o(.text.svc_transfer_data)
-    [Anonymous Symbol]                       0x08005574   Section        0  svc_download.o(.text.svc_transfer_exit)
-    [Anonymous Symbol]                       0x080055cc   Section        0  svc_write_did.o(.text.svc_write_data_by_id)
-    [Anonymous Symbol]                       0x0800567c   Section        0  svc_write_address.o(.text.svc_write_memory_by_address)
-    [Anonymous Symbol]                       0x08005888   Section        0  uds_did_table.o(.text.uds_did_table_find)
-    [Anonymous Symbol]                       0x08005aac   Section        0  uds_did_table.o(.text.uds_did_table_register)
-    [Anonymous Symbol]                       0x08005b20   Section        0  uds_did_table.o(.text.uds_did_table_write)
-    [Anonymous Symbol]                       0x08005d84   Section        0  uds_platform_time.o(.text.uds_platform_time_ms)
-    [Anonymous Symbol]                       0x08005d88   Section        0  svc_ecu_reset.o(.text.uds_reset_poll)
-    [Anonymous Symbol]                       0x08005dc0   Section        0  svc_security_access.o(.text.uds_security_init)
-    [Anonymous Symbol]                       0x08005df8   Section        0  svc_security_access.o(.text.uds_security_is_unlocked)
-    [Anonymous Symbol]                       0x08005e18   Section        0  svc_security_access.o(.text.uds_security_poll)
-    [Anonymous Symbol]                       0x08005e48   Section        0  svc_security_access.o(.text.uds_security_reset)
-    [Anonymous Symbol]                       0x08005e70   Section        0  uds_server.o(.text.uds_server_dispatch_set_security_level)
-    [Anonymous Symbol]                       0x08005e7c   Section        0  uds_server.o(.text.uds_server_get_security_level)
-    [Anonymous Symbol]                       0x08005e88   Section        0  uds_server.o(.text.uds_server_init)
-    [Anonymous Symbol]                       0x080060f8   Section        0  uds_server.o(.text.uds_server_poll)
-    [Anonymous Symbol]                       0x0800610c   Section        0  uds_server.o(.text.uds_server_process)
-    [Anonymous Symbol]                       0x080062e8   Section        0  uds_server.o(.text.uds_server_set_security_level)
-    [Anonymous Symbol]                       0x080062f4   Section        0  uds_server.o(.text.uds_server_set_session)
-    [Anonymous Symbol]                       0x08006300   Section        0  uds_session.o(.text.uds_session_check_timeout)
-    [Anonymous Symbol]                       0x08006350   Section        0  uds_session.o(.text.uds_session_get)
-    [Anonymous Symbol]                       0x0800635c   Section        0  uds_session.o(.text.uds_session_refresh)
-    [Anonymous Symbol]                       0x08006370   Section        0  uds_session.o(.text.uds_session_reset)
-    [Anonymous Symbol]                       0x0800639c   Section        0  uds_session.o(.text.uds_session_set)
-    [Anonymous Symbol]                       0x080063e0   Section        0  uds_session.o(.text.uds_state_init)
-    [Anonymous Symbol]                       0x0800640c   Section        0  svc_download.o(.text.uds_transfer_get_context)
-    i.__scatterload_copy                     0x08006416   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x08006424   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x08006426   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.puts                                   0x08006434   Section        0  puts.o(i.puts)
-    HAL_RCC_GetSysClockFreq.aPredivFactorTable 0x08006470   Data           2  stm32f1xx_hal_rcc.o(.rodata.HAL_RCC_GetSysClockFreq.aPredivFactorTable)
-    [Anonymous Symbol]                       0x08006470   Section        0  stm32f1xx_hal_rcc.o(.rodata.HAL_RCC_GetSysClockFreq.aPredivFactorTable)
-    HAL_RCC_GetSysClockFreq.aPLLMULFactorTable 0x08006472   Data          16  stm32f1xx_hal_rcc.o(.rodata.cst16)
-    [Anonymous Symbol]                       0x08006472   Section        0  stm32f1xx_hal_rcc.o(.rodata.cst16)
-    s_app_cfg                                0x08006484   Data           4  main.o(.rodata.s_app_cfg)
-    [Anonymous Symbol]                       0x08006484   Section        0  main.o(.rodata.s_app_cfg)
-    sbox                                     0x08006488   Data         256  crypto_aes_cmac.o(.rodata.sbox)
-    [Anonymous Symbol]                       0x08006488   Section        0  crypto_aes_cmac.o(.rodata.sbox)
-    register_default_dids.boot_id            0x08006588   Data          12  uds_did_table.o(.rodata.str1.4)
-    [Anonymous Symbol]                       0x08006588   Section        0  uds_did_table.o(.rodata.str1.4)
-    register_default_dids.spare_part         0x08006594   Data          12  uds_did_table.o(.rodata.str1.4)
-    register_default_dids.vin                0x080065a0   Data          18  uds_did_table.o(.rodata.str1.4)
-    register_default_dids.sys_name           0x080065b4   Data          13  uds_did_table.o(.rodata.str1.4)
+    [Anonymous Symbol]                       0x08002838   Section        0  dtc_nvm_adapter.o(.text.dtc_nvm_init)
+    [Anonymous Symbol]                       0x08002850   Section        0  dtc_nvm_adapter.o(.text.dtc_nvm_init_custom)
+    dtc_nvm_status_change_callback           0x08002911   Thumb Code   158  dtc_nvm_adapter.o(.text.dtc_nvm_status_change_callback)
+    [Anonymous Symbol]                       0x08002910   Section        0  dtc_nvm_adapter.o(.text.dtc_nvm_status_change_callback)
+    [Anonymous Symbol]                       0x080029b0   Section        0  dtc_store.o(.text.dtc_set_setting_enabled)
+    [Anonymous Symbol]                       0x080029bc   Section        0  dtc_store.o(.text.dtc_store_add)
+    [Anonymous Symbol]                       0x08002a6c   Section        0  dtc_store.o(.text.dtc_store_clear)
+    [Anonymous Symbol]                       0x08002cbc   Section        0  dtc_store.o(.text.dtc_store_count)
+    [Anonymous Symbol]                       0x08002cc8   Section        0  dtc_store.o(.text.dtc_store_count_by_mask)
+    [Anonymous Symbol]                       0x08002d78   Section        0  dtc_store.o(.text.dtc_store_find)
+    [Anonymous Symbol]                       0x08002e08   Section        0  dtc_store.o(.text.dtc_store_find_mut)
+    [Anonymous Symbol]                       0x08002e98   Section        0  dtc_store.o(.text.dtc_store_get_by_index)
+    [Anonymous Symbol]                       0x08002ebc   Section        0  dtc_store.o(.text.dtc_store_get_status_mask)
+    [Anonymous Symbol]                       0x08002ec0   Section        0  dtc_store.o(.text.dtc_store_init)
+    [Anonymous Symbol]                       0x08002eec   Section        0  dtc_store.o(.text.dtc_store_set_status_cb)
+    [Anonymous Symbol]                       0x08002ef8   Section        0  dtc_table_85.o(.text.dtc_table_85_init)
+    [Anonymous Symbol]                       0x08002f2c   Section        0  usart.o(.text.fputc)
+    handle_cf                                0x08002f4d   Thumb Code   254  isotp_fd.o(.text.handle_cf)
+    [Anonymous Symbol]                       0x08002f4c   Section        0  isotp_fd.o(.text.handle_cf)
+    handle_fc_rx                             0x0800304d   Thumb Code   120  isotp_fd.o(.text.handle_fc_rx)
+    [Anonymous Symbol]                       0x0800304c   Section        0  isotp_fd.o(.text.handle_fc_rx)
+    handle_ff                                0x080030c5   Thumb Code   340  isotp_fd.o(.text.handle_ff)
+    [Anonymous Symbol]                       0x080030c4   Section        0  isotp_fd.o(.text.handle_ff)
+    handle_sf                                0x08003219   Thumb Code    84  isotp_fd.o(.text.handle_sf)
+    [Anonymous Symbol]                       0x08003218   Section        0  isotp_fd.o(.text.handle_sf)
+    [Anonymous Symbol]                       0x0800326c   Section        0  isotp_fd.o(.text.isotp_fd_init)
+    [Anonymous Symbol]                       0x080032c0   Section        0  isotp_fd.o(.text.isotp_fd_on_rx)
+    [Anonymous Symbol]                       0x08003338   Section        0  isotp_fd.o(.text.isotp_fd_poll)
+    [Anonymous Symbol]                       0x08003470   Section        0  isotp_fd.o(.text.isotp_fd_rx_data)
+    [Anonymous Symbol]                       0x08003480   Section        0  isotp_fd.o(.text.isotp_fd_rx_done)
+    [Anonymous Symbol]                       0x08003490   Section        0  isotp_fd.o(.text.isotp_fd_rx_ready)
+    [Anonymous Symbol]                       0x080034b4   Section        0  isotp_fd.o(.text.isotp_fd_send)
+    isotp_tx_cb                              0x0800372d   Thumb Code    22  main.o(.text.isotp_tx_cb)
+    [Anonymous Symbol]                       0x0800372c   Section        0  main.o(.text.isotp_tx_cb)
+    [Anonymous Symbol]                       0x08003744   Section        0  main.o(.text.main)
+    [Anonymous Symbol]                       0x080038cc   Section        0  svc_ecu_reset.o(.text.on_ecu_reset)
+    [Anonymous Symbol]                       0x0800398c   Section        0  dtc_nvm_adapter.o(.text.stm32f103_flash_erase)
+    [Anonymous Symbol]                       0x08003a08   Section        0  dtc_nvm_adapter.o(.text.stm32f103_flash_read)
+    [Anonymous Symbol]                       0x08003a90   Section        0  dtc_nvm_adapter.o(.text.stm32f103_flash_sector_size)
+    [Anonymous Symbol]                       0x08003a98   Section        0  dtc_nvm_adapter.o(.text.stm32f103_flash_write)
+    [Anonymous Symbol]                       0x08003b14   Section        0  svc_authentication.o(.text.svc_authentication)
+    [Anonymous Symbol]                       0x08003d4c   Section        0  svc_clear_dtc.o(.text.svc_clear_dtc)
+    [Anonymous Symbol]                       0x08003da4   Section        0  svc_comm_control.o(.text.svc_comm_control)
+    [Anonymous Symbol]                       0x08003e50   Section        0  svc_control_dtc.o(.text.svc_control_dtc)
+    [Anonymous Symbol]                       0x08003ecc   Section        0  svc_diag_session.o(.text.svc_diag_session_control)
+    [Anonymous Symbol]                       0x08003fac   Section        0  svc_dyn_did.o(.text.svc_dyn_define_did)
+    [Anonymous Symbol]                       0x08004280   Section        0  svc_ecu_reset.o(.text.svc_ecu_reset)
+    [Anonymous Symbol]                       0x08004324   Section        0  svc_io_control.o(.text.svc_io_control)
+    [Anonymous Symbol]                       0x0800440c   Section        0  svc_link_ctrl.o(.text.svc_link_control)
+    [Anonymous Symbol]                       0x080044ec   Section        0  svc_read_did.o(.text.svc_read_data_by_id)
+    [Anonymous Symbol]                       0x080045fc   Section        0  svc_read_dtc.o(.text.svc_read_dtc_info)
+    [Anonymous Symbol]                       0x0800492c   Section        0  svc_read_address.o(.text.svc_read_memory_by_address)
+    [Anonymous Symbol]                       0x08004b24   Section        0  svc_periodic_did.o(.text.svc_read_periodic_id)
+    [Anonymous Symbol]                       0x080050d8   Section        0  svc_download.o(.text.svc_request_download)
+    [Anonymous Symbol]                       0x080052ac   Section        0  svc_upload.o(.text.svc_request_upload)
+    [Anonymous Symbol]                       0x08005474   Section        0  svc_routine_control.o(.text.svc_routine_control)
+    [Anonymous Symbol]                       0x08005570   Section        0  svc_security_access.o(.text.svc_security_access)
+    [Anonymous Symbol]                       0x08005868   Section        0  svc_tester_present.o(.text.svc_tester_present)
+    [Anonymous Symbol]                       0x080058d8   Section        0  svc_download.o(.text.svc_transfer_data)
+    [Anonymous Symbol]                       0x08005a28   Section        0  svc_download.o(.text.svc_transfer_exit)
+    [Anonymous Symbol]                       0x08005a80   Section        0  svc_write_did.o(.text.svc_write_data_by_id)
+    [Anonymous Symbol]                       0x08005b30   Section        0  svc_write_address.o(.text.svc_write_memory_by_address)
+    [Anonymous Symbol]                       0x08005d3c   Section        0  uds_did_table.o(.text.uds_did_table_find)
+    [Anonymous Symbol]                       0x08005f60   Section        0  uds_did_table.o(.text.uds_did_table_register)
+    [Anonymous Symbol]                       0x08005fd4   Section        0  uds_did_table.o(.text.uds_did_table_write)
+    [Anonymous Symbol]                       0x08006238   Section        0  uds_wear_leveling.o(.text.uds_param_init)
+    [Anonymous Symbol]                       0x0800661c   Section        0  uds_wear_leveling.o(.text.uds_param_load)
+    [Anonymous Symbol]                       0x0800683c   Section        0  uds_platform_time.o(.text.uds_platform_time_ms)
+    [Anonymous Symbol]                       0x08006840   Section        0  svc_ecu_reset.o(.text.uds_reset_poll)
+    [Anonymous Symbol]                       0x08006878   Section        0  svc_security_access.o(.text.uds_security_init)
+    [Anonymous Symbol]                       0x080068b0   Section        0  svc_security_access.o(.text.uds_security_is_unlocked)
+    [Anonymous Symbol]                       0x080068d0   Section        0  svc_security_access.o(.text.uds_security_poll)
+    [Anonymous Symbol]                       0x08006900   Section        0  svc_security_access.o(.text.uds_security_reset)
+    [Anonymous Symbol]                       0x08006928   Section        0  uds_server.o(.text.uds_server_dispatch_set_security_level)
+    [Anonymous Symbol]                       0x08006934   Section        0  uds_server.o(.text.uds_server_get_security_level)
+    [Anonymous Symbol]                       0x08006940   Section        0  uds_server.o(.text.uds_server_init)
+    [Anonymous Symbol]                       0x08006bb0   Section        0  uds_server.o(.text.uds_server_poll)
+    [Anonymous Symbol]                       0x08006bc4   Section        0  uds_server.o(.text.uds_server_process)
+    [Anonymous Symbol]                       0x08006da0   Section        0  uds_server.o(.text.uds_server_set_security_level)
+    [Anonymous Symbol]                       0x08006dac   Section        0  uds_server.o(.text.uds_server_set_session)
+    [Anonymous Symbol]                       0x08006db8   Section        0  uds_session.o(.text.uds_session_check_timeout)
+    [Anonymous Symbol]                       0x08006e08   Section        0  uds_session.o(.text.uds_session_get)
+    [Anonymous Symbol]                       0x08006e14   Section        0  uds_session.o(.text.uds_session_refresh)
+    [Anonymous Symbol]                       0x08006e28   Section        0  uds_session.o(.text.uds_session_reset)
+    [Anonymous Symbol]                       0x08006e54   Section        0  uds_session.o(.text.uds_session_set)
+    [Anonymous Symbol]                       0x08006e98   Section        0  uds_session.o(.text.uds_state_init)
+    [Anonymous Symbol]                       0x08006ec4   Section        0  svc_download.o(.text.uds_transfer_get_context)
+    i.__scatterload_copy                     0x08006ece   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08006edc   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08006ede   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.puts                                   0x08006eec   Section        0  puts.o(i.puts)
+    HAL_RCC_GetSysClockFreq.aPredivFactorTable 0x08006f28   Data           2  stm32f1xx_hal_rcc.o(.rodata.HAL_RCC_GetSysClockFreq.aPredivFactorTable)
+    [Anonymous Symbol]                       0x08006f28   Section        0  stm32f1xx_hal_rcc.o(.rodata.HAL_RCC_GetSysClockFreq.aPredivFactorTable)
+    HAL_RCC_GetSysClockFreq.aPLLMULFactorTable 0x08006f2a   Data          16  stm32f1xx_hal_rcc.o(.rodata.cst16)
+    [Anonymous Symbol]                       0x08006f2a   Section        0  stm32f1xx_hal_rcc.o(.rodata.cst16)
+    s_app_cfg                                0x08007338   Data           4  main.o(.rodata.s_app_cfg)
+    [Anonymous Symbol]                       0x08007338   Section        0  main.o(.rodata.s_app_cfg)
+    s_default_f103_port                      0x0800733c   Data          20  dtc_nvm_adapter.o(.rodata.s_default_f103_port)
+    [Anonymous Symbol]                       0x0800733c   Section        0  dtc_nvm_adapter.o(.rodata.s_default_f103_port)
+    sbox                                     0x08007350   Data         256  crypto_aes_cmac.o(.rodata.sbox)
+    [Anonymous Symbol]                       0x08007350   Section        0  crypto_aes_cmac.o(.rodata.sbox)
+    [Anonymous Symbol]                       0x08007450   Section        0  dtc_table_85.o(.rodata.str1.1)
+    register_default_dids.boot_id            0x08007e84   Data          12  uds_did_table.o(.rodata.str1.4)
+    [Anonymous Symbol]                       0x08007e84   Section        0  uds_did_table.o(.rodata.str1.4)
+    register_default_dids.spare_part         0x08007e90   Data          12  uds_did_table.o(.rodata.str1.4)
+    register_default_dids.vin                0x08007e9c   Data          18  uds_did_table.o(.rodata.str1.4)
+    register_default_dids.sys_name           0x08007eb0   Data          13  uds_did_table.o(.rodata.str1.4)
     .data                                    0x20000000   Section        4  stdout.o(.data)
     .L_MergedGlobals                         0x20000004   Data           8  stm32f1xx_hal.o(.data..L_MergedGlobals)
     [Anonymous Symbol]                       0x20000004   Section        0  stm32f1xx_hal.o(.data..L_MergedGlobals)
@@ -1912,59 +1911,70 @@ Image Symbol Table
     [Anonymous Symbol]                       0x20000048   Section        0  svc_io_control.o(.data.s_io_table)
     s_mock_security_unlocked                 0x20000060   Data           1  svc_write_address.o(.data.s_mock_security_unlocked)
     [Anonymous Symbol]                       0x20000060   Section        0  svc_write_address.o(.data.s_mock_security_unlocked)
-    .L_MergedGlobals                         0x20000068   Data           8  dtc_store.o(.bss..L_MergedGlobals)
-    s_dtc_count                              0x20000068   Data           1  dtc_store.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x20000068   Section        0  dtc_store.o(.bss..L_MergedGlobals)
-    s_status_cb                              0x2000006c   Data           4  dtc_store.o(.bss..L_MergedGlobals)
-    .L_MergedGlobals                         0x20000070   Data           8  svc_ecu_reset.o(.bss..L_MergedGlobals)
-    s_pending_reset_type                     0x20000070   Data           1  svc_ecu_reset.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x20000070   Section        0  svc_ecu_reset.o(.bss..L_MergedGlobals)
-    s_reset_countdown                        0x20000074   Data           4  svc_ecu_reset.o(.bss..L_MergedGlobals)
-    .L_MergedGlobals                         0x20000078   Data           4  svc_routine_control.o(.bss..L_MergedGlobals)
-    s_routine_state                          0x20000078   Data           1  svc_routine_control.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x20000078   Section        0  svc_routine_control.o(.bss..L_MergedGlobals)
-    s_active_routine_id                      0x2000007a   Data           2  svc_routine_control.o(.bss..L_MergedGlobals)
-    .L_MergedGlobals                         0x2000007c   Data           4  uds_did_table.o(.bss..L_MergedGlobals)
-    s_did_initialized                        0x2000007c   Data           1  uds_did_table.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x2000007c   Section        0  uds_did_table.o(.bss..L_MergedGlobals)
-    s_did_count                              0x2000007e   Data           2  uds_did_table.o(.bss..L_MergedGlobals)
-    .L_MergedGlobals.1                       0x20000080   Data          17  svc_authentication.o(.bss..L_MergedGlobals.1)
-    s_auth_state                             0x20000080   Data           1  svc_authentication.o(.bss..L_MergedGlobals.1)
-    [Anonymous Symbol]                       0x20000080   Section        0  svc_authentication.o(.bss..L_MergedGlobals.1)
-    s_challenge                              0x20000081   Data          16  svc_authentication.o(.bss..L_MergedGlobals.1)
-    .L_MergedGlobals.1                       0x20000094   Data          28  svc_security_access.o(.bss..L_MergedGlobals.1)
-    s_sec_state                              0x20000094   Data           1  svc_security_access.o(.bss..L_MergedGlobals.1)
-    [Anonymous Symbol]                       0x20000094   Section        0  svc_security_access.o(.bss..L_MergedGlobals.1)
-    s_sec_attempts                           0x20000095   Data           1  svc_security_access.o(.bss..L_MergedGlobals.1)
-    s_lockout_active                         0x20000096   Data           1  svc_security_access.o(.bss..L_MergedGlobals.1)
-    s_lockout_ticks                          0x20000098   Data           4  svc_security_access.o(.bss..L_MergedGlobals.1)
-    s_seed_l1                                0x2000009c   Data           4  svc_security_access.o(.bss..L_MergedGlobals.1)
-    s_seed_l2                                0x200000a0   Data          16  svc_security_access.o(.bss..L_MergedGlobals.1)
-    .L_MergedGlobals.1                       0x200000b0   Data           8  uds_server.o(.bss..L_MergedGlobals.1)
-    s_service_count                          0x200000b0   Data           1  uds_server.o(.bss..L_MergedGlobals.1)
-    [Anonymous Symbol]                       0x200000b0   Section        0  uds_server.o(.bss..L_MergedGlobals.1)
-    s_app_config                             0x200000b4   Data           4  uds_server.o(.bss..L_MergedGlobals.1)
-    s_comm_subfunction                       0x200003dc   Data           1  svc_comm_control.o(.bss.s_comm_subfunction)
-    [Anonymous Symbol]                       0x200003dc   Section        0  svc_comm_control.o(.bss.s_comm_subfunction)
-    s_dids                                   0x200003e0   Data        2240  uds_did_table.o(.bss.s_dids)
-    [Anonymous Symbol]                       0x200003e0   Section        0  uds_did_table.o(.bss.s_dids)
-    s_dtcs                                   0x20000ca0   Data        6000  dtc_store.o(.bss.s_dtcs)
-    [Anonymous Symbol]                       0x20000ca0   Section        0  dtc_store.o(.bss.s_dtcs)
-    s_dyn_defs                               0x20002410   Data          80  svc_dyn_did.o(.bss.s_dyn_defs)
-    [Anonymous Symbol]                       0x20002410   Section        0  svc_dyn_did.o(.bss.s_dyn_defs)
-    s_link_state                             0x20002460   Data           1  svc_link_ctrl.o(.bss.s_link_state)
-    [Anonymous Symbol]                       0x20002460   Section        0  svc_link_ctrl.o(.bss.s_link_state)
-    s_periodic_schedule                      0x20002464   Data          64  svc_periodic_did.o(.bss.s_periodic_schedule)
-    [Anonymous Symbol]                       0x20002464   Section        0  svc_periodic_did.o(.bss.s_periodic_schedule)
-    s_phys                                   0x200024a4   Data        8256  main.o(.bss.s_phys)
-    [Anonymous Symbol]                       0x200024a4   Section        0  main.o(.bss.s_phys)
-    s_s3_elapsed_ms                          0x200044e4   Data           4  uds_session.o(.bss.s_s3_elapsed_ms)
-    [Anonymous Symbol]                       0x200044e4   Section        0  uds_session.o(.bss.s_s3_elapsed_ms)
-    s_service_table                          0x200044e8   Data         640  uds_server.o(.bss.s_service_table)
-    [Anonymous Symbol]                       0x200044e8   Section        0  uds_server.o(.bss.s_service_table)
-    s_transfer_ctx                           0x20004768   Data          20  svc_download.o(.bss.s_transfer_ctx)
-    [Anonymous Symbol]                       0x20004768   Section        0  svc_download.o(.bss.s_transfer_ctx)
-    STACK                                    0x20004780   Section     4096  startup_stm32f103xe.o(STACK)
+    .L_MergedGlobals                         0x20000068   Data          40  dtc_nvm_adapter.o(.bss..L_MergedGlobals)
+    s_dtc_nvm_initialized                    0x20000068   Data           1  dtc_nvm_adapter.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000068   Section        0  dtc_nvm_adapter.o(.bss..L_MergedGlobals)
+    s_dtc_nvm_dirty                          0x20000069   Data           1  dtc_nvm_adapter.o(.bss..L_MergedGlobals)
+    s_dtc_param_store                        0x2000006c   Data          36  dtc_nvm_adapter.o(.bss..L_MergedGlobals)
+    .L_MergedGlobals                         0x20000090   Data           8  dtc_store.o(.bss..L_MergedGlobals)
+    s_dtc_count                              0x20000090   Data           1  dtc_store.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000090   Section        0  dtc_store.o(.bss..L_MergedGlobals)
+    s_status_cb                              0x20000094   Data           4  dtc_store.o(.bss..L_MergedGlobals)
+    .L_MergedGlobals                         0x20000098   Data           8  svc_ecu_reset.o(.bss..L_MergedGlobals)
+    s_pending_reset_type                     0x20000098   Data           1  svc_ecu_reset.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000098   Section        0  svc_ecu_reset.o(.bss..L_MergedGlobals)
+    s_reset_countdown                        0x2000009c   Data           4  svc_ecu_reset.o(.bss..L_MergedGlobals)
+    .L_MergedGlobals                         0x200000a0   Data           4  svc_routine_control.o(.bss..L_MergedGlobals)
+    s_routine_state                          0x200000a0   Data           1  svc_routine_control.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x200000a0   Section        0  svc_routine_control.o(.bss..L_MergedGlobals)
+    s_active_routine_id                      0x200000a2   Data           2  svc_routine_control.o(.bss..L_MergedGlobals)
+    .L_MergedGlobals                         0x200000a4   Data           4  uds_did_table.o(.bss..L_MergedGlobals)
+    s_did_initialized                        0x200000a4   Data           1  uds_did_table.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x200000a4   Section        0  uds_did_table.o(.bss..L_MergedGlobals)
+    s_did_count                              0x200000a6   Data           2  uds_did_table.o(.bss..L_MergedGlobals)
+    .L_MergedGlobals.1                       0x200000a8   Data          17  svc_authentication.o(.bss..L_MergedGlobals.1)
+    s_auth_state                             0x200000a8   Data           1  svc_authentication.o(.bss..L_MergedGlobals.1)
+    [Anonymous Symbol]                       0x200000a8   Section        0  svc_authentication.o(.bss..L_MergedGlobals.1)
+    s_challenge                              0x200000a9   Data          16  svc_authentication.o(.bss..L_MergedGlobals.1)
+    .L_MergedGlobals.1                       0x200000bc   Data          28  svc_security_access.o(.bss..L_MergedGlobals.1)
+    s_sec_state                              0x200000bc   Data           1  svc_security_access.o(.bss..L_MergedGlobals.1)
+    [Anonymous Symbol]                       0x200000bc   Section        0  svc_security_access.o(.bss..L_MergedGlobals.1)
+    s_sec_attempts                           0x200000bd   Data           1  svc_security_access.o(.bss..L_MergedGlobals.1)
+    s_lockout_active                         0x200000be   Data           1  svc_security_access.o(.bss..L_MergedGlobals.1)
+    s_lockout_ticks                          0x200000c0   Data           4  svc_security_access.o(.bss..L_MergedGlobals.1)
+    s_seed_l1                                0x200000c4   Data           4  svc_security_access.o(.bss..L_MergedGlobals.1)
+    s_seed_l2                                0x200000c8   Data          16  svc_security_access.o(.bss..L_MergedGlobals.1)
+    .L_MergedGlobals.1                       0x200000d8   Data           8  uds_server.o(.bss..L_MergedGlobals.1)
+    s_service_count                          0x200000d8   Data           1  uds_server.o(.bss..L_MergedGlobals.1)
+    [Anonymous Symbol]                       0x200000d8   Section        0  uds_server.o(.bss..L_MergedGlobals.1)
+    s_app_config                             0x200000dc   Data           4  uds_server.o(.bss..L_MergedGlobals.1)
+    s_comm_subfunction                       0x20000404   Data           1  svc_comm_control.o(.bss.s_comm_subfunction)
+    [Anonymous Symbol]                       0x20000404   Section        0  svc_comm_control.o(.bss.s_comm_subfunction)
+    s_dids                                   0x20000408   Data        2240  uds_did_table.o(.bss.s_dids)
+    [Anonymous Symbol]                       0x20000408   Section        0  uds_did_table.o(.bss.s_dids)
+    s_dtc_nvm_cache                          0x20000cc8   Data         805  dtc_nvm_adapter.o(.bss.s_dtc_nvm_cache)
+    [Anonymous Symbol]                       0x20000cc8   Section        0  dtc_nvm_adapter.o(.bss.s_dtc_nvm_cache)
+    s_dtcs                                   0x20000ff0   Data        6000  dtc_store.o(.bss.s_dtcs)
+    [Anonymous Symbol]                       0x20000ff0   Section        0  dtc_store.o(.bss.s_dtcs)
+    s_dyn_defs                               0x20002760   Data          80  svc_dyn_did.o(.bss.s_dyn_defs)
+    [Anonymous Symbol]                       0x20002760   Section        0  svc_dyn_did.o(.bss.s_dyn_defs)
+    s_link_state                             0x200027b0   Data           1  svc_link_ctrl.o(.bss.s_link_state)
+    [Anonymous Symbol]                       0x200027b0   Section        0  svc_link_ctrl.o(.bss.s_link_state)
+    s_periodic_schedule                      0x200027b4   Data          64  svc_periodic_did.o(.bss.s_periodic_schedule)
+    [Anonymous Symbol]                       0x200027b4   Section        0  svc_periodic_did.o(.bss.s_periodic_schedule)
+    s_phys                                   0x200027f4   Data        8256  main.o(.bss.s_phys)
+    [Anonymous Symbol]                       0x200027f4   Section        0  main.o(.bss.s_phys)
+    s_s3_elapsed_ms                          0x20004834   Data           4  uds_session.o(.bss.s_s3_elapsed_ms)
+    [Anonymous Symbol]                       0x20004834   Section        0  uds_session.o(.bss.s_s3_elapsed_ms)
+    s_service_table                          0x20004838   Data         640  uds_server.o(.bss.s_service_table)
+    [Anonymous Symbol]                       0x20004838   Section        0  uds_server.o(.bss.s_service_table)
+    s_simulated_flash                        0x20004ab8   Data        2048  dtc_nvm_adapter.o(.bss.s_simulated_flash)
+    [Anonymous Symbol]                       0x20004ab8   Section        0  dtc_nvm_adapter.o(.bss.s_simulated_flash)
+    s_simulated_flash_inited                 0x200052b8   Data           1  dtc_nvm_adapter.o(.bss.s_simulated_flash_inited)
+    [Anonymous Symbol]                       0x200052b8   Section        0  dtc_nvm_adapter.o(.bss.s_simulated_flash_inited)
+    s_transfer_ctx                           0x200052bc   Data          20  svc_download.o(.bss.s_transfer_ctx)
+    [Anonymous Symbol]                       0x200052bc   Section        0  svc_download.o(.bss.s_transfer_ctx)
+    STACK                                    0x200052d8   Section     4096  startup_stm32f103xe.o(STACK)
 
     Global Symbols
 
@@ -2122,87 +2132,101 @@ Image Symbol Table
     can_ring_buffer_push                     0x08001e6d   Thumb Code    98  can_ring_buffer.o(.text.can_ring_buffer_push)
     crypto_aes_cmac_128                      0x08001ed1   Thumb Code  2194  crypto_aes_cmac.o(.text.crypto_aes_cmac_128)
     crypto_constant_time_equal               0x08002765   Thumb Code   210  crypto_aes_cmac.o(.text.crypto_constant_time_equal)
-    dtc_set_setting_enabled                  0x08002839   Thumb Code    12  dtc_store.o(.text.dtc_set_setting_enabled)
-    dtc_store_clear                          0x08002845   Thumb Code   590  dtc_store.o(.text.dtc_store_clear)
-    dtc_store_count                          0x08002a95   Thumb Code    12  dtc_store.o(.text.dtc_store_count)
-    dtc_store_count_by_mask                  0x08002aa1   Thumb Code   174  dtc_store.o(.text.dtc_store_count_by_mask)
-    dtc_store_find                           0x08002b51   Thumb Code   142  dtc_store.o(.text.dtc_store_find)
-    dtc_store_get_by_index                   0x08002be1   Thumb Code    36  dtc_store.o(.text.dtc_store_get_by_index)
-    dtc_store_get_status_mask                0x08002c05   Thumb Code     4  dtc_store.o(.text.dtc_store_get_status_mask)
-    fputc                                    0x08002c09   Thumb Code    32  usart.o(.text.fputc)
-    isotp_fd_init                            0x08002f49   Thumb Code    82  isotp_fd.o(.text.isotp_fd_init)
-    isotp_fd_on_rx                           0x08002f9d   Thumb Code   120  isotp_fd.o(.text.isotp_fd_on_rx)
-    isotp_fd_poll                            0x08003015   Thumb Code   310  isotp_fd.o(.text.isotp_fd_poll)
-    isotp_fd_rx_data                         0x0800314d   Thumb Code    14  isotp_fd.o(.text.isotp_fd_rx_data)
-    isotp_fd_rx_done                         0x0800315d   Thumb Code    14  isotp_fd.o(.text.isotp_fd_rx_done)
-    isotp_fd_rx_ready                        0x0800316d   Thumb Code    36  isotp_fd.o(.text.isotp_fd_rx_ready)
-    isotp_fd_send                            0x08003191   Thumb Code   632  isotp_fd.o(.text.isotp_fd_send)
-    main                                     0x08003421   Thumb Code   360  main.o(.text.main)
-    on_ecu_reset                             0x080035a1   Thumb Code    76  svc_ecu_reset.o(.text.on_ecu_reset)
-    svc_authentication                       0x08003661   Thumb Code   566  svc_authentication.o(.text.svc_authentication)
-    svc_clear_dtc                            0x08003899   Thumb Code    86  svc_clear_dtc.o(.text.svc_clear_dtc)
-    svc_comm_control                         0x080038f1   Thumb Code   170  svc_comm_control.o(.text.svc_comm_control)
-    svc_control_dtc                          0x0800399d   Thumb Code   124  svc_control_dtc.o(.text.svc_control_dtc)
-    svc_diag_session_control                 0x08003a19   Thumb Code   222  svc_diag_session.o(.text.svc_diag_session_control)
-    svc_dyn_define_did                       0x08003af9   Thumb Code   724  svc_dyn_did.o(.text.svc_dyn_define_did)
-    svc_ecu_reset                            0x08003dcd   Thumb Code   164  svc_ecu_reset.o(.text.svc_ecu_reset)
-    svc_io_control                           0x08003e71   Thumb Code   232  svc_io_control.o(.text.svc_io_control)
-    svc_link_control                         0x08003f59   Thumb Code   224  svc_link_ctrl.o(.text.svc_link_control)
-    svc_read_data_by_id                      0x08004039   Thumb Code   270  svc_read_did.o(.text.svc_read_data_by_id)
-    svc_read_dtc_info                        0x08004149   Thumb Code   816  svc_read_dtc.o(.text.svc_read_dtc_info)
-    svc_read_memory_by_address               0x08004479   Thumb Code   504  svc_read_address.o(.text.svc_read_memory_by_address)
-    svc_read_periodic_id                     0x08004671   Thumb Code  1458  svc_periodic_did.o(.text.svc_read_periodic_id)
-    svc_request_download                     0x08004c25   Thumb Code   468  svc_download.o(.text.svc_request_download)
-    svc_request_upload                       0x08004df9   Thumb Code   456  svc_upload.o(.text.svc_request_upload)
-    svc_routine_control                      0x08004fc1   Thumb Code   250  svc_routine_control.o(.text.svc_routine_control)
-    svc_security_access                      0x080050bd   Thumb Code   760  svc_security_access.o(.text.svc_security_access)
-    svc_tester_present                       0x080053b5   Thumb Code   112  svc_tester_present.o(.text.svc_tester_present)
-    svc_transfer_data                        0x08005425   Thumb Code   334  svc_download.o(.text.svc_transfer_data)
-    svc_transfer_exit                        0x08005575   Thumb Code    88  svc_download.o(.text.svc_transfer_exit)
-    svc_write_data_by_id                     0x080055cd   Thumb Code   176  svc_write_did.o(.text.svc_write_data_by_id)
-    svc_write_memory_by_address              0x0800567d   Thumb Code   522  svc_write_address.o(.text.svc_write_memory_by_address)
-    uds_did_table_find                       0x08005889   Thumb Code   546  uds_did_table.o(.text.uds_did_table_find)
-    uds_did_table_register                   0x08005aad   Thumb Code   114  uds_did_table.o(.text.uds_did_table_register)
-    uds_did_table_write                      0x08005b21   Thumb Code   610  uds_did_table.o(.text.uds_did_table_write)
-    uds_platform_time_ms                     0x08005d85   Thumb Code     4  uds_platform_time.o(.text.uds_platform_time_ms)
-    uds_reset_poll                           0x08005d89   Thumb Code    54  svc_ecu_reset.o(.text.uds_reset_poll)
-    uds_security_init                        0x08005dc1   Thumb Code    54  svc_security_access.o(.text.uds_security_init)
-    uds_security_is_unlocked                 0x08005df9   Thumb Code    32  svc_security_access.o(.text.uds_security_is_unlocked)
-    uds_security_poll                        0x08005e19   Thumb Code    48  svc_security_access.o(.text.uds_security_poll)
-    uds_security_reset                       0x08005e49   Thumb Code    40  svc_security_access.o(.text.uds_security_reset)
-    uds_server_dispatch_set_security_level   0x08005e71   Thumb Code    12  uds_server.o(.text.uds_server_dispatch_set_security_level)
-    uds_server_get_security_level            0x08005e7d   Thumb Code    12  uds_server.o(.text.uds_server_get_security_level)
-    uds_server_init                          0x08005e89   Thumb Code   624  uds_server.o(.text.uds_server_init)
-    uds_server_poll                          0x080060f9   Thumb Code    18  uds_server.o(.text.uds_server_poll)
-    uds_server_process                       0x0800610d   Thumb Code   476  uds_server.o(.text.uds_server_process)
-    uds_server_set_security_level            0x080062e9   Thumb Code    12  uds_server.o(.text.uds_server_set_security_level)
-    uds_server_set_session                   0x080062f5   Thumb Code    12  uds_server.o(.text.uds_server_set_session)
-    uds_session_check_timeout                0x08006301   Thumb Code    80  uds_session.o(.text.uds_session_check_timeout)
-    uds_session_get                          0x08006351   Thumb Code    12  uds_session.o(.text.uds_session_get)
-    uds_session_refresh                      0x0800635d   Thumb Code    18  uds_session.o(.text.uds_session_refresh)
-    uds_session_reset                        0x08006371   Thumb Code    42  uds_session.o(.text.uds_session_reset)
-    uds_session_set                          0x0800639d   Thumb Code    68  uds_session.o(.text.uds_session_set)
-    uds_state_init                           0x080063e1   Thumb Code    42  uds_session.o(.text.uds_state_init)
-    uds_transfer_get_context                 0x0800640d   Thumb Code    10  svc_download.o(.text.uds_transfer_get_context)
-    __scatterload_copy                       0x08006417   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x08006425   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x08006427   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    puts                                     0x08006435   Thumb Code    30  puts.o(i.puts)
-    AHBPrescTable                            0x08006458   Data          16  system_stm32f1xx.o(.rodata.AHBPrescTable)
-    APBPrescTable                            0x08006468   Data           8  system_stm32f1xx.o(.rodata.APBPrescTable)
-    Region$$Table$$Base                      0x080065c4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080065e4   Number         0  anon$$obj.o(Region$$Table)
+    dtc_nvm_init                             0x08002839   Thumb Code    22  dtc_nvm_adapter.o(.text.dtc_nvm_init)
+    dtc_nvm_init_custom                      0x08002851   Thumb Code   190  dtc_nvm_adapter.o(.text.dtc_nvm_init_custom)
+    dtc_set_setting_enabled                  0x080029b1   Thumb Code    12  dtc_store.o(.text.dtc_set_setting_enabled)
+    dtc_store_add                            0x080029bd   Thumb Code   176  dtc_store.o(.text.dtc_store_add)
+    dtc_store_clear                          0x08002a6d   Thumb Code   590  dtc_store.o(.text.dtc_store_clear)
+    dtc_store_count                          0x08002cbd   Thumb Code    12  dtc_store.o(.text.dtc_store_count)
+    dtc_store_count_by_mask                  0x08002cc9   Thumb Code   174  dtc_store.o(.text.dtc_store_count_by_mask)
+    dtc_store_find                           0x08002d79   Thumb Code   142  dtc_store.o(.text.dtc_store_find)
+    dtc_store_find_mut                       0x08002e09   Thumb Code   142  dtc_store.o(.text.dtc_store_find_mut)
+    dtc_store_get_by_index                   0x08002e99   Thumb Code    36  dtc_store.o(.text.dtc_store_get_by_index)
+    dtc_store_get_status_mask                0x08002ebd   Thumb Code     4  dtc_store.o(.text.dtc_store_get_status_mask)
+    dtc_store_init                           0x08002ec1   Thumb Code    44  dtc_store.o(.text.dtc_store_init)
+    dtc_store_set_status_cb                  0x08002eed   Thumb Code    12  dtc_store.o(.text.dtc_store_set_status_cb)
+    dtc_table_85_init                        0x08002ef9   Thumb Code    50  dtc_table_85.o(.text.dtc_table_85_init)
+    fputc                                    0x08002f2d   Thumb Code    32  usart.o(.text.fputc)
+    isotp_fd_init                            0x0800326d   Thumb Code    82  isotp_fd.o(.text.isotp_fd_init)
+    isotp_fd_on_rx                           0x080032c1   Thumb Code   120  isotp_fd.o(.text.isotp_fd_on_rx)
+    isotp_fd_poll                            0x08003339   Thumb Code   310  isotp_fd.o(.text.isotp_fd_poll)
+    isotp_fd_rx_data                         0x08003471   Thumb Code    14  isotp_fd.o(.text.isotp_fd_rx_data)
+    isotp_fd_rx_done                         0x08003481   Thumb Code    14  isotp_fd.o(.text.isotp_fd_rx_done)
+    isotp_fd_rx_ready                        0x08003491   Thumb Code    36  isotp_fd.o(.text.isotp_fd_rx_ready)
+    isotp_fd_send                            0x080034b5   Thumb Code   632  isotp_fd.o(.text.isotp_fd_send)
+    main                                     0x08003745   Thumb Code   368  main.o(.text.main)
+    on_ecu_reset                             0x080038cd   Thumb Code    76  svc_ecu_reset.o(.text.on_ecu_reset)
+    stm32f103_flash_erase                    0x0800398d   Thumb Code   122  dtc_nvm_adapter.o(.text.stm32f103_flash_erase)
+    stm32f103_flash_read                     0x08003a09   Thumb Code   136  dtc_nvm_adapter.o(.text.stm32f103_flash_read)
+    stm32f103_flash_sector_size              0x08003a91   Thumb Code     6  dtc_nvm_adapter.o(.text.stm32f103_flash_sector_size)
+    stm32f103_flash_write                    0x08003a99   Thumb Code   124  dtc_nvm_adapter.o(.text.stm32f103_flash_write)
+    svc_authentication                       0x08003b15   Thumb Code   566  svc_authentication.o(.text.svc_authentication)
+    svc_clear_dtc                            0x08003d4d   Thumb Code    86  svc_clear_dtc.o(.text.svc_clear_dtc)
+    svc_comm_control                         0x08003da5   Thumb Code   170  svc_comm_control.o(.text.svc_comm_control)
+    svc_control_dtc                          0x08003e51   Thumb Code   124  svc_control_dtc.o(.text.svc_control_dtc)
+    svc_diag_session_control                 0x08003ecd   Thumb Code   222  svc_diag_session.o(.text.svc_diag_session_control)
+    svc_dyn_define_did                       0x08003fad   Thumb Code   724  svc_dyn_did.o(.text.svc_dyn_define_did)
+    svc_ecu_reset                            0x08004281   Thumb Code   164  svc_ecu_reset.o(.text.svc_ecu_reset)
+    svc_io_control                           0x08004325   Thumb Code   232  svc_io_control.o(.text.svc_io_control)
+    svc_link_control                         0x0800440d   Thumb Code   224  svc_link_ctrl.o(.text.svc_link_control)
+    svc_read_data_by_id                      0x080044ed   Thumb Code   270  svc_read_did.o(.text.svc_read_data_by_id)
+    svc_read_dtc_info                        0x080045fd   Thumb Code   816  svc_read_dtc.o(.text.svc_read_dtc_info)
+    svc_read_memory_by_address               0x0800492d   Thumb Code   504  svc_read_address.o(.text.svc_read_memory_by_address)
+    svc_read_periodic_id                     0x08004b25   Thumb Code  1458  svc_periodic_did.o(.text.svc_read_periodic_id)
+    svc_request_download                     0x080050d9   Thumb Code   468  svc_download.o(.text.svc_request_download)
+    svc_request_upload                       0x080052ad   Thumb Code   456  svc_upload.o(.text.svc_request_upload)
+    svc_routine_control                      0x08005475   Thumb Code   250  svc_routine_control.o(.text.svc_routine_control)
+    svc_security_access                      0x08005571   Thumb Code   760  svc_security_access.o(.text.svc_security_access)
+    svc_tester_present                       0x08005869   Thumb Code   112  svc_tester_present.o(.text.svc_tester_present)
+    svc_transfer_data                        0x080058d9   Thumb Code   334  svc_download.o(.text.svc_transfer_data)
+    svc_transfer_exit                        0x08005a29   Thumb Code    88  svc_download.o(.text.svc_transfer_exit)
+    svc_write_data_by_id                     0x08005a81   Thumb Code   176  svc_write_did.o(.text.svc_write_data_by_id)
+    svc_write_memory_by_address              0x08005b31   Thumb Code   522  svc_write_address.o(.text.svc_write_memory_by_address)
+    uds_did_table_find                       0x08005d3d   Thumb Code   546  uds_did_table.o(.text.uds_did_table_find)
+    uds_did_table_register                   0x08005f61   Thumb Code   114  uds_did_table.o(.text.uds_did_table_register)
+    uds_did_table_write                      0x08005fd5   Thumb Code   610  uds_did_table.o(.text.uds_did_table_write)
+    uds_param_init                           0x08006239   Thumb Code   996  uds_wear_leveling.o(.text.uds_param_init)
+    uds_param_load                           0x0800661d   Thumb Code   544  uds_wear_leveling.o(.text.uds_param_load)
+    uds_platform_time_ms                     0x0800683d   Thumb Code     4  uds_platform_time.o(.text.uds_platform_time_ms)
+    uds_reset_poll                           0x08006841   Thumb Code    54  svc_ecu_reset.o(.text.uds_reset_poll)
+    uds_security_init                        0x08006879   Thumb Code    54  svc_security_access.o(.text.uds_security_init)
+    uds_security_is_unlocked                 0x080068b1   Thumb Code    32  svc_security_access.o(.text.uds_security_is_unlocked)
+    uds_security_poll                        0x080068d1   Thumb Code    48  svc_security_access.o(.text.uds_security_poll)
+    uds_security_reset                       0x08006901   Thumb Code    40  svc_security_access.o(.text.uds_security_reset)
+    uds_server_dispatch_set_security_level   0x08006929   Thumb Code    12  uds_server.o(.text.uds_server_dispatch_set_security_level)
+    uds_server_get_security_level            0x08006935   Thumb Code    12  uds_server.o(.text.uds_server_get_security_level)
+    uds_server_init                          0x08006941   Thumb Code   624  uds_server.o(.text.uds_server_init)
+    uds_server_poll                          0x08006bb1   Thumb Code    18  uds_server.o(.text.uds_server_poll)
+    uds_server_process                       0x08006bc5   Thumb Code   476  uds_server.o(.text.uds_server_process)
+    uds_server_set_security_level            0x08006da1   Thumb Code    12  uds_server.o(.text.uds_server_set_security_level)
+    uds_server_set_session                   0x08006dad   Thumb Code    12  uds_server.o(.text.uds_server_set_session)
+    uds_session_check_timeout                0x08006db9   Thumb Code    80  uds_session.o(.text.uds_session_check_timeout)
+    uds_session_get                          0x08006e09   Thumb Code    12  uds_session.o(.text.uds_session_get)
+    uds_session_refresh                      0x08006e15   Thumb Code    18  uds_session.o(.text.uds_session_refresh)
+    uds_session_reset                        0x08006e29   Thumb Code    42  uds_session.o(.text.uds_session_reset)
+    uds_session_set                          0x08006e55   Thumb Code    68  uds_session.o(.text.uds_session_set)
+    uds_state_init                           0x08006e99   Thumb Code    42  uds_session.o(.text.uds_state_init)
+    uds_transfer_get_context                 0x08006ec5   Thumb Code    10  svc_download.o(.text.uds_transfer_get_context)
+    __scatterload_copy                       0x08006ecf   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08006edd   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08006edf   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    puts                                     0x08006eed   Thumb Code    30  puts.o(i.puts)
+    AHBPrescTable                            0x08006f10   Data          16  system_stm32f1xx.o(.rodata.AHBPrescTable)
+    APBPrescTable                            0x08006f20   Data           8  system_stm32f1xx.o(.rodata.APBPrescTable)
+    g_dtc_config_85                          0x08006f3c   Data        1020  dtc_table_85.o(.rodata.g_dtc_config_85)
+    Region$$Table$$Base                      0x08007ec0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08007ee0   Number         0  anon$$obj.o(Region$$Table)
     __stdout                                 0x20000000   Data           4  stdout.o(.data)
     uwTickFreq                               0x20000004   Data           1  stm32f1xx_hal.o(.data..L_MergedGlobals)
     uwTickPrio                               0x20000008   Data           4  stm32f1xx_hal.o(.data..L_MergedGlobals)
     SystemCoreClock                          0x20000040   Data           4  system_stm32f1xx.o(.data.SystemCoreClock)
-    decode                                   0x200000b8   Data          20  main.o(.bss.decode)
-    hcan                                     0x200000cc   Data          40  can.o(.bss.hcan)
-    huart1                                   0x200000f4   Data          72  usart.o(.bss.huart1)
-    queue                                    0x2000013c   Data         652  main.o(.bss.queue)
-    rx_frame                                 0x200003c8   Data          20  main.o(.bss.rx_frame)
-    uwTick                                   0x2000477c   Data           4  stm32f1xx_hal.o(.bss.uwTick)
-    __initial_sp                             0x20005780   Data           0  startup_stm32f103xe.o(STACK)
+    decode                                   0x200000e0   Data          20  main.o(.bss.decode)
+    hcan                                     0x200000f4   Data          40  can.o(.bss.hcan)
+    huart1                                   0x2000011c   Data          72  usart.o(.bss.huart1)
+    queue                                    0x20000164   Data         652  main.o(.bss.queue)
+    rx_frame                                 0x200003f0   Data          20  main.o(.bss.rx_frame)
+    uwTick                                   0x200052d0   Data           4  stm32f1xx_hal.o(.bss.uwTick)
+    __initial_sp                             0x200062d8   Data           0  startup_stm32f103xe.o(STACK)
 
 
 
@@ -2212,9 +2236,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00006650, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00007f48, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000065e4, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00007ee0, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2344,160 +2368,192 @@ Memory Map of the image
     0x08002762   0x08002762   0x00000002   PAD
     0x08002764   0x08002764   0x000000d2   Code   RO          712    .text.crypto_constant_time_equal  crypto_aes_cmac.o
     0x08002836   0x08002836   0x00000002   PAD
-    0x08002838   0x08002838   0x0000000c   Code   RO          764    .text.dtc_set_setting_enabled  dtc_store.o
-    0x08002844   0x08002844   0x0000024e   Code   RO          780    .text.dtc_store_clear  dtc_store.o
-    0x08002a92   0x08002a92   0x00000002   PAD
-    0x08002a94   0x08002a94   0x0000000c   Code   RO          768    .text.dtc_store_count  dtc_store.o
-    0x08002aa0   0x08002aa0   0x000000ae   Code   RO          772    .text.dtc_store_count_by_mask  dtc_store.o
-    0x08002b4e   0x08002b4e   0x00000002   PAD
-    0x08002b50   0x08002b50   0x0000008e   Code   RO          778    .text.dtc_store_find  dtc_store.o
-    0x08002bde   0x08002bde   0x00000002   PAD
-    0x08002be0   0x08002be0   0x00000024   Code   RO          774    .text.dtc_store_get_by_index  dtc_store.o
-    0x08002c04   0x08002c04   0x00000004   Code   RO          770    .text.dtc_store_get_status_mask  dtc_store.o
-    0x08002c08   0x08002c08   0x00000020   Code   RO           73    .text.fputc         usart.o
-    0x08002c28   0x08002c28   0x000000fe   Code   RO          827    .text.handle_cf     isotp_fd.o
-    0x08002d26   0x08002d26   0x00000002   PAD
-    0x08002d28   0x08002d28   0x00000078   Code   RO          829    .text.handle_fc_rx  isotp_fd.o
-    0x08002da0   0x08002da0   0x00000154   Code   RO          825    .text.handle_ff     isotp_fd.o
-    0x08002ef4   0x08002ef4   0x00000054   Code   RO          823    .text.handle_sf     isotp_fd.o
-    0x08002f48   0x08002f48   0x00000052   Code   RO          817    .text.isotp_fd_init  isotp_fd.o
-    0x08002f9a   0x08002f9a   0x00000002   PAD
-    0x08002f9c   0x08002f9c   0x00000078   Code   RO          821    .text.isotp_fd_on_rx  isotp_fd.o
-    0x08003014   0x08003014   0x00000136   Code   RO          831    .text.isotp_fd_poll  isotp_fd.o
-    0x0800314a   0x0800314a   0x00000002   PAD
-    0x0800314c   0x0800314c   0x0000000e   Code   RO          837    .text.isotp_fd_rx_data  isotp_fd.o
-    0x0800315a   0x0800315a   0x00000002   PAD
-    0x0800315c   0x0800315c   0x0000000e   Code   RO          839    .text.isotp_fd_rx_done  isotp_fd.o
-    0x0800316a   0x0800316a   0x00000002   PAD
-    0x0800316c   0x0800316c   0x00000024   Code   RO          835    .text.isotp_fd_rx_ready  isotp_fd.o
-    0x08003190   0x08003190   0x00000278   Code   RO          833    .text.isotp_fd_send  isotp_fd.o
-    0x08003408   0x08003408   0x00000016   Code   RO           17    .text.isotp_tx_cb   main.o
-    0x0800341e   0x0800341e   0x00000002   PAD
-    0x08003420   0x08003420   0x00000180   Code   RO           13    .text.main          main.o
-    0x080035a0   0x080035a0   0x000000c0   Code   RO          956    .text.on_ecu_reset  svc_ecu_reset.o
-    0x08003660   0x08003660   0x00000236   Code   RO          859    .text.svc_authentication  svc_authentication.o
-    0x08003896   0x08003896   0x00000002   PAD
-    0x08003898   0x08003898   0x00000056   Code   RO          873    .text.svc_clear_dtc  svc_clear_dtc.o
-    0x080038ee   0x080038ee   0x00000002   PAD
-    0x080038f0   0x080038f0   0x000000aa   Code   RO          889    .text.svc_comm_control  svc_comm_control.o
-    0x0800399a   0x0800399a   0x00000002   PAD
-    0x0800399c   0x0800399c   0x0000007c   Code   RO          901    .text.svc_control_dtc  svc_control_dtc.o
-    0x08003a18   0x08003a18   0x000000de   Code   RO          910    .text.svc_diag_session_control  svc_diag_session.o
-    0x08003af6   0x08003af6   0x00000002   PAD
-    0x08003af8   0x08003af8   0x000002d4   Code   RO          941    .text.svc_dyn_define_did  svc_dyn_did.o
-    0x08003dcc   0x08003dcc   0x000000a4   Code   RO          952    .text.svc_ecu_reset  svc_ecu_reset.o
-    0x08003e70   0x08003e70   0x000000e8   Code   RO          969    .text.svc_io_control  svc_io_control.o
-    0x08003f58   0x08003f58   0x000000e0   Code   RO          982    .text.svc_link_control  svc_link_ctrl.o
-    0x08004038   0x08004038   0x0000010e   Code   RO         1018    .text.svc_read_data_by_id  svc_read_did.o
-    0x08004146   0x08004146   0x00000002   PAD
-    0x08004148   0x08004148   0x00000330   Code   RO         1028    .text.svc_read_dtc_info  svc_read_dtc.o
-    0x08004478   0x08004478   0x000001f8   Code   RO         1008    .text.svc_read_memory_by_address  svc_read_address.o
-    0x08004670   0x08004670   0x000005b2   Code   RO          995    .text.svc_read_periodic_id  svc_periodic_did.o
-    0x08004c22   0x08004c22   0x00000002   PAD
-    0x08004c24   0x08004c24   0x000001d4   Code   RO          924    .text.svc_request_download  svc_download.o
-    0x08004df8   0x08004df8   0x000001c8   Code   RO         1087    .text.svc_request_upload  svc_upload.o
-    0x08004fc0   0x08004fc0   0x000000fa   Code   RO         1038    .text.svc_routine_control  svc_routine_control.o
-    0x080050ba   0x080050ba   0x00000002   PAD
-    0x080050bc   0x080050bc   0x000002f8   Code   RO         1066    .text.svc_security_access  svc_security_access.o
-    0x080053b4   0x080053b4   0x00000070   Code   RO         1078    .text.svc_tester_present  svc_tester_present.o
-    0x08005424   0x08005424   0x0000014e   Code   RO          926    .text.svc_transfer_data  svc_download.o
-    0x08005572   0x08005572   0x00000002   PAD
-    0x08005574   0x08005574   0x00000058   Code   RO          928    .text.svc_transfer_exit  svc_download.o
-    0x080055cc   0x080055cc   0x000000b0   Code   RO         1110    .text.svc_write_data_by_id  svc_write_did.o
-    0x0800567c   0x0800567c   0x0000020a   Code   RO         1099    .text.svc_write_memory_by_address  svc_write_address.o
-    0x08005886   0x08005886   0x00000002   PAD
-    0x08005888   0x08005888   0x00000222   Code   RO         1123    .text.uds_did_table_find  uds_did_table.o
-    0x08005aaa   0x08005aaa   0x00000002   PAD
-    0x08005aac   0x08005aac   0x00000072   Code   RO         1121    .text.uds_did_table_register  uds_did_table.o
-    0x08005b1e   0x08005b1e   0x00000002   PAD
-    0x08005b20   0x08005b20   0x00000262   Code   RO         1125    .text.uds_did_table_write  uds_did_table.o
-    0x08005d82   0x08005d82   0x00000002   PAD
-    0x08005d84   0x08005d84   0x00000004   Code   RO         1138    .text.uds_platform_time_ms  uds_platform_time.o
-    0x08005d88   0x08005d88   0x00000036   Code   RO          954    .text.uds_reset_poll  svc_ecu_reset.o
-    0x08005dbe   0x08005dbe   0x00000002   PAD
-    0x08005dc0   0x08005dc0   0x00000036   Code   RO         1048    .text.uds_security_init  svc_security_access.o
-    0x08005df6   0x08005df6   0x00000002   PAD
-    0x08005df8   0x08005df8   0x00000020   Code   RO         1052    .text.uds_security_is_unlocked  svc_security_access.o
-    0x08005e18   0x08005e18   0x00000030   Code   RO         1060    .text.uds_security_poll  svc_security_access.o
-    0x08005e48   0x08005e48   0x00000028   Code   RO         1050    .text.uds_security_reset  svc_security_access.o
-    0x08005e70   0x08005e70   0x0000000c   Code   RO         1170    .text.uds_server_dispatch_set_security_level  uds_server.o
-    0x08005e7c   0x08005e7c   0x0000000c   Code   RO         1160    .text.uds_server_get_security_level  uds_server.o
-    0x08005e88   0x08005e88   0x00000270   Code   RO         1154    .text.uds_server_init  uds_server.o
-    0x080060f8   0x080060f8   0x00000012   Code   RO         1168    .text.uds_server_poll  uds_server.o
-    0x0800610a   0x0800610a   0x00000002   PAD
-    0x0800610c   0x0800610c   0x000001dc   Code   RO         1166    .text.uds_server_process  uds_server.o
-    0x080062e8   0x080062e8   0x0000000c   Code   RO         1158    .text.uds_server_set_security_level  uds_server.o
-    0x080062f4   0x080062f4   0x0000000c   Code   RO         1162    .text.uds_server_set_session  uds_server.o
-    0x08006300   0x08006300   0x00000050   Code   RO         1203    .text.uds_session_check_timeout  uds_session.o
-    0x08006350   0x08006350   0x0000000c   Code   RO         1193    .text.uds_session_get  uds_session.o
-    0x0800635c   0x0800635c   0x00000012   Code   RO         1199    .text.uds_session_refresh  uds_session.o
-    0x0800636e   0x0800636e   0x00000002   PAD
-    0x08006370   0x08006370   0x0000002a   Code   RO         1201    .text.uds_session_reset  uds_session.o
-    0x0800639a   0x0800639a   0x00000002   PAD
-    0x0800639c   0x0800639c   0x00000044   Code   RO         1197    .text.uds_session_set  uds_session.o
-    0x080063e0   0x080063e0   0x0000002a   Code   RO         1191    .text.uds_state_init  uds_session.o
-    0x0800640a   0x0800640a   0x00000002   PAD
-    0x0800640c   0x0800640c   0x0000000a   Code   RO          920    .text.uds_transfer_get_context  svc_download.o
-    0x08006416   0x08006416   0x0000000e   Code   RO         1268    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x08006424   0x08006424   0x00000002   Code   RO         1269    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08006426   0x08006426   0x0000000e   Code   RO         1270    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x08006434   0x08006434   0x00000024   Code   RO         1239    i.puts              mc_w.l(puts.o)
-    0x08006458   0x08006458   0x00000010   Data   RO          674    .rodata.AHBPrescTable  system_stm32f1xx.o
-    0x08006468   0x08006468   0x00000008   Data   RO          675    .rodata.APBPrescTable  system_stm32f1xx.o
-    0x08006470   0x08006470   0x00000002   Data   RO          305    .rodata.HAL_RCC_GetSysClockFreq.aPredivFactorTable  stm32f1xx_hal_rcc.o
-    0x08006472   0x08006472   0x00000010   Data   RO          304    .rodata.cst16       stm32f1xx_hal_rcc.o
-    0x08006482   0x08006482   0x00000002   PAD
-    0x08006484   0x08006484   0x00000004   Data   RO           25    .rodata.s_app_cfg   main.o
-    0x08006488   0x08006488   0x00000100   Data   RO          714    .rodata.sbox        crypto_aes_cmac.o
-    0x08006588   0x08006588   0x00000039   Data   RO         1128    .rodata.str1.4      uds_did_table.o
-    0x080065c1   0x080065c1   0x00000003   PAD
-    0x080065c4   0x080065c4   0x00000020   Data   RO         1267    Region$$Table       anon$$obj.o
+    0x08002838   0x08002838   0x00000016   Code   RO          735    .text.dtc_nvm_init  dtc_nvm_adapter.o
+    0x0800284e   0x0800284e   0x00000002   PAD
+    0x08002850   0x08002850   0x000000be   Code   RO          731    .text.dtc_nvm_init_custom  dtc_nvm_adapter.o
+    0x0800290e   0x0800290e   0x00000002   PAD
+    0x08002910   0x08002910   0x0000009e   Code   RO          733    .text.dtc_nvm_status_change_callback  dtc_nvm_adapter.o
+    0x080029ae   0x080029ae   0x00000002   PAD
+    0x080029b0   0x080029b0   0x0000000c   Code   RO          764    .text.dtc_set_setting_enabled  dtc_store.o
+    0x080029bc   0x080029bc   0x000000b0   Code   RO          766    .text.dtc_store_add  dtc_store.o
+    0x08002a6c   0x08002a6c   0x0000024e   Code   RO          780    .text.dtc_store_clear  dtc_store.o
+    0x08002cba   0x08002cba   0x00000002   PAD
+    0x08002cbc   0x08002cbc   0x0000000c   Code   RO          768    .text.dtc_store_count  dtc_store.o
+    0x08002cc8   0x08002cc8   0x000000ae   Code   RO          772    .text.dtc_store_count_by_mask  dtc_store.o
+    0x08002d76   0x08002d76   0x00000002   PAD
+    0x08002d78   0x08002d78   0x0000008e   Code   RO          778    .text.dtc_store_find  dtc_store.o
+    0x08002e06   0x08002e06   0x00000002   PAD
+    0x08002e08   0x08002e08   0x0000008e   Code   RO          776    .text.dtc_store_find_mut  dtc_store.o
+    0x08002e96   0x08002e96   0x00000002   PAD
+    0x08002e98   0x08002e98   0x00000024   Code   RO          774    .text.dtc_store_get_by_index  dtc_store.o
+    0x08002ebc   0x08002ebc   0x00000004   Code   RO          770    .text.dtc_store_get_status_mask  dtc_store.o
+    0x08002ec0   0x08002ec0   0x0000002c   Code   RO          758    .text.dtc_store_init  dtc_store.o
+    0x08002eec   0x08002eec   0x0000000c   Code   RO          760    .text.dtc_store_set_status_cb  dtc_store.o
+    0x08002ef8   0x08002ef8   0x00000032   Code   RO          805    .text.dtc_table_85_init  dtc_table_85.o
+    0x08002f2a   0x08002f2a   0x00000002   PAD
+    0x08002f2c   0x08002f2c   0x00000020   Code   RO           73    .text.fputc         usart.o
+    0x08002f4c   0x08002f4c   0x000000fe   Code   RO          827    .text.handle_cf     isotp_fd.o
+    0x0800304a   0x0800304a   0x00000002   PAD
+    0x0800304c   0x0800304c   0x00000078   Code   RO          829    .text.handle_fc_rx  isotp_fd.o
+    0x080030c4   0x080030c4   0x00000154   Code   RO          825    .text.handle_ff     isotp_fd.o
+    0x08003218   0x08003218   0x00000054   Code   RO          823    .text.handle_sf     isotp_fd.o
+    0x0800326c   0x0800326c   0x00000052   Code   RO          817    .text.isotp_fd_init  isotp_fd.o
+    0x080032be   0x080032be   0x00000002   PAD
+    0x080032c0   0x080032c0   0x00000078   Code   RO          821    .text.isotp_fd_on_rx  isotp_fd.o
+    0x08003338   0x08003338   0x00000136   Code   RO          831    .text.isotp_fd_poll  isotp_fd.o
+    0x0800346e   0x0800346e   0x00000002   PAD
+    0x08003470   0x08003470   0x0000000e   Code   RO          837    .text.isotp_fd_rx_data  isotp_fd.o
+    0x0800347e   0x0800347e   0x00000002   PAD
+    0x08003480   0x08003480   0x0000000e   Code   RO          839    .text.isotp_fd_rx_done  isotp_fd.o
+    0x0800348e   0x0800348e   0x00000002   PAD
+    0x08003490   0x08003490   0x00000024   Code   RO          835    .text.isotp_fd_rx_ready  isotp_fd.o
+    0x080034b4   0x080034b4   0x00000278   Code   RO          833    .text.isotp_fd_send  isotp_fd.o
+    0x0800372c   0x0800372c   0x00000016   Code   RO           17    .text.isotp_tx_cb   main.o
+    0x08003742   0x08003742   0x00000002   PAD
+    0x08003744   0x08003744   0x00000188   Code   RO           13    .text.main          main.o
+    0x080038cc   0x080038cc   0x000000c0   Code   RO          956    .text.on_ecu_reset  svc_ecu_reset.o
+    0x0800398c   0x0800398c   0x0000007a   Code   RO          723    .text.stm32f103_flash_erase  dtc_nvm_adapter.o
+    0x08003a06   0x08003a06   0x00000002   PAD
+    0x08003a08   0x08003a08   0x00000088   Code   RO          725    .text.stm32f103_flash_read  dtc_nvm_adapter.o
+    0x08003a90   0x08003a90   0x00000006   Code   RO          729    .text.stm32f103_flash_sector_size  dtc_nvm_adapter.o
+    0x08003a96   0x08003a96   0x00000002   PAD
+    0x08003a98   0x08003a98   0x0000007c   Code   RO          727    .text.stm32f103_flash_write  dtc_nvm_adapter.o
+    0x08003b14   0x08003b14   0x00000236   Code   RO          859    .text.svc_authentication  svc_authentication.o
+    0x08003d4a   0x08003d4a   0x00000002   PAD
+    0x08003d4c   0x08003d4c   0x00000056   Code   RO          873    .text.svc_clear_dtc  svc_clear_dtc.o
+    0x08003da2   0x08003da2   0x00000002   PAD
+    0x08003da4   0x08003da4   0x000000aa   Code   RO          889    .text.svc_comm_control  svc_comm_control.o
+    0x08003e4e   0x08003e4e   0x00000002   PAD
+    0x08003e50   0x08003e50   0x0000007c   Code   RO          901    .text.svc_control_dtc  svc_control_dtc.o
+    0x08003ecc   0x08003ecc   0x000000de   Code   RO          910    .text.svc_diag_session_control  svc_diag_session.o
+    0x08003faa   0x08003faa   0x00000002   PAD
+    0x08003fac   0x08003fac   0x000002d4   Code   RO          941    .text.svc_dyn_define_did  svc_dyn_did.o
+    0x08004280   0x08004280   0x000000a4   Code   RO          952    .text.svc_ecu_reset  svc_ecu_reset.o
+    0x08004324   0x08004324   0x000000e8   Code   RO          969    .text.svc_io_control  svc_io_control.o
+    0x0800440c   0x0800440c   0x000000e0   Code   RO          982    .text.svc_link_control  svc_link_ctrl.o
+    0x080044ec   0x080044ec   0x0000010e   Code   RO         1018    .text.svc_read_data_by_id  svc_read_did.o
+    0x080045fa   0x080045fa   0x00000002   PAD
+    0x080045fc   0x080045fc   0x00000330   Code   RO         1028    .text.svc_read_dtc_info  svc_read_dtc.o
+    0x0800492c   0x0800492c   0x000001f8   Code   RO         1008    .text.svc_read_memory_by_address  svc_read_address.o
+    0x08004b24   0x08004b24   0x000005b2   Code   RO          995    .text.svc_read_periodic_id  svc_periodic_did.o
+    0x080050d6   0x080050d6   0x00000002   PAD
+    0x080050d8   0x080050d8   0x000001d4   Code   RO          924    .text.svc_request_download  svc_download.o
+    0x080052ac   0x080052ac   0x000001c8   Code   RO         1087    .text.svc_request_upload  svc_upload.o
+    0x08005474   0x08005474   0x000000fa   Code   RO         1038    .text.svc_routine_control  svc_routine_control.o
+    0x0800556e   0x0800556e   0x00000002   PAD
+    0x08005570   0x08005570   0x000002f8   Code   RO         1066    .text.svc_security_access  svc_security_access.o
+    0x08005868   0x08005868   0x00000070   Code   RO         1078    .text.svc_tester_present  svc_tester_present.o
+    0x080058d8   0x080058d8   0x0000014e   Code   RO          926    .text.svc_transfer_data  svc_download.o
+    0x08005a26   0x08005a26   0x00000002   PAD
+    0x08005a28   0x08005a28   0x00000058   Code   RO          928    .text.svc_transfer_exit  svc_download.o
+    0x08005a80   0x08005a80   0x000000b0   Code   RO         1110    .text.svc_write_data_by_id  svc_write_did.o
+    0x08005b30   0x08005b30   0x0000020a   Code   RO         1099    .text.svc_write_memory_by_address  svc_write_address.o
+    0x08005d3a   0x08005d3a   0x00000002   PAD
+    0x08005d3c   0x08005d3c   0x00000222   Code   RO         1123    .text.uds_did_table_find  uds_did_table.o
+    0x08005f5e   0x08005f5e   0x00000002   PAD
+    0x08005f60   0x08005f60   0x00000072   Code   RO         1121    .text.uds_did_table_register  uds_did_table.o
+    0x08005fd2   0x08005fd2   0x00000002   PAD
+    0x08005fd4   0x08005fd4   0x00000262   Code   RO         1125    .text.uds_did_table_write  uds_did_table.o
+    0x08006236   0x08006236   0x00000002   PAD
+    0x08006238   0x08006238   0x000003e4   Code   RO         1219    .text.uds_param_init  uds_wear_leveling.o
+    0x0800661c   0x0800661c   0x00000220   Code   RO         1221    .text.uds_param_load  uds_wear_leveling.o
+    0x0800683c   0x0800683c   0x00000004   Code   RO         1138    .text.uds_platform_time_ms  uds_platform_time.o
+    0x08006840   0x08006840   0x00000036   Code   RO          954    .text.uds_reset_poll  svc_ecu_reset.o
+    0x08006876   0x08006876   0x00000002   PAD
+    0x08006878   0x08006878   0x00000036   Code   RO         1048    .text.uds_security_init  svc_security_access.o
+    0x080068ae   0x080068ae   0x00000002   PAD
+    0x080068b0   0x080068b0   0x00000020   Code   RO         1052    .text.uds_security_is_unlocked  svc_security_access.o
+    0x080068d0   0x080068d0   0x00000030   Code   RO         1060    .text.uds_security_poll  svc_security_access.o
+    0x08006900   0x08006900   0x00000028   Code   RO         1050    .text.uds_security_reset  svc_security_access.o
+    0x08006928   0x08006928   0x0000000c   Code   RO         1170    .text.uds_server_dispatch_set_security_level  uds_server.o
+    0x08006934   0x08006934   0x0000000c   Code   RO         1160    .text.uds_server_get_security_level  uds_server.o
+    0x08006940   0x08006940   0x00000270   Code   RO         1154    .text.uds_server_init  uds_server.o
+    0x08006bb0   0x08006bb0   0x00000012   Code   RO         1168    .text.uds_server_poll  uds_server.o
+    0x08006bc2   0x08006bc2   0x00000002   PAD
+    0x08006bc4   0x08006bc4   0x000001dc   Code   RO         1166    .text.uds_server_process  uds_server.o
+    0x08006da0   0x08006da0   0x0000000c   Code   RO         1158    .text.uds_server_set_security_level  uds_server.o
+    0x08006dac   0x08006dac   0x0000000c   Code   RO         1162    .text.uds_server_set_session  uds_server.o
+    0x08006db8   0x08006db8   0x00000050   Code   RO         1203    .text.uds_session_check_timeout  uds_session.o
+    0x08006e08   0x08006e08   0x0000000c   Code   RO         1193    .text.uds_session_get  uds_session.o
+    0x08006e14   0x08006e14   0x00000012   Code   RO         1199    .text.uds_session_refresh  uds_session.o
+    0x08006e26   0x08006e26   0x00000002   PAD
+    0x08006e28   0x08006e28   0x0000002a   Code   RO         1201    .text.uds_session_reset  uds_session.o
+    0x08006e52   0x08006e52   0x00000002   PAD
+    0x08006e54   0x08006e54   0x00000044   Code   RO         1197    .text.uds_session_set  uds_session.o
+    0x08006e98   0x08006e98   0x0000002a   Code   RO         1191    .text.uds_state_init  uds_session.o
+    0x08006ec2   0x08006ec2   0x00000002   PAD
+    0x08006ec4   0x08006ec4   0x0000000a   Code   RO          920    .text.uds_transfer_get_context  svc_download.o
+    0x08006ece   0x08006ece   0x0000000e   Code   RO         1268    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08006edc   0x08006edc   0x00000002   Code   RO         1269    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08006ede   0x08006ede   0x0000000e   Code   RO         1270    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08006eec   0x08006eec   0x00000024   Code   RO         1239    i.puts              mc_w.l(puts.o)
+    0x08006f10   0x08006f10   0x00000010   Data   RO          674    .rodata.AHBPrescTable  system_stm32f1xx.o
+    0x08006f20   0x08006f20   0x00000008   Data   RO          675    .rodata.APBPrescTable  system_stm32f1xx.o
+    0x08006f28   0x08006f28   0x00000002   Data   RO          305    .rodata.HAL_RCC_GetSysClockFreq.aPredivFactorTable  stm32f1xx_hal_rcc.o
+    0x08006f2a   0x08006f2a   0x00000010   Data   RO          304    .rodata.cst16       stm32f1xx_hal_rcc.o
+    0x08006f3a   0x08006f3a   0x00000002   PAD
+    0x08006f3c   0x08006f3c   0x000003fc   Data   RO          808    .rodata.g_dtc_config_85  dtc_table_85.o
+    0x08007338   0x08007338   0x00000004   Data   RO           25    .rodata.s_app_cfg   main.o
+    0x0800733c   0x0800733c   0x00000014   Data   RO          747    .rodata.s_default_f103_port  dtc_nvm_adapter.o
+    0x08007350   0x08007350   0x00000100   Data   RO          714    .rodata.sbox        crypto_aes_cmac.o
+    0x08007450   0x08007450   0x00000a32   Data   RO          807    .rodata.str1.1      dtc_table_85.o
+    0x08007e82   0x08007e82   0x00000002   PAD
+    0x08007e84   0x08007e84   0x00000039   Data   RO         1128    .rodata.str1.4      uds_did_table.o
+    0x08007ebd   0x08007ebd   0x00000003   PAD
+    0x08007ec0   0x08007ec0   0x00000020   Data   RO         1267    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080065e8, Size: 0x00005780, Max: 0x00010000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08007ee0, Size: 0x000062d8, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x080065e8   0x00000004   Data   RW         1263    .data               mc_w.l(stdout.o)
-    0x20000004   0x080065ec   0x00000008   Data   RW          267    .data..L_MergedGlobals  stm32f1xx_hal.o
-    0x2000000c   0x080065f4   0x00000014   Data   RW          861    .data..L_MergedGlobals  svc_authentication.o
-    0x20000020   0x08006608   0x00000018   Data   RW         1068    .data..L_MergedGlobals  svc_security_access.o
-    0x20000038   0x08006620   0x00000008   Data   RW         1181    .data..L_MergedGlobals  uds_server.o
-    0x20000040   0x08006628   0x00000004   Data   RW          673    .data.SystemCoreClock  system_stm32f1xx.o
-    0x20000044   0x0800662c   0x00000001   Data   RW          892    .data.s_comm_type   svc_comm_control.o
-    0x20000045   0x0800662d   0x00000001   Data   RW         1205    .data.s_current_session  uds_session.o
-    0x20000046   0x0800662e   0x00000001   Data   RW          792    .data.s_dtc_setting_enabled  dtc_store.o
-    0x20000047   0x0800662f   0x00000001   PAD
-    0x20000048   0x08006630   0x00000018   Data   RW          971    .data.s_io_table    svc_io_control.o
-    0x20000060   0x08006648   0x00000001   Data   RW         1101    .data.s_mock_security_unlocked  svc_write_address.o
-    0x20000061   0x08006649   0x00000007   PAD
-    0x20000068        -       0x00000008   Zero   RW          794    .bss..L_MergedGlobals  dtc_store.o
-    0x20000070        -       0x00000008   Zero   RW          960    .bss..L_MergedGlobals  svc_ecu_reset.o
-    0x20000078        -       0x00000004   Zero   RW         1040    .bss..L_MergedGlobals  svc_routine_control.o
-    0x2000007c        -       0x00000004   Zero   RW         1129    .bss..L_MergedGlobals  uds_did_table.o
-    0x20000080        -       0x00000011   Zero   RW          862    .bss..L_MergedGlobals.1  svc_authentication.o
-    0x20000091   0x08006649   0x00000003   PAD
-    0x20000094        -       0x0000001c   Zero   RW         1069    .bss..L_MergedGlobals.1  svc_security_access.o
-    0x200000b0        -       0x00000008   Zero   RW         1182    .bss..L_MergedGlobals.1  uds_server.o
-    0x200000b8        -       0x00000014   Zero   RW           26    .bss.decode         main.o
-    0x200000cc        -       0x00000028   Zero   RW           58    .bss.hcan           can.o
-    0x200000f4        -       0x00000048   Zero   RW           77    .bss.huart1         usart.o
-    0x2000013c        -       0x0000028c   Zero   RW           23    .bss.queue          main.o
-    0x200003c8        -       0x00000014   Zero   RW           27    .bss.rx_frame       main.o
-    0x200003dc        -       0x00000001   Zero   RW          891    .bss.s_comm_subfunction  svc_comm_control.o
-    0x200003dd   0x08006649   0x00000003   PAD
-    0x200003e0        -       0x000008c0   Zero   RW         1127    .bss.s_dids         uds_did_table.o
-    0x20000ca0        -       0x00001770   Zero   RW          793    .bss.s_dtcs         dtc_store.o
-    0x20002410        -       0x00000050   Zero   RW          943    .bss.s_dyn_defs     svc_dyn_did.o
-    0x20002460        -       0x00000001   Zero   RW          984    .bss.s_link_state   svc_link_ctrl.o
-    0x20002461   0x08006649   0x00000003   PAD
-    0x20002464        -       0x00000040   Zero   RW          999    .bss.s_periodic_schedule  svc_periodic_did.o
-    0x200024a4        -       0x00002040   Zero   RW           24    .bss.s_phys         main.o
-    0x200044e4        -       0x00000004   Zero   RW         1206    .bss.s_s3_elapsed_ms  uds_session.o
-    0x200044e8        -       0x00000280   Zero   RW         1180    .bss.s_service_table  uds_server.o
-    0x20004768        -       0x00000014   Zero   RW          930    .bss.s_transfer_ctx  svc_download.o
-    0x2000477c        -       0x00000004   Zero   RW          266    .bss.uwTick         stm32f1xx_hal.o
-    0x20004780        -       0x00001000   Zero   RW            1    STACK               startup_stm32f103xe.o
+    0x20000000   0x08007ee0   0x00000004   Data   RW         1263    .data               mc_w.l(stdout.o)
+    0x20000004   0x08007ee4   0x00000008   Data   RW          267    .data..L_MergedGlobals  stm32f1xx_hal.o
+    0x2000000c   0x08007eec   0x00000014   Data   RW          861    .data..L_MergedGlobals  svc_authentication.o
+    0x20000020   0x08007f00   0x00000018   Data   RW         1068    .data..L_MergedGlobals  svc_security_access.o
+    0x20000038   0x08007f18   0x00000008   Data   RW         1181    .data..L_MergedGlobals  uds_server.o
+    0x20000040   0x08007f20   0x00000004   Data   RW          673    .data.SystemCoreClock  system_stm32f1xx.o
+    0x20000044   0x08007f24   0x00000001   Data   RW          892    .data.s_comm_type   svc_comm_control.o
+    0x20000045   0x08007f25   0x00000001   Data   RW         1205    .data.s_current_session  uds_session.o
+    0x20000046   0x08007f26   0x00000001   Data   RW          792    .data.s_dtc_setting_enabled  dtc_store.o
+    0x20000047   0x08007f27   0x00000001   PAD
+    0x20000048   0x08007f28   0x00000018   Data   RW          971    .data.s_io_table    svc_io_control.o
+    0x20000060   0x08007f40   0x00000001   Data   RW         1101    .data.s_mock_security_unlocked  svc_write_address.o
+    0x20000061   0x08007f41   0x00000007   PAD
+    0x20000068        -       0x00000028   Zero   RW          749    .bss..L_MergedGlobals  dtc_nvm_adapter.o
+    0x20000090        -       0x00000008   Zero   RW          794    .bss..L_MergedGlobals  dtc_store.o
+    0x20000098        -       0x00000008   Zero   RW          960    .bss..L_MergedGlobals  svc_ecu_reset.o
+    0x200000a0        -       0x00000004   Zero   RW         1040    .bss..L_MergedGlobals  svc_routine_control.o
+    0x200000a4        -       0x00000004   Zero   RW         1129    .bss..L_MergedGlobals  uds_did_table.o
+    0x200000a8        -       0x00000011   Zero   RW          862    .bss..L_MergedGlobals.1  svc_authentication.o
+    0x200000b9   0x08007f41   0x00000003   PAD
+    0x200000bc        -       0x0000001c   Zero   RW         1069    .bss..L_MergedGlobals.1  svc_security_access.o
+    0x200000d8        -       0x00000008   Zero   RW         1182    .bss..L_MergedGlobals.1  uds_server.o
+    0x200000e0        -       0x00000014   Zero   RW           26    .bss.decode         main.o
+    0x200000f4        -       0x00000028   Zero   RW           58    .bss.hcan           can.o
+    0x2000011c        -       0x00000048   Zero   RW           77    .bss.huart1         usart.o
+    0x20000164        -       0x0000028c   Zero   RW           23    .bss.queue          main.o
+    0x200003f0        -       0x00000014   Zero   RW           27    .bss.rx_frame       main.o
+    0x20000404        -       0x00000001   Zero   RW          891    .bss.s_comm_subfunction  svc_comm_control.o
+    0x20000405   0x08007f41   0x00000003   PAD
+    0x20000408        -       0x000008c0   Zero   RW         1127    .bss.s_dids         uds_did_table.o
+    0x20000cc8        -       0x00000325   Zero   RW          746    .bss.s_dtc_nvm_cache  dtc_nvm_adapter.o
+    0x20000fed   0x08007f41   0x00000003   PAD
+    0x20000ff0        -       0x00001770   Zero   RW          793    .bss.s_dtcs         dtc_store.o
+    0x20002760        -       0x00000050   Zero   RW          943    .bss.s_dyn_defs     svc_dyn_did.o
+    0x200027b0        -       0x00000001   Zero   RW          984    .bss.s_link_state   svc_link_ctrl.o
+    0x200027b1   0x08007f41   0x00000003   PAD
+    0x200027b4        -       0x00000040   Zero   RW          999    .bss.s_periodic_schedule  svc_periodic_did.o
+    0x200027f4        -       0x00002040   Zero   RW           24    .bss.s_phys         main.o
+    0x20004834        -       0x00000004   Zero   RW         1206    .bss.s_s3_elapsed_ms  uds_session.o
+    0x20004838        -       0x00000280   Zero   RW         1180    .bss.s_service_table  uds_server.o
+    0x20004ab8        -       0x00000800   Zero   RW          745    .bss.s_simulated_flash  dtc_nvm_adapter.o
+    0x200052b8        -       0x00000001   Zero   RW          748    .bss.s_simulated_flash_inited  dtc_nvm_adapter.o
+    0x200052b9   0x08007f41   0x00000003   PAD
+    0x200052bc        -       0x00000014   Zero   RW          930    .bss.s_transfer_ctx  svc_download.o
+    0x200052d0        -       0x00000004   Zero   RW          266    .bss.uwTick         stm32f1xx_hal.o
+    0x200052d4   0x08007f41   0x00000004   PAD
+    0x200052d8        -       0x00001000   Zero   RW            1    STACK               startup_stm32f103xe.o
 
 
 ==============================================================================
@@ -2510,10 +2566,12 @@ Image component sizes
        352          0          0          0         40       7074   can.o
        214          0          0          0          0       3145   can_ring_buffer.o
       3812          8        256          0          0      22923   crypto_aes_cmac.o
-       970          0          0          1       6008      11298   dtc_store.o
+       758          0         20          0       2894       6582   dtc_nvm_adapter.o
+      1344          0          0          1       6008      11298   dtc_store.o
+        50          0       3630          0          0       3725   dtc_table_85.o
        158          0          0          0          0       1541   gpio.o
       2006          6          0          0          0      14671   isotp_fd.o
-       502         24          4          0       8948       7531   main.o
+       510         24          4          0       8948       7533   main.o
         36          8        304          0       4096        772   startup_stm32f103xe.o
        148          0          0          8          4       6071   stm32f1xx_hal.o
       1750          6          0          0          0      13888   stm32f1xx_hal_can.o
@@ -2548,12 +2606,13 @@ Image component sizes
          4          0          0          0          0       1148   uds_platform_time.o
       1166          0          0          8        648      13856   uds_server.o
        262          0          0          1          4       2003   uds_session.o
+      1540          0          0          0          0      14802   uds_wear_leveling.o
        218          0          0          0         72       4912   usart.o
 
     ----------------------------------------------------------------------
-     25178        244        700         96      22300     231854   Object Totals
+     27922        244       4352         96      25204     256965   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-       150          0          5          4         13          0   (incl. Padding)
+       164          0          7          4         23          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2594,15 +2653,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     25384        268        700        100      22300     231478   Grand Totals
-     25384        268        700        100      22300     231478   ELF Image Totals
-     25384        268        700        100          0          0   ROM Totals
+     28128        268       4352        100      25204     256529   Grand Totals
+     28128        268       4352        100      25204     256529   ELF Image Totals
+     28128        268       4352        100          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                26084 (  25.47kB)
-    Total RW  Size (RW Data + ZI Data)             22400 (  21.88kB)
-    Total ROM Size (Code + RO Data + RW Data)      26184 (  25.57kB)
+    Total RO  Size (Code + RO Data)                32480 (  31.72kB)
+    Total RW  Size (RW Data + ZI Data)             25304 (  24.71kB)
+    Total ROM Size (Code + RO Data + RW Data)      32580 (  31.82kB)
 
 ==============================================================================
 
