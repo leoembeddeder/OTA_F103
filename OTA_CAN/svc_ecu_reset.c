@@ -5,18 +5,15 @@
 
 #include "svc_ecu_reset.h"
 #include "uds_session.h"
+#include "uds_platform_time.h"
+#include "main.h"
 #include <stddef.h>
+#include <stdio.h>
 
 #define RESET_DELAY_TICKS  30U /* 30 ms delay to allow CAN transmission of response */
 
-static bool s_reset_pending = false;
 static uint8_t s_pending_reset_type = 0U;
 static uint32_t s_reset_countdown = 0U;
-static void (*s_reset_callback)(uint8_t reset_type) = NULL;
-
-void uds_reset_set_callback(void (*callback)(uint8_t reset_type)) {
-    s_reset_callback = callback;
-}
 
 void svc_ecu_reset(const uds_request_t *req, uds_response_t *resp) {
     if (resp == NULL) {
@@ -43,9 +40,8 @@ void svc_ecu_reset(const uds_request_t *req, uds_response_t *resp) {
     }
 
     /* Arm pending reset with countdown to ensure positive response completes transmission */
-    s_reset_pending = true;
     s_pending_reset_type = sub;
-    s_reset_countdown = RESET_DELAY_TICKS;
+    s_reset_countdown = uds_platform_time_ms();
 
     resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid);
     resp->data[1] = sub;
@@ -64,15 +60,44 @@ void svc_ecu_reset(const uds_request_t *req, uds_response_t *resp) {
 }
 
 void uds_reset_poll(void) {
-    if (s_reset_pending) {
-        if (s_reset_countdown > 0U) {
-            s_reset_countdown--;
-        } else {
-            s_reset_pending = false;
+    if (s_pending_reset_type > 0U) {
+        if (uds_platform_time_ms() - s_reset_countdown > RESET_DELAY_TICKS) {
+            uint8_t reset_type = s_pending_reset_type;
+			s_pending_reset_type = 0U;
+			s_reset_countdown = 0U;
             uds_session_reset();
-            if (s_reset_callback != NULL) {
-                s_reset_callback(s_pending_reset_type);
-            }
+            on_ecu_reset(reset_type);
         }
     }
 }
+
+void on_ecu_reset(uint8_t reset_type)
+{
+	switch(reset_type)
+	{
+		case RESET_HARD:
+			printf("on hardReset\r\n");
+    		NVIC_SystemReset(); /* Runs 50 ms after 0x51 frame is sent */
+			break;
+		case RESET_KEY_OFF_ON:
+			printf("on keyOffOnReset\r\n");
+    		NVIC_SystemReset(); /* Runs 50 ms after 0x51 frame is sent */
+			break;
+		case RESET_SOFT:
+			printf("on softReset\r\n");
+    		NVIC_SystemReset(); /* Runs 50 ms after 0x51 frame is sent */
+			break;
+		case RESET_ENABLE_RAPID_POWER_SHUTDOWN:
+			printf("on enableRapidPowerShutDown\r\n");
+    		NVIC_SystemReset(); /* Runs 50 ms after 0x51 frame is sent */
+			break;
+		case RESET_DISABLE_RAPID_POWER_SHUTDOWN:
+			printf("on disableRapidPowerShutDown\r\n");
+    		NVIC_SystemReset(); /* Runs 50 ms after 0x51 frame is sent */
+			break;
+		default:
+        	NVIC_SystemReset();
+        	break;
+	}
+}
+
