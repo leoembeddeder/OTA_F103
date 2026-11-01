@@ -37,11 +37,16 @@ extern "C" {
 #include <string.h>
 #include <stdarg.h>
 
+#include "can_frame.h"
+
 
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+#define ISOTP_RX_ID       0x7E0
+#define ISOTP_TX_ID       0x7E8
+#define ISOTP_FUNC_RX_ID  0x7DF
 
 /* USER CODE END ET */
 
@@ -59,6 +64,7 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+bool can_hw_send(const can_frame_t *frame);
 
 /* USER CODE END EFP */
 

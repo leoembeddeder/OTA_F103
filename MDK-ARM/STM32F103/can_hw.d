@@ -22,7 +22,6 @@ stm32f103/can_hw.o: ..\OTA_CAN\can_hw.c ..\Core\Inc\can.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
   ..\OTA_CAN\can_hw.h ..\OTA_CAN\can_frame_fd.h ..\OTA_CAN\uds_server.h \
   ..\OTA_CAN\uds_types.h ..\OTA_CAN\uds_config.h \
-  ..\OTA_CAN\uds_callbacks.h ..\OTA_CAN\uds_session.h \
-  ..\OTA_CAN\isotp_fd.h ..\OTA_CAN\did_store.h ..\OTA_CAN\store_types.h \
-  ..\OTA_CAN\dtc_store.h ..\OTA_CAN\uds_wear_leveling.h \
-  ..\OTA_CAN\dtc_nvm_adapter.h ..\OTA_CAN\stm32f103_flash_port.h
+  ..\OTA_CAN\uds_session.h ..\OTA_CAN\isotp_fd.h \
+  ..\OTA_CAN\dtc_table_85.h ..\OTA_CAN\dtc_store.h \
+  ..\OTA_CAN\uds_wear_leveling.h ..\OTA_CAN\dtc_nvm_adapter.h

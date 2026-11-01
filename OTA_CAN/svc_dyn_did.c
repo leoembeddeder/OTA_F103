@@ -1,195 +1,171 @@
-#include "svc_dyn_did.h"
-#include "uds_session.h"
-#include "uds_config.h"
-#include "did_store.h"
-
-#include <string.h>
-
-/*
- * 0x2C DynamicallyDefineDataIdentifier
- * Sub 0x01 - defineByIdentifier:
- *   [2C 01 DDIDhi DDIDlo srcDIDhi srcDIDlo position size ...]
- * Sub 0x03 - clearDynamicallyDefinedDataIdentifier:
- *   [2C 03 DDIDhi DDIDlo]
- *
- * DDID range: 0xF200-0xF3FF
+/**
+ * @file svc_dyn_did.c
+ * @brief UDS Service 0x2C DynamicallyDefineDataIdentifier Implementation (ISO 14229-1)
  */
 
-/* DDID source definition */
+#include "svc_dyn_did.h"
+#include "uds_did_table.h"
+#include <string.h>
+
+#define MAX_DYN_DIDS 4U
+#define MAX_SOURCES_PER_DYN_DID 4U
+
 typedef struct {
     uint16_t src_did;
-    uint8_t  position;   /* 1-based byte offset in source DID */
-    uint8_t  size;       /* Bytes to extract */
-} ddid_source_t;
+    uint8_t  position; /* 1-based byte offset */
+    uint8_t  length;   /* slice length in bytes */
+} dyn_source_slice_t;
 
 typedef struct {
-    uint16_t      ddid;
-    ddid_source_t sources[DDID_MAX_SOURCES];
-    uint8_t       source_count;
-    bool          active;
-} ddid_entry_t;
+    uint16_t           dyn_did;
+    dyn_source_slice_t sources[MAX_SOURCES_PER_DYN_DID];
+    uint8_t            source_count;
+    bool               defined;
+} dyn_did_def_t;
 
-static ddid_entry_t s_ddids[DDID_MAX_ENTRIES];
-static bool s_ddid_inited = false;
+static dyn_did_def_t s_dyn_defs[MAX_DYN_DIDS];
 
-static void ddid_init(void) {
-    if (s_ddid_inited) return;
-    memset(s_ddids, 0, sizeof(s_ddids));
-    s_ddid_inited = true;
-}
-
-static ddid_entry_t *ddid_find(uint16_t ddid) {
-    for (uint8_t i = 0; i < DDID_MAX_ENTRIES; i++) {
-        if (s_ddids[i].active && s_ddids[i].ddid == ddid) return &s_ddids[i];
-    }
-    return NULL;
-}
-
-static ddid_entry_t *ddid_alloc(void) {
-    for (uint8_t i = 0; i < DDID_MAX_ENTRIES; i++) {
-        if (!s_ddids[i].active) return &s_ddids[i];
-    }
-    return NULL;
-}
-
-/* Read a DDID by compositing source DIDs.  Called from ReadDataByIdentifier. */
-bool ddid_read(uint16_t ddid, uint8_t *out, uint8_t *out_len, uint8_t max_len) {
-    ddid_init();
-    ddid_entry_t *e = ddid_find(ddid);
-    if (!e) return false;
-
-    uint8_t pos = 0;
-    for (uint8_t i = 0; i < e->source_count; i++) {
-        const did_entry_t *src = did_store_read(e->sources[i].src_did);
-        if (!src) return false;
-
-        uint8_t spos = e->sources[i].position - 1; /* Convert 1-based to 0-based */
-        uint8_t slen = e->sources[i].size;
-        if (spos + slen > src->len) return false;
-        if (pos + slen > max_len) return false;
-
-        memcpy(&out[pos], &src->data[spos], slen);
-        pos += slen;
-    }
-    *out_len = pos;
-    return true;
+void svc_dyn_did_init(void) {
+    memset(s_dyn_defs, 0, sizeof(s_dyn_defs));
 }
 
 void svc_dyn_define_did(const uds_request_t *req, uds_response_t *resp) {
-    ddid_init();
-
-    if (req->data_len < 1) {
+    if (resp == NULL) {
+        return;
+    }
+    if ((req == NULL) || (req->data_len < 1U)) {
         resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
-        resp->data[1] = req->sid;
+        resp->data[1] = (req != NULL) ? req->sid : 0x2CU;
         resp->data[2] = NRC_INCORRECT_MSG_LEN_OR_FORMAT;
-        resp->len = 3;
+        resp->len = 3U;
         return;
     }
 
-    uint8_t sub = req->data[0];
+    uint8_t raw_sub = req->data[0];
+    uint8_t sub = raw_sub & 0x7FU;
+    bool suppress = ((raw_sub & 0x80U) != 0U);
 
-    if (sub == 0x01) {
-        /* defineByIdentifier */
-        if (req->data_len < 7) { /* sub(1) + DDID(2) + at least one source(4) */
+    if (sub == 0x01U) {
+        /* defineByIdentifier: [0x01, dynDID_Hi, dynDID_Lo, (srcDID_Hi, srcDID_Lo, pos, len)...] */
+        if ((req->data_len < 7U) || (((req->data_len - 3U) % 4U) != 0U)) {
             resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
             resp->data[1] = req->sid;
             resp->data[2] = NRC_INCORRECT_MSG_LEN_OR_FORMAT;
-            resp->len = 3;
+            resp->len = 3U;
             return;
         }
 
-        uint16_t ddid = ((uint16_t)req->data[1] << 8) | req->data[2];
-
-        /* Validate DDID range */
-        if (ddid < DDID_RANGE_START || ddid > DDID_RANGE_END) {
+        uint16_t dyn_did = (uint16_t)(((uint16_t)req->data[1] << 8U) | (uint16_t)req->data[2]);
+        if ((dyn_did < 0xF200U) || (dyn_did > 0xF3FFU)) {
             resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
             resp->data[1] = req->sid;
             resp->data[2] = NRC_REQUEST_OUT_OF_RANGE;
-            resp->len = 3;
+            resp->len = 3U;
             return;
         }
 
-        /* Parse source definitions: each is 4 bytes (srcDID(2) + position(1) + size(1)) */
-        uint16_t src_data_len = req->data_len - 3;
-        if (src_data_len % 4 != 0) {
-            resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
-            resp->data[1] = req->sid;
-            resp->data[2] = NRC_INCORRECT_MSG_LEN_OR_FORMAT;
-            resp->len = 3;
-            return;
-        }
-
-        uint8_t num_sources = (uint8_t)(src_data_len / 4);
-        if (num_sources > DDID_MAX_SOURCES) {
+        uint8_t slice_count = (uint8_t)((req->data_len - 3U) / 4U);
+        if (slice_count > MAX_SOURCES_PER_DYN_DID) {
             resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
             resp->data[1] = req->sid;
             resp->data[2] = NRC_REQUEST_OUT_OF_RANGE;
-            resp->len = 3;
+            resp->len = 3U;
             return;
         }
 
-        /* Find or allocate DDID entry */
-        ddid_entry_t *e = ddid_find(ddid);
-        if (!e) {
-            e = ddid_alloc();
-            if (!e) {
-                resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
-                resp->data[1] = req->sid;
-                resp->data[2] = NRC_CONDITIONS_NOT_CORRECT;
-                resp->len = 3;
-                return;
+        /* Find slot or overwrite */
+        int8_t slot = -1;
+        for (uint8_t i = 0U; i < MAX_DYN_DIDS; i++) {
+            if (s_dyn_defs[i].defined && (s_dyn_defs[i].dyn_did == dyn_did)) {
+                slot = (int8_t)i;
+                break;
+            }
+            if (!s_dyn_defs[i].defined && (slot < 0)) {
+                slot = (int8_t)i;
             }
         }
 
-        e->ddid = ddid;
-        e->source_count = num_sources;
-        e->active = true;
-
-        for (uint8_t i = 0; i < num_sources; i++) {
-            uint16_t off = 3 + i * 4;
-            e->sources[i].src_did  = ((uint16_t)req->data[off] << 8) | req->data[off + 1];
-            e->sources[i].position = req->data[off + 2];
-            e->sources[i].size     = req->data[off + 3];
+        if (slot < 0) {
+            resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
+            resp->data[1] = req->sid;
+            resp->data[2] = NRC_CONDITIONS_NOT_CORRECT;
+            resp->len = 3U;
+            return;
         }
+
+        uint8_t composite[UDS_DID_MAX_DATA_LEN] = { 0 };
+        uint16_t comp_pos = 0U;
+
+        for (uint8_t i = 0U; i < slice_count; i++) {
+            uint16_t offset = (uint16_t)(3U + (i * 4U));
+            uint16_t src = (uint16_t)(((uint16_t)req->data[offset] << 8U) | (uint16_t)req->data[offset + 1U]);
+            uint8_t pos = req->data[offset + 2U];
+            uint8_t len = req->data[offset + 3U];
+
+            const uds_did_record_t *src_rec = uds_did_table_find(src);
+            if ((src_rec == NULL) || (pos == 0U) || ((pos - 1U + len) > src_rec->len)) {
+                resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
+                resp->data[1] = req->sid;
+                resp->data[2] = NRC_REQUEST_OUT_OF_RANGE;
+                resp->len = 3U;
+                return;
+            }
+
+            if ((comp_pos + len) <= sizeof(composite)) {
+                memcpy(&composite[comp_pos], &src_rec->data[pos - 1U], len);
+                comp_pos = (uint16_t)(comp_pos + len);
+            }
+        }
+
+        s_dyn_defs[slot].dyn_did = dyn_did;
+        s_dyn_defs[slot].source_count = slice_count;
+        s_dyn_defs[slot].defined = true;
+
+        /* Register or update in main DID table */
+        uds_did_table_register(dyn_did, composite, comp_pos, false, false);
 
         resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid);
         resp->data[1] = sub;
-        resp->data[2] = (uint8_t)(ddid >> 8);
-        resp->data[3] = (uint8_t)(ddid & 0xFF);
-        resp->len = 4;
-
-    } else if (sub == 0x03) {
+        resp->data[2] = (uint8_t)(dyn_did >> 8U);
+        resp->data[3] = (uint8_t)(dyn_did & 0xFFU);
+        resp->len = 4U;
+    } else if (sub == 0x03U) {
         /* clearDynamicallyDefinedDataIdentifier */
-        if (req->data_len < 3) {
+        if (req->data_len == 1U) {
+            /* Clear all */
+            svc_dyn_did_init();
+            resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid);
+            resp->data[1] = sub;
+            resp->len = 2U;
+        } else if (req->data_len == 3U) {
+            uint16_t dyn_did = (uint16_t)(((uint16_t)req->data[1] << 8U) | (uint16_t)req->data[2]);
+            for (uint8_t i = 0U; i < MAX_DYN_DIDS; i++) {
+                if (s_dyn_defs[i].defined && (s_dyn_defs[i].dyn_did == dyn_did)) {
+                    s_dyn_defs[i].defined = false;
+                }
+            }
+            resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid);
+            resp->data[1] = sub;
+            resp->data[2] = (uint8_t)(dyn_did >> 8U);
+            resp->data[3] = (uint8_t)(dyn_did & 0xFFU);
+            resp->len = 4U;
+        } else {
             resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
             resp->data[1] = req->sid;
             resp->data[2] = NRC_INCORRECT_MSG_LEN_OR_FORMAT;
-            resp->len = 3;
+            resp->len = 3U;
             return;
         }
-
-        uint16_t ddid = ((uint16_t)req->data[1] << 8) | req->data[2];
-        ddid_entry_t *e = ddid_find(ddid);
-        if (!e) {
-            resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
-            resp->data[1] = req->sid;
-            resp->data[2] = NRC_REQUEST_OUT_OF_RANGE;
-            resp->len = 3;
-            return;
-        }
-
-        e->active = false;
-
-        resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid);
-        resp->data[1] = sub;
-        resp->data[2] = (uint8_t)(ddid >> 8);
-        resp->data[3] = (uint8_t)(ddid & 0xFF);
-        resp->len = 4;
-
     } else {
         resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
         resp->data[1] = req->sid;
         resp->data[2] = NRC_SUBFUNCTION_NOT_SUPPORTED;
-        resp->len = 3;
+        resp->len = 3U;
+        return;
+    }
+
+    if (suppress) {
+        resp->suppress = true;
+        resp->len = 0U;
     }
 }

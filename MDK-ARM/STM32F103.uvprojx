@@ -511,14 +511,14 @@
           <GroupName>UDS</GroupName>
           <Files>
             <File>
-              <FileName>can_hw.c</FileName>
+              <FileName>can_ring_buffer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\OTA_CAN\can_hw.c</FilePath>
+              <FilePath>..\OTA_CAN\can_ring_buffer.c</FilePath>
             </File>
             <File>
-              <FileName>did_store.c</FileName>
+              <FileName>crypto_aes_cmac.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\OTA_CAN\did_store.c</FilePath>
+              <FilePath>..\OTA_CAN\crypto_aes_cmac.c</FilePath>
             </File>
             <File>
               <FileName>dtc_nvm_adapter.c</FileName>
@@ -536,24 +536,14 @@
               <FilePath>..\OTA_CAN\dtc_table_85.c</FilePath>
             </File>
             <File>
-              <FileName>io_store.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\OTA_CAN\io_store.c</FilePath>
-            </File>
-            <File>
               <FileName>isotp_fd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\OTA_CAN\isotp_fd.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f103_flash_port.c</FileName>
+              <FileName>svc_authentication.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\OTA_CAN\stm32f103_flash_port.c</FilePath>
-            </File>
-            <File>
-              <FileName>store_persistence.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\OTA_CAN\store_persistence.c</FilePath>
+              <FilePath>..\OTA_CAN\svc_authentication.c</FilePath>
             </File>
             <File>
               <FileName>svc_clear_dtc.c</FileName>
@@ -649,6 +639,11 @@
               <FileName>svc_write_did.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\OTA_CAN\svc_write_did.c</FilePath>
+            </File>
+            <File>
+              <FileName>uds_did_table.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\OTA_CAN\uds_did_table.c</FilePath>
             </File>
             <File>
               <FileName>uds_platform_time.c</FileName>

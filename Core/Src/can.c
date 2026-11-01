@@ -151,22 +151,18 @@ HAL_StatusTypeDef CAN_TX(uint32_t ID, uint8_t* data, uint8_t len)
 	pHeader.StdId = ID;
 	pHeader.RTR = CAN_RTR_DATA;
 
-	uint32_t pTxMailbox;
-	uint32_t timeout = 50000U;
-
-	/* Wait until at least one mailbox becomes free */
-	while ((HAL_CAN_GetTxMailboxesFreeLevel(&hcan) == 0U) && (--timeout > 0U))
+	uint32_t pTxMailbox ;
+	volatile uint8_t l_freelevel = 0;
+	/*Then get the message using HAL_CAN_GetRxMessage().*/
+	l_freelevel = HAL_CAN_GetTxMailboxesFreeLevel(&hcan);
+	if(l_freelevel)
 	{
-		__NOP();
-	}
-
-	if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) > 0U)
-	{
-		if (HAL_CAN_AddTxMessage(&hcan, &pHeader, data, &pTxMailbox) == HAL_OK)
+		if(HAL_CAN_AddTxMessage(&hcan, &pHeader, data, &pTxMailbox) == HAL_OK)
 		{
-			return HAL_OK;
+			 return HAL_OK;
 		}
 	}
+
 
 	return HAL_BUSY;
 }

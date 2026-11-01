@@ -316,27 +316,3 @@ uint16_t uds_param_write_count(const UdsParamStore *store) {
     }
     return (uint16_t)(store->next_seq - 1U);
 }
-
-/* ── Helpers ────────────────────────────────────────────────────────────── */
-void print_flash_status(const UdsParamStore *store)
-{
-    if (store == NULL || !store->initialized) {
-        printf("Store not initialized\r\n");
-        return;
-    }
-
-    uint32_t active_addr = store->flash_base + 
-        (uint32_t)store->active_sector * store->sector_size + 
-        (uint32_t)store->active_slot * store->slot_size;
-
-    printf("--- Flash Wear-Leveling Status ---\r\n");
-    printf("Base Address  : 0x%08X\r\n", (unsigned int)store->flash_base);
-    printf("Active Sector : %u (of %u)\r\n", store->active_sector, store->sector_count);
-    printf("Active Slot   : %u (of %u per sector)\r\n", store->active_slot, store->slots_per_sector);
-    printf("Active Address: 0x%08X\r\n", (unsigned int)active_addr);
-    printf("Sequence Count: %u\r\n", uds_param_write_count(store));
-    printf("Slot Size     : %u bytes (Header: 16 bytes, Data: %u bytes)\r\n", 
-           store->slot_size, store->data_size);
-    printf("----------------------------------\r\n\r\n");
-}
-

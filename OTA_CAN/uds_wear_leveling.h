@@ -8,7 +8,6 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <stdio.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -79,8 +78,6 @@ int uds_param_save(UdsParamStore *store, const void *data);
 int uds_param_erase_all(UdsParamStore *store);
 
 uint16_t uds_param_write_count(const UdsParamStore *store);
-
-void print_flash_status(const UdsParamStore *store);
 
 #ifdef __cplusplus
 }

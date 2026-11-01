@@ -1,106 +1,99 @@
-#include "svc_io_control.h"
-#include "uds_session.h"
-#include "io_store.h"
-
-#include <string.h>
-
-/*
- * 0x2F InputOutputControlByIdentifier
- * Request:  [2F outputIDhi outputIDlo controlOption [controlData] [mask]]
- *
- * Control options:
- *   0x00 - returnControlToECU (unfreeze, ECU controls)
- *   0x01 - resetToDefault
- *   0x02 - freezeCurrentState
- *   0x03 - shortTermAdjustment (set value, optionally masked)
- *
- * Response: [6F outputIDhi outputIDlo controlOption currentValue...]
+/**
+ * @file svc_io_control.c
+ * @brief UDS Service 0x2F InputOutputControlByIdentifier Implementation (ISO 14229-1)
  */
 
+#include "svc_io_control.h"
+#include <string.h>
+
+#define MAX_IO_DIDS 4U
+
+typedef struct {
+    uint16_t id;
+    uint8_t  current_state;
+    uint8_t  default_state;
+    bool     active_override;
+} io_control_entry_t;
+
+static io_control_entry_t s_io_table[MAX_IO_DIDS] = {
+    { 0x0100U, 0x00U, 0x00U, false }, /* Status LED */
+    { 0x0101U, 0x00U, 0x00U, false }, /* Power Relay */
+    { 0x0102U, 0x50U, 0x50U, false }, /* PWM Cooling Fan (50%) */
+    { 0x0103U, 0x00U, 0x00U, false }  /* Buzzer */
+};
+
 void svc_io_control(const uds_request_t *req, uds_response_t *resp) {
-    if (req->data_len < 3) {
+    if (resp == NULL) {
+        return;
+    }
+    if ((req == NULL) || (req->data_len < 3U)) {
         resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
-        resp->data[1] = req->sid;
+        resp->data[1] = (req != NULL) ? req->sid : 0x2FU;
         resp->data[2] = NRC_INCORRECT_MSG_LEN_OR_FORMAT;
-        resp->len = 3;
+        resp->len = 3U;
         return;
     }
 
-    uint16_t out_id = ((uint16_t)req->data[0] << 8) | req->data[1];
-    uint8_t control = req->data[2];
+    uint16_t did = (uint16_t)(((uint16_t)req->data[0] << 8U) | (uint16_t)req->data[1]);
+    uint8_t ctrl_param = req->data[2];
 
-    io_output_t *out = io_store_find(out_id);
-    if (!out) {
+    int8_t found_idx = -1;
+    for (uint8_t i = 0U; i < MAX_IO_DIDS; i++) {
+        if (s_io_table[i].id == did) {
+            found_idx = (int8_t)i;
+            break;
+        }
+    }
+
+    if (found_idx < 0) {
         resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
         resp->data[1] = req->sid;
         resp->data[2] = NRC_REQUEST_OUT_OF_RANGE;
-        resp->len = 3;
+        resp->len = 3U;
         return;
     }
 
-    /* Security check */
-    if (out->requires_security && !uds_security_is_unlocked()) {
-        resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
-        resp->data[1] = req->sid;
-        resp->data[2] = NRC_SECURITY_ACCESS_DENIED;
-        resp->len = 3;
-        return;
-    }
+    io_control_entry_t *entry = &s_io_table[found_idx];
 
-    switch (control) {
-    case 0x00:
-        /* Return control to ECU */
-        out->frozen = false;
+    switch (ctrl_param) {
+    case 0x00U: /* returnControlToECU */
+        entry->active_override = false;
+        entry->current_state = entry->default_state;
         break;
 
-    case 0x01:
-        /* Reset to default */
-        memcpy(out->value, out->default_value, out->size);
-        out->frozen = false;
+    case 0x01U: /* resetToDefault */
+        entry->current_state = entry->default_state;
+        entry->active_override = true;
         break;
 
-    case 0x02:
-        /* Freeze current state */
-        out->frozen = true;
+    case 0x02U: /* freezeCurrentState */
+        entry->active_override = true;
         break;
 
-    case 0x03: {
-        /* Short-term adjustment */
-        if (req->data_len < 3 + out->size) {
+    case 0x03U: /* shortTermAdjustment */
+        if (req->data_len < 4U) {
             resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
             resp->data[1] = req->sid;
             resp->data[2] = NRC_INCORRECT_MSG_LEN_OR_FORMAT;
-            resp->len = 3;
+            resp->len = 3U;
             return;
         }
-        const uint8_t *ctrl_data = &req->data[3];
-
-        /* Check for optional mask */
-        if (req->data_len >= 3 + out->size * 2) {
-            const uint8_t *mask = &req->data[3 + out->size];
-            for (uint8_t i = 0; i < out->size; i++) {
-                out->value[i] = (out->value[i] & ~mask[i]) | (ctrl_data[i] & mask[i]);
-            }
-        } else {
-            memcpy(out->value, ctrl_data, out->size);
-        }
-        out->frozen = true;
+        entry->current_state = req->data[3];
+        entry->active_override = true;
         break;
-    }
 
     default:
         resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
         resp->data[1] = req->sid;
         resp->data[2] = NRC_REQUEST_OUT_OF_RANGE;
-        resp->len = 3;
+        resp->len = 3U;
         return;
     }
 
-    /* Build positive response with current value */
     resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid);
-    resp->data[1] = (uint8_t)(out_id >> 8);
-    resp->data[2] = (uint8_t)(out_id & 0xFF);
-    resp->data[3] = control;
-    memcpy(&resp->data[4], out->value, out->size);
-    resp->len = 4 + out->size;
+    resp->data[1] = (uint8_t)(did >> 8U);
+    resp->data[2] = (uint8_t)(did & 0xFFU);
+    resp->data[3] = ctrl_param;
+    resp->data[4] = entry->current_state;
+    resp->len = 5U;
 }

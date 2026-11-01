@@ -1,117 +1,94 @@
-#include "svc_link_ctrl.h"
-#include "uds_session.h"
-#include "uds_config.h"
-
-/*
- * 0x87 LinkControl
- * Sub 0x01 - verifyModeTransitionWithFixedParameter (baud rate ID)
- * Sub 0x02 - verifyModeTransitionWithSpecificParameter (3-byte baud)
- * Sub 0x03 - transitionMode (apply verified baud)
- *
- * Fixed baud rate IDs: 0x10=125k, 0x11=250k, 0x12=500k, 0x13=1000k
+/**
+ * @file svc_link_ctrl.c
+ * @brief UDS Service 0x87 LinkControl Implementation (ISO 14229-1)
  */
 
-static uint32_t fixed_baud_to_kbps(uint8_t id) {
-    switch (id) {
-    case 0x10: return 125;
-    case 0x11: return 250;
-    case 0x12: return 500;
-    case 0x13: return 1000;
-    default:   return 0;
-    }
+#include "svc_link_ctrl.h"
+#include <stddef.h>
+
+typedef enum {
+    LINK_CTRL_IDLE = 0,
+    LINK_CTRL_VERIFIED
+} link_ctrl_state_t;
+
+static link_ctrl_state_t s_link_state = LINK_CTRL_IDLE;
+static uint8_t s_verified_mode = 0U;
+
+void svc_link_control_reset(void) {
+    s_link_state = LINK_CTRL_IDLE;
+    s_verified_mode = 0U;
 }
 
 void svc_link_control(const uds_request_t *req, uds_response_t *resp) {
-    if (req->data_len < 1) {
+    if (resp == NULL) {
+        return;
+    }
+    if ((req == NULL) || (req->data_len < 1U)) {
         resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
-        resp->data[1] = req->sid;
+        resp->data[1] = (req != NULL) ? req->sid : 0x87U;
         resp->data[2] = NRC_INCORRECT_MSG_LEN_OR_FORMAT;
-        resp->len = 3;
+        resp->len = 3U;
         return;
     }
 
-    uint8_t sub_raw = req->data[0];
-    bool suppress = (sub_raw & 0x80) != 0;
-    uint8_t sub = sub_raw & 0x7F;
+    uint8_t raw_sub = req->data[0];
+    uint8_t sub = raw_sub & 0x7FU;
+    bool suppress = ((raw_sub & 0x80U) != 0U);
 
     switch (sub) {
-    case 0x01: {
-        /* Verify fixed baud rate */
-        if (req->data_len < 2) {
+    case 0x01U: {
+        /* verifyModeTransitionWithFixedParameter */
+        if (req->data_len != 2U) {
             resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
             resp->data[1] = req->sid;
             resp->data[2] = NRC_INCORRECT_MSG_LEN_OR_FORMAT;
-            resp->len = 3;
+            resp->len = 3U;
             return;
         }
 
-        uint32_t baud = fixed_baud_to_kbps(req->data[1]);
-        if (baud == 0) {
+        uint8_t mode = req->data[1];
+        /* Standard CAN baudrate identifiers: 0x12 (125k), 0x13 (250k), 0x14 (500k), 0x15 (1M) */
+        if ((mode < 0x12U) || (mode > 0x15U)) {
             resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
             resp->data[1] = req->sid;
             resp->data[2] = NRC_REQUEST_OUT_OF_RANGE;
-            resp->len = 3;
+            resp->len = 3U;
             return;
         }
 
-        uds_link_set_pending_baud(baud);
+        s_verified_mode = mode;
+        s_link_state = LINK_CTRL_VERIFIED;
 
         resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid);
         resp->data[1] = sub;
-        resp->len = 2;
-        resp->suppress = suppress;
+        resp->len = 2U;
         break;
     }
 
-    case 0x02: {
-        /* Verify specific baud rate (3-byte value in kbps) */
-        if (req->data_len < 4) {
+    case 0x03U: {
+        /* transitionMode */
+        if (req->data_len != 1U) {
             resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
             resp->data[1] = req->sid;
             resp->data[2] = NRC_INCORRECT_MSG_LEN_OR_FORMAT;
-            resp->len = 3;
+            resp->len = 3U;
             return;
         }
 
-        uint32_t baud = ((uint32_t)req->data[1] << 16) |
-                         ((uint32_t)req->data[2] << 8) |
-                         req->data[3];
-
-        if (baud < 10 || baud > 1000) {
-            resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
-            resp->data[1] = req->sid;
-            resp->data[2] = NRC_REQUEST_OUT_OF_RANGE;
-            resp->len = 3;
-            return;
-        }
-
-        uds_link_set_pending_baud(baud);
-
-        resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid);
-        resp->data[1] = sub;
-        resp->len = 2;
-        resp->suppress = suppress;
-        break;
-    }
-
-    case 0x03: {
-        /* Transition to verified baud rate */
-        if (!uds_link_has_pending()) {
+        /* ISO 14229-1: Sequence check - must be preceded by verifyMode */
+        if (s_link_state != LINK_CTRL_VERIFIED) {
             resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
             resp->data[1] = req->sid;
             resp->data[2] = NRC_REQUEST_SEQUENCE_ERROR;
-            resp->len = 3;
+            resp->len = 3U;
             return;
         }
 
-        /* In a real ECU we'd reconfigure the CAN controller here.
-         * For the simulator, we just acknowledge the transition. */
-        uds_link_clear_pending();
+        s_link_state = LINK_CTRL_IDLE;
 
         resp->data[0] = UDS_POSITIVE_RESPONSE(req->sid);
         resp->data[1] = sub;
-        resp->len = 2;
-        resp->suppress = suppress;
+        resp->len = 2U;
         break;
     }
 
@@ -119,7 +96,12 @@ void svc_link_control(const uds_request_t *req, uds_response_t *resp) {
         resp->data[0] = UDS_SID_NEGATIVE_RESPONSE;
         resp->data[1] = req->sid;
         resp->data[2] = NRC_SUBFUNCTION_NOT_SUPPORTED;
-        resp->len = 3;
-        break;
+        resp->len = 3U;
+        return;
+    }
+
+    if (suppress) {
+        resp->suppress = true;
+        resp->len = 0U;
     }
 }
